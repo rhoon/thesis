@@ -36,9 +36,9 @@
   3. Where it can go from here.
   4. Conclusion.
 
-<br /><br /><br />
+<br />
 ___
-<br /><br /><br />
+<br />
 ##Broad Notes
 
 **Audience:**
