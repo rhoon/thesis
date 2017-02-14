@@ -35,3 +35,28 @@
   2. What it reveals not potentially seen in historical sources.
   3. Where it can go from here.
   4. Conclusion.
+
+___
+
+**Audience:**
+- Content: Art historians, cultural historians, Dada enthusiasts, Wikipedians
+- Model: Sociologists, History of Ideas, Philosophers
+- Visualization: Data-visualization enthusiasts (hopefully!), design/art enthusiasts
+
+**How much can I expect them to know already:**
+- Perhaps loose context for most, although some will be experts
+
+**Response: Contradiction? Arguments?**
+- Data source (wikipedia) -> Bias (under-represented populations); Comprehensiveness; Accuracy;
+- Data collection -> Only collecting ‘linked’ items?, accuracy of technology (NLP),
+- Metric of ‘Influence’
+- Quantitative approach to qualitative topic
+- Under-reliant on the creations of art/musicians/poets of Dada to tell the story of Dada - could be too ‘meta’
+
+**Source notes:**
+**Primary source: Wikipedia*
+**Secondary sources fall into four categories:**
+1. Art history (Dada)
+2. Network Analyses/Quantifying influence (citation / pageRank)
+3. Accuracy of Wikipedia
+4. Network Visualization (similar visualizations, knowledge trees)
