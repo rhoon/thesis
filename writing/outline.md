@@ -53,9 +53,9 @@ ___
 - Quantitative approach to qualitative topic
 - Under-reliant on the creations of art/musicians/poets of Dada to tell the story of Dada - could be too ‘meta’
 
-**Source notes:**
-**Primary source: Wikipedia*
-**Secondary sources fall into four categories:**
+**Source notes:**<br />
+**Primary source: Wikipedia**<br />
+**Secondary sources fall into four categories:**<br />
 1. Art history (Dada)
 2. Network Analyses/Quantifying influence (citation / pageRank)
 3. Accuracy of Wikipedia
