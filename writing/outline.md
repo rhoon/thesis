@@ -3,7 +3,7 @@
   2. An introduction to the role of the algorithm in judging influence
   3. and network analyses as a mode of visualizing knowledge
 
-###Dada (brief overview)
+###Dada (brief overview) Foster (1996)
   1. Impact on art. (Duchamp)
   2. Impact on design. (Proto-modernism)
   3. Impact on music. (Mechanical music etc)

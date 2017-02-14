@@ -16,4 +16,8 @@ Lima, Manuel. *Book of Trees: Visualizing Branches of Knowledge.* Princeton Arch
 
 *The Duchamp effect.* Cambridge, MA: MIT Press, 1994.
 
+Reagle, J., & Rhue, L. "Gender Bias in Wikipedia and Britannica." *International Journal of Communication* 5(0), 21 (2011)
+
+Rosenzweig, R. "Can History Be Open Source? Wikipedia and the Future of the Past." *Journal of American History,* 93(1), 117–146 (2006)
+
 West, K., & Williamson, J. "Wikipedia: friend or foe?" *Reference Services Review* (2009) 260–271.
