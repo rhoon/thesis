@@ -1,15 +1,15 @@
-###Introduction:
+##Introduction:
   1. Thesis statement
   2. An introduction to the role of the algorithm in judging influence
   3. and network analyses as a mode of visualizing knowledge
 
-###Dada (brief overview) Foster (1996)
+##Dada (brief overview) Foster (1996)
   1. Impact on art. (Duchamp)
   2. Impact on design. (Proto-modernism)
   3. Impact on music. (Mechanical music etc)
   4. Politics.
 
-###Data source, structure, and methodology and visualization.
+##Data source, structure, and methodology and visualization.
 
 **A. Network analyses mapping knowledge and/or influence**
   1. Historic Knowledge Trees - The book of trees : visualizing branches of knowledge
@@ -30,13 +30,15 @@
   3. Technology used (NLP, any others)
   4. Network analyses (transition to)
 
-###Meta-analysis of data, comparison to historical sources, conclusion
+##Meta-analysis of data, comparison to historical sources, conclusion
   1. Weak points vs. historic sources (outside of narrative structure)
   2. What it reveals not potentially seen in historical sources.
   3. Where it can go from here.
   4. Conclusion.
 
 ___
+
+##Broad Notes
 
 **Audience:**
 - Content: Art historians, cultural historians, Dada enthusiasts, Wikipedians
