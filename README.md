@@ -9,3 +9,5 @@
 [READING LIST](/writing/readingList.md)
 
 ![](mindMapV1.jpg)
+
+![](storyboard-v1.jpg)
