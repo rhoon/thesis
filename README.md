@@ -8,6 +8,10 @@
 
 [READING LIST](/writing/readingList.md)
 
+#Mind Map
+
 ![](mindMapV1.jpg)
+
+#Storyboard
 
 ![](storyboard-v1.jpg)
