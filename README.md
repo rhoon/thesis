@@ -10,8 +10,8 @@
 
 #Mind Map
 
-![](mindMapV1.jpg)
+![](writing/mindMapV1.jpg)
 
 #Storyboard
 
-![](storyboard-v1.jpg)
+![](writing/storyboard-v1.jpg)

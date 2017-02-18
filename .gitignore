@@ -1,2 +1,3 @@
 # Do not track data
 work/crawler/data/
+work/node_modules
