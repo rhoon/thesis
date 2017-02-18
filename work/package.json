@@ -1,0 +1,18 @@
+{
+  "name": "work",
+  "version": "1.0.0",
+  "description": "data collection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Riley Hoonan",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "cheerio": "^0.22.0",
+    "d3": "^4.5.1",
+    "fs": "0.0.1-security",
+    "request": "^2.79.0"
+  }
+}
