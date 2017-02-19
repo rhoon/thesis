@@ -13,6 +13,7 @@
     "cheerio": "^0.22.0",
     "d3": "^4.5.1",
     "fs": "0.0.1-security",
+    "nlp_compromise": "^6.5.3",
     "request": "^2.79.0"
   }
 }
