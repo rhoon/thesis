@@ -24,8 +24,6 @@ var nlp = require('nlp_compromise');
 var content = fs.readFileSync('data/dada.html');
 
 var links = {};
-var count = 0;
-
 var wiki = 'https://en.wikipedia.org/wiki/'
 var thisPageURL = wiki+'Dada';
 var $ = cheerio.load(content);
@@ -41,22 +39,23 @@ $('div#bodyContent').find('a').each(function(i, elem) {
   //check for junk, then check for wiki in href
   if (link!=undefined) {
     if (link.includes('wiki') && !link.includes(thisPageURL)) {
-      // console.log(link);
+      // reformat link to minimize extra info
       link = link.slice(wiki.length, link.length);
-      console.log(link);
+      // create new object
       links[link] = new Object();
       var linkText = $(elem).text();
       links[link].pageName = linkText;
       // console.log(linkText);
-      count++;
     }
-    
   }
 })
 
+// mapsTo is the page for all the links
 var mapsTo = $('li#t-whatlinkshere').find('a').attr('href');
+// wikiData
 var wikiData = $('li#t-wikibase').find('a').attr('href');
-console.log(count);
-console.log(wikiData);
-console.log(mapsTo);
-// console.log(JSON.stringify(links));
+
+fs.writeFile('s-mainPage-out.json', JSON.stringify(links), function(err) {
+      if (err) {throw err;}
+      console.log(thisPageURL+'mainPage written');
+  });
