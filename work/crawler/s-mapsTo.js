@@ -12,36 +12,38 @@ var wiki = 'https://en.wikipedia.org/wiki/'
 var $ = cheerio.load(content);
 var count = 0;
 
+// exception list
+var exceptions = [
+  'User_talk',
+  'Talk:',
+  'Template:',
+  'Wikipedia:',
+  'Wikipedia_talk:',
+  'User:',
+  'Portal:',
+  'w/index.php?'
+]
+
 $('ul#mw-whatlinkshere-list').find('a').each(function(i, elem) {
 
   var link = $(elem).attr('href');
 
-  // exception list
-  var junk = [
-    link.includes('User_talk'),
-    link.includes('Talk:'),
-    link.includes('Template:'),
-    link.includes('Wikipedia:'),
-    link.includes('Wikipedia_talk:'),
-    link.includes('User:'),
-    link.includes('Portal:'),
-    link.includes('w/index.php?')
-  ]
-
   // check for exceptions
-  var isJunk = false;
-  for (var c in junk) {
-    if (junk[c] == true) {
-      isJunk = true;
+  var skip = false;
+  for (var c in exceptions) {
+    if (link.includes(exceptions[c])) {
+      skip = true;
+      console.log('skipping');
       break;
     }
   }
 
   // add not-junk to mapsTo array
-  if (!isJunk) {
+  if (!skip) {
     link = link.slice(wiki.length, link.length);
     mapsTo.push(link)
     count++;
+    console.log(link);
   }
 
 })
@@ -51,5 +53,5 @@ fs.writeFile('s-mapsTo-out.json', JSON.stringify(mapsTo), function(err) {
   console.log('mapsTo written')
 })
 
-console.log(JSON.stringify(mapsTo));
+// console.log(JSON.stringify(mapsTo));
 console.log(count);
