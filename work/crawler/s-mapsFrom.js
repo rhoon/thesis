@@ -1,10 +1,11 @@
-//mapsTo collects links pointing at the main page
+//mapsFrom collects links pointing at the main page
 //from wikipedia's 'what links here' page
 
 var fs = require('fs');
 var cheerio = require('cheerio');
 var request = require('request');
 var nlp = require('nlp_compromise');
+var _ = require('lodash');
 
 // exception list
 var exceptions = [
@@ -22,10 +23,9 @@ module.exports = {
 
   scrape: function(content) {
     var content = fs.readFileSync('data/mapsTo.html');
-    var mapsTo = [];
+    var mapsFrom = [];
     var wiki = 'https://en.wikipedia.org/wiki/'
     var $ = cheerio.load(content);
-    var count = 0;
 
     $('ul#mw-whatlinkshere-list').find('a').each(function(i, elem) {
 
@@ -41,19 +41,19 @@ module.exports = {
         }
       }
 
-      // add not-junk to mapsTo array
+      // add not-junk to mapsFrom array
       if (!skip) {
         link = link.slice(wiki.length, link.length);
-        mapsTo.push(link)
-        count++;
+        mapsFrom.push(link)
         // console.log(link);
       }
 
     })
 
-    console.log(count);
+    // console.log(count);
+    mapsFrom = _.uniq(mapsFrom);
 
-    return mapsTo;
+    return mapsFrom;
 
   } //end scrape
 
