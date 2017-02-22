@@ -20,6 +20,8 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 var request = require('request');
 var nlp = require('nlp_compromise');
+var dataScrape = require('./s-wikiData');
+var mapsTo = require('./s-mapsTo');
 
 var content = fs.readFileSync('data/dada.html');
 
@@ -51,11 +53,19 @@ $('div#bodyContent').find('a').each(function(i, elem) {
 })
 
 // mapsTo is the page for all the links
-var mapsTo = $('li#t-whatlinkshere').find('a').attr('href');
+var mapsToURL = $('li#t-whatlinkshere').find('a').attr('href');
 // wikiData
 var wikiData = $('li#t-wikibase').find('a').attr('href');
 
-fs.writeFile('s-mainPage-out.json', JSON.stringify(links), function(err) {
-      if (err) {throw err;}
-      console.log(thisPageURL+'mainPage written');
-  });
+// requests are de-activated to avoid mistakenly overwhelming servers in test runs
+// request(mapsToURL, function(err, resp, body) {
+//   if (err) {throw err;}
+//     console.log(mapsToURL);
+//     console.log(mapsTo.scrape(body));
+// })
+//
+// request(wikiData, function(err, resp, body) {
+// 	if (err) {throw err;}
+//   console.log(wikiData);
+//   console.log(dataScrape.scrape(body));
+// });

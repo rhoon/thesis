@@ -6,12 +6,6 @@ var cheerio = require('cheerio');
 var request = require('request');
 var nlp = require('nlp_compromise');
 
-var content = fs.readFileSync('data/mapsTo.html');
-var mapsTo = [];
-var wiki = 'https://en.wikipedia.org/wiki/'
-var $ = cheerio.load(content);
-var count = 0;
-
 // exception list
 var exceptions = [
   'User_talk',
@@ -24,34 +18,43 @@ var exceptions = [
   'w/index.php?'
 ]
 
-$('ul#mw-whatlinkshere-list').find('a').each(function(i, elem) {
+module.exports = {
 
-  var link = $(elem).attr('href');
+  scrape: function(content) {
+    var content = fs.readFileSync('data/mapsTo.html');
+    var mapsTo = [];
+    var wiki = 'https://en.wikipedia.org/wiki/'
+    var $ = cheerio.load(content);
+    var count = 0;
 
-  // check for exceptions
-  var skip = false;
-  for (var c in exceptions) {
-    if (link.includes(exceptions[c])) {
-      skip = true;
-      console.log('skipping');
-      break;
-    }
-  }
+    $('ul#mw-whatlinkshere-list').find('a').each(function(i, elem) {
 
-  // add not-junk to mapsTo array
-  if (!skip) {
-    link = link.slice(wiki.length, link.length);
-    mapsTo.push(link)
-    count++;
-    console.log(link);
-  }
+      var link = $(elem).attr('href');
 
-})
+      // check for exceptions
+      var skip = false;
+      for (var c in exceptions) {
+        if (link.includes(exceptions[c])) {
+          skip = true;
+          // console.log('skipping');
+          break;
+        }
+      }
 
-fs.writeFile('s-mapsTo-out.json', JSON.stringify(mapsTo), function(err) {
-  if (err) {throw err;}
-  console.log('mapsTo written')
-})
+      // add not-junk to mapsTo array
+      if (!skip) {
+        link = link.slice(wiki.length, link.length);
+        mapsTo.push(link)
+        count++;
+        // console.log(link);
+      }
 
-// console.log(JSON.stringify(mapsTo));
-console.log(count);
+    })
+
+    console.log(count);
+
+    return mapsTo;
+
+  } //end scrape
+
+}
