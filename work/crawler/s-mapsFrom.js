@@ -22,9 +22,9 @@ var exceptions = [
 module.exports = {
 
   scrape: function(content) {
-    var content = fs.readFileSync('data/mapsTo.html');
+    // var content = fs.readFileSync('data/mapsFrom.txt');
     var mapsFrom = [];
-    var wiki = 'https://en.wikipedia.org/wiki/'
+    var wiki = '/wiki/'
     var $ = cheerio.load(content);
 
     $('ul#mw-whatlinkshere-list').find('a').each(function(i, elem) {
@@ -53,6 +53,7 @@ module.exports = {
     // console.log(count);
     mapsFrom = _.uniq(mapsFrom);
 
+    // console.log(mapsFrom);
     return mapsFrom;
 
   } //end scrape
