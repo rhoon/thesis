@@ -1,29 +1,45 @@
 //collect.js gets gets pages and runs them through the data pipeline
 
+//  Output data structure:
+///    this page's URL                  url        str
+///    links from this page             mapsTo     []
+///    pages linking to this one        mapsFrom   []
+///    metaData from wiki's data page   metaData   {}
+
 var request = require('request');
 var fs = require('fs');
 
-var mp = require('./s-mainPage');
-//load object
+//local modules
+var dataScrape = require('./s-wikiData');
+var mF = require('./s-mapsFrom');
+var mT = require('./s-mainPage');
 
-//concatenate mapsTo and mapsFrom; remove dups
 
-// async loop through mapsTo and mapsFrom properties
+var page = new Object;
+page.mapsTo = [];
+page.url = 'Dada'; //url
 
-//load url
-url = 'https://en.wikipedia.org/wiki/Dada';
-
-// var aa = setTimeout(function () {  return(page);  }, time());
-
-// //generate random time in milliseconds between 30 and 90 seconds
-// function time() {
-//   return Math.random() * (60000) + 30000;
-// }
+var url = 'https://en.wikipedia.org/wiki/'+page.url;
+var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
 
 // grab the page
 request(url, function(err, resp, body) {
    if (err) {throw err;}
-    console.log(mp.scrape(body, url));
+    page.mapsTo = mT.scrape(body, url);
+    console.log(mT.scrape(body, url))
 });
+
+request(mapsFromURL, function(err, resp, body) {
+  if (err) {throw err;}
+    console.log('scraping '+mapsFromURL);
+    page.mapsFrom = mF.scrape(body);
+    console.log(mF.scrape(body));
+})
+
+// request(wikiData, function(err, resp, body) {
+//    if (err) {throw err;}
+//     console.log('scraping '+wikiData);
+//     page.metaData = dataScrape.scrape(body);
+// });
 
 //write the data file
