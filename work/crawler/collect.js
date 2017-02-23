@@ -13,6 +13,13 @@ var mp = require('./s-mainPage');
 //load url
 url = 'https://en.wikipedia.org/wiki/Dada';
 
+// var aa = setTimeout(function () {  return(page);  }, time());
+
+// //generate random time in milliseconds between 30 and 90 seconds
+// function time() {
+//   return Math.random() * (60000) + 30000;
+// }
+
 // grab the page
 request(url, function(err, resp, body) {
    if (err) {throw err;}

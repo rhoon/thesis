@@ -36,7 +36,7 @@ var exceptions = [
 
 module.exports = {
 
- scrape: function(content, url) {
+ scrape: function(content, url, cb) {
   // var content = fs.readFileSync('data/dada.html');
 
   var wiki = 'https://en.wikipedia.org/wiki/'
@@ -80,36 +80,26 @@ module.exports = {
   //remove duplicates, append to object
   page.mapsTo = _.uniq(page.mapsTo);
 
-  // mapsFrom is the page for all the page
+  // set URLs to scrape
   var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
-
-  // wikiData
   var wikiData = $('li#t-wikibase').find('a').attr('href');
 
-  // try moving requests to modules
-  // requests are stacked to ensure they run before returning the completed 'page' object
   request(mapsFromURL, function(err, resp, body) {
     if (err) {throw err;}
       console.log('scraping '+mapsFromURL);
       page.mapsFrom = mapsFrom.scrape(body);
-      // console.log(mapsFrom.scrape(body));
   })
 
   request(wikiData, function(err, resp, body) {
      if (err) {throw err;}
       console.log('scraping '+wikiData);
       page.metaData = dataScrape.scrape(body);
-      // console.log(dataScrape.scrape(body));
   });
 
-  //generate random time in milliseconds between 30 and 90 seconds
-  function time() {
-    return Math.random() * (90000 - 30000) + 3000;
-  }
-
   //return object after time interval
-  // return
-  setTimeout(function () {  console.log(page);  }, time())
+  // return page;
+  return page;
+
 } //end scrape
 
 } // end exports
