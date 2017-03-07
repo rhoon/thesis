@@ -1,5 +1,5 @@
 #Mapping Dada
-###What the Link Structure of Wikipedia Reveals about the Influence of a 1920’s Art Movement
+###Quantifying the Influence of a 1920’s Art Movement through Wikipedia's Link Structure
 
 This thesis is an investigation of linked article structures, Wikipedia metadata, and what we can learn from analyzing these complex networks - for instance, how does an art movement’s influence spread over time? And geographically? Can we measure said influence quantitatively? The thesis attempts to build a model using Dada as an example, using network analysis and ranking algorithms, to answer these questions and visualize these relationships to allow the audience to judge the effectiveness of said model.
 
