@@ -1,9 +1,9 @@
 #Mapping Dada
-###What the Architecture of Wikipedia reveals about the Influence of a 1920’s Art Movement
+###What the Link Structure of Wikipedia Reveals about the Influence of a 1920’s Art Movement
 
-This thesis is an investigation of linked article structures, Wikipedia metadata, and what we can learn from analyzing these complex networks - for instance, how does an art movement’s influence spread over time? And geographically? Can we measure said influence quantitatively? The thesis attempts to build a model, using Dada as an example, using network analysis and ranking algorithms, to answer these questions, and visualize these relationships to allow the audience to judge the effectiveness of said model.
+This thesis is an investigation of linked article structures, Wikipedia metadata, and what we can learn from analyzing these complex networks - for instance, how does an art movement’s influence spread over time? And geographically? Can we measure said influence quantitatively? The thesis attempts to build a model using Dada as an example, using network analysis and ranking algorithms, to answer these questions and visualize these relationships to allow the audience to judge the effectiveness of said model.
 
-I have chosen Dada as a topic because it is both well documented and (to my knowledge) not having made it into public school curriculums, not especially well known outside the design and art community. I believe that this analysis will yield some surprising results on the influence of what many would consider to be a relatively obscure art movement from a short period of time (compared to Cubism or Impressionism) and it’s vast implications both within and outside of the art and design communities.
+I have chosen Dada as a topic because it is both well documented and (not having made it into public school curriculums) not especially well known outside the design and art community. I believe that this analysis will yield some surprising results on the influence of what many would consider to be a relatively obscure art movement (compared to Cubism or Impressionism) from a short period of time and it’s vast implications both within and outside of the art and design communities.
 
 I will approach the model from several vantage points:
 
