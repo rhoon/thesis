@@ -31,8 +31,8 @@ module.exports = {
 
   var wiki = '/wiki/'
   var $ = cheerio.load(content);
-
-  var mapsTo = [];
+  var data = new Object;
+  data.mapsTo = [];
   // url = url.slice(wiki.length, url.length);
 
   //from content, remove navboxes which are tangential information related to metadata
@@ -59,19 +59,19 @@ module.exports = {
         // reformat link to minimize excess
         link = link.slice(wiki.length, link.length);
         // create new object
-        mapsTo.push(link);
+        data.mapsTo.push(link);
       }
     }
 
   })
 
   //remove duplicates, append to object
-  mapsTo = _.uniq(mapsTo);
+  data.mapsTo = _.uniq(data.mapsTo);
 
   // set URLs to scrape
-  var wikiData = $('li#t-wikibase').find('a').attr('href');
-
-  return mapsTo;
+  data.wikiData = $('li#t-wikibase').find('a').attr('href');
+  
+  return data;
 
 } //end scrape
 

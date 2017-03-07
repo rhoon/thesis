@@ -48,6 +48,7 @@ module.exports = {
           // add each item to the category
           var item = $(elem).text().trim();
           attrs[cat].push(item);
+          console.log(item);
         });
       }
     }); // end div.wikibase-statementgroupview.listview-item
