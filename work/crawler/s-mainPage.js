@@ -6,6 +6,12 @@
 // Only collects links that are written into content (not navbars, navboxes, or similar items)
 // Does not include duplicate links from a single page
 
+// NOTES: Should this grab containing sentences or other context for links? Would increase data set in a big way...
+// Richard The:
+// Identifying 'the verb'
+// Looking at the first three sentences of wikipedia articles for extra information? (NLP...)
+//
+
 var fs = require('fs');
 var cheerio = require('cheerio');
 var request = require('request');
@@ -70,7 +76,7 @@ module.exports = {
 
   // set URLs to scrape
   data.wikiData = $('li#t-wikibase').find('a').attr('href');
-  
+
   return data;
 
 } //end scrape
