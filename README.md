@@ -2,7 +2,9 @@
 
 [Intro](/writing/intro.md)
 
-[Prototype](/visualization/prototypes-r1.pdf)
+[Desktop Prototype](/visualization/prototypes-r1.pdf)
+
+[Mobile Prototype](/visualization/mobile-prototypes-r1.pdf)
 
 [Outline](/writing/outline.md)
 
