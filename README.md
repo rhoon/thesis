@@ -1,5 +1,9 @@
 #Mapping Dada
 
+[Intro](/writing/intro.md)
+
+[Prototype](/visualization/prototypes-r1.pdf)
+
 [Outline](/writing/outline.md)
 
 [Reading List](/writing/readingList.md)
