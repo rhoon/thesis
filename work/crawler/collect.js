@@ -39,65 +39,70 @@ var pages = [];
 // });
 
 
-var page = new Object;
-page.url ='Dada'; //url
+var i = 0;
 
-var url = 'https://en.wikipedia.org/wiki/'+page.url;
-var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
+function myLoop () {           //  create a loop function
+   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
 
-// this has to happen later in the order
-function wDScrape(pg) {
-  request(pg.wikiData, function(err, resp, body) {
-     if (err) {throw err;}
-      console.log('scraping wikiData '+pg.wikiData);
-      pg.metaData = dataScrape.scrape(body);
-  });
+
+        var page = new Object;
+        page.url = pagesIn.mapsTo[i]; //url
+
+        var url = 'https://en.wikipedia.org/wiki/'+page.url;
+        var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
+
+        // collect links pointing at this page
+        request(mapsFromURL, function(err, resp, body) {
+          if (err) {throw err;}
+            console.log('scraping mapsFrom '+mapsFromURL);
+            page.mapsFrom = mF.scrape(body);
+           //  console.log(page.mapsFrom);
+
+           if (!page.url.includes('jpg')) {
+
+            // collect links pointing outwards from the page
+            request(url, function(err, resp, body) {
+               if (err) {throw err;}
+                console.log('scraping mainPage '+url);
+                var s = mT.scrape(body, url);
+               //  console.log(s);
+                page.mapsTo = s.mapsTo;
+                page.wikiData = s.wikiData;
+
+
+               // collect wikiData (categorical info)
+               request(page.wikiData, function(err, resp, body) {
+                  if (err) {throw err;}
+                   console.log('scraping wikiData '+page.wikiData);
+                   page.metaData = dataScrape.scrape(body);
+
+                   pages.push(page);
+
+                   if (i==5) { //if last loop, write the file
+                     fs.writeFile('data/pages-out.json', JSON.stringify(pages), function(err) {
+                         if (err) {throw err;}
+                         console.log('file written');
+                     });
+                   }
+
+               }); // end wikiData request
+
+            }); // end mainPage request
+
+          } else {
+            // if the file is an image, it doesn't have wikiData or a 'mainPage' to scrape
+            // so just push the page as is
+            pages.push(page);
+          }
+
+        });
+
+    //update count and check for end case
+    i++;
+    if (i < 5) {
+         myLoop();
+    }
+  }, 3000)
 }
-
-
-// collect links pointing outwards from the page
-request(url, function(err, resp, body) {
-   if (err) {throw err;}
-    console.log('scraping mainPage '+url);
-    var s = mT.scrape(body, url);
-   //  console.log(s);
-    page.mapsTo = s.mapsTo;
-    page.wikiData = s.wikiData;
-
-    // collect wikiData (categorical info)
-    wDScrape(page);
-
-    // collect links pointing at this page
-    request(mapsFromURL, function(err, resp, body) {
-      if (err) {throw err;}
-        console.log('scraping mapsFrom '+mapsFromURL);
-        page.mapsFrom = mF.scrape(body);
-       //  console.log(page.mapsFrom);
-
-       pages.push(page);
-
-       fs.writeFile('data/pages-out.json', JSON.stringify(pages), function(err) {
-           if (err) {throw err;}
-           console.log('file written');
-       });
-
-    });
-
-});
-
-// var i = 1;
-
-// function myLoop () {           //  create a loop function
-//    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
 //
-//      //recursive loop call (this actually happens before anything else does in the loop)
-//     i++;
-//     if (i < 3) {
-//
-//          console.log(pages);
-//          myLoop();
-//     }
-//   }, 3000)
-// }
-//
-// myLoop();
+myLoop();
