@@ -32,50 +32,72 @@ var pages = [];
 //     });
 // }, function(err, result) {
 //     //write the data file
-//     fs.writeFile('data/pages-out.json', JSON.stringify(pages), function(err) {
-//         if (err) {throw err;}
-//     });
+    // fs.writeFile('data/pages-out.json', JSON.stringify(pages), function(err) {
+    //     if (err) {throw err;}
+    // });
 //     console.log(pages);
 // });
 
-function getPage(abbrvURL) {
 
-  var page = new Object;
-  page.url ='Dada'; //url
+var page = new Object;
+page.url ='Dada'; //url
 
-  var url = 'https://en.wikipedia.org/wiki/'+page.url;
-  var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
+var url = 'https://en.wikipedia.org/wiki/'+page.url;
+var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
 
-  // grab the page - this has to happen early in the order
-  request(url, function(err, resp, body) {
+// this has to happen later in the order
+function wDScrape(pg) {
+  request(pg.wikiData, function(err, resp, body) {
      if (err) {throw err;}
-      console.log('scraping mainPage '+url);
-      var s = mT.scrape(body, url);
-      page.mapsTo = s.mapsTo;
-      page.wikiData = s.wikiData;
-      wDScrape();
+      console.log('scraping wikiData '+pg.wikiData);
+      pg.metaData = dataScrape.scrape(body);
   });
-
-  // this can happen any time in the order
-  request(mapsFromURL, function(err, resp, body) {
-    if (err) {throw err;}
-      console.log('scraping mapsFrom '+mapsFromURL);
-      page.mapsFrom = mF.scrape(body);
-  })
-
-  // this has to happen later in the order
-  function wDScrape() {
-    request(page.wikiData, function(err, resp, body) {
-       if (err) {throw err;}
-        console.log('scraping wikiData '+page.wikiData);
-        page.metaData = dataScrape.scrape(body);
-    });
-  }
-
-  //this has to happen last (hoping to use setTimeout as a dual purpose: delay the page requests and push a complete object...)
-  setTimeout(function() {
-    // console.log(page);
-    pages.push(page);
-  }, 10000);
-
 }
+
+
+// collect links pointing outwards from the page
+request(url, function(err, resp, body) {
+   if (err) {throw err;}
+    console.log('scraping mainPage '+url);
+    var s = mT.scrape(body, url);
+   //  console.log(s);
+    page.mapsTo = s.mapsTo;
+    page.wikiData = s.wikiData;
+
+    // collect wikiData (categorical info)
+    wDScrape(page);
+
+    // collect links pointing at this page
+    request(mapsFromURL, function(err, resp, body) {
+      if (err) {throw err;}
+        console.log('scraping mapsFrom '+mapsFromURL);
+        page.mapsFrom = mF.scrape(body);
+       //  console.log(page.mapsFrom);
+
+       pages.push(page);
+
+       fs.writeFile('data/pages-out.json', JSON.stringify(pages), function(err) {
+           if (err) {throw err;}
+           console.log('file written');
+       });
+
+    });
+
+});
+
+// var i = 1;
+
+// function myLoop () {           //  create a loop function
+//    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+//
+//      //recursive loop call (this actually happens before anything else does in the loop)
+//     i++;
+//     if (i < 3) {
+//
+//          console.log(pages);
+//          myLoop();
+//     }
+//   }, 3000)
+// }
+//
+// myLoop();
