@@ -2,7 +2,7 @@ In recent years, the wealth of data available over the internet has given birth 
 
 We attempt to answer these questions using Wikipedia’s link structure as a data source. This underlying set of interconnections allows us to gauge the cognitive proximity of concepts, and thereby the influence of one upon another, without the limitations of geographic or chronologic distance, as determined by the community of amateur researchers powering Wikipedia. In building a model, we establish a single case study to act as the central node for our influence-network: the art movement Dada.
 
-### “Why Dada?”
+### "Why Dada?”
 
 Cultural influence, while not currently quantified as a metric, is actively tracked through a multitude of historic and philosophical studies: art history, cultural history, intellectual history, “The History of Thought” and even Memetics (although the persistence of this last discipline is debatable).
 
@@ -21,7 +21,7 @@ Dada’s final strength as subject matter is its own documentation, helping diss
 In attempting to quantify influence, it is often difficult to disentangle Dada from its particular moment in history, but by relying on link analysis, we have a start: authors have diligently and specifically linked their page to or from Dada, allowing us to track the chain of concepts as they evolve rather than rely upon chronological proximity. Ideally, network analyses helps define causal relationships by isolating the path from one concept to the next. In reality, these paths are multifaceted, and Dada is itself a culmination of history before it. On a theoretical basis, it may be difficult to remove Dada from it's own influences: a reaction against war, nationalism, and destruction; inspiration from the great thinkers of its epoch, such as Nietzshe, Freud and Marx, (Pegrum, 2000), and of course the cross pollination of other prominent art movements of the moment, like Cubism, Futurism, Expressionism, and especially Surrealism. The network …. (to be cont'd)
 
 
-### “Data collection: Methodology”
+### Data collection: Methodology
 
 Data is collected for analysis using a crawler that traverses links. In our analyses, two types of link are included: links mapping from an article to the article in question, and links mapping to an article in from the article in question. (FIG 1) Wikipedia’s structure conveniently gives us this option by providing a “What Links Here Page” for most articles. Links mapping from are collected from within the article itself by parsing the article’s HTML and collecting anchor tag HREF values (FIG 2) that link specifically to other articles within Wikipedia.
 
@@ -36,7 +36,7 @@ In addition to the links themselves, categorical information associated with Wik
 In actual collection, we began with links directly mapping to or from the Dada Wikipedia article. Then, a coefficient to measure the strength of the relationship based on the number of shared links within that article’s ecosystem was developed. Inspired by Google’s PageRank algorithm, … (notes on coefficient, establishing cutoff, size of dataset, initial findings) … (to be cont'd)
 
 
-### “Data collection: Strength and Bias”
+### Data collection: Strength and Bias
 
 Wikipedia does present some issues beyond the scope of our data collection. Specifically of note is the quality of its articles. As noted by Mesgari et al (2014), this quality comes under review in several different forms: comprehensiveness (within articles, and across Wikipedia as a whole), its factual accuracy, breadth and presentation. While presentation is not of particular note for our analysis, (as our data collection is done by automated programs and not humans) breadth, factual accuracy, and comprehensiveness are.
 
