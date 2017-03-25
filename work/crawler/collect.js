@@ -5,9 +5,13 @@
 ///    links from this page             mapsTo     []
 ///    pages linking to this one        mapsFrom   []
 ///    metaData from wiki's data page   metaData   {}
+///    if object should not be scraped  noscrape   binary (either has attr or does not have it)
 
 // Will need to ID 'influencers' - things that bear an outsize influence on all events of time, such as WWI, and catalogue them
 // appropriately / define them as stopping points to keep thesis centered around Dada
+
+// RUN NOTES:
+// Wikipedia appears to block IP at some point (unclear what the cutoff is)
 
 var request = require('request');
 var fs = require('fs');
@@ -21,19 +25,22 @@ var mT = require('./s-mainPage');
 var pagesIn = JSON.parse(fs.readFileSync('data/pages.json'));
 var pages = [];
 
-var endLoop = pagesIn.mapsTo.length-1;
+var endLoop = pagesIn.mapsFrom.length-1;
 
 var exceptions = [
   'wikisource.org',
   '.jpg',
   '.png',
   '.gif',
+  'Book:'
 ]
 
 var fullSkip = [
-  'wikipedia', // foriegn pages
+  'wikipedia', // no foriegn pages (not in scope)
   'wiktionary.org', // no wiktionary pages
-  'wikiquote' // no wikiquote pages
+  'wikiquote', // no wikiquote pages
+  '_talk:', // no talk pages
+  'Draft:'
 ]
 
 // check for exceptions
@@ -53,7 +60,7 @@ function getRando(min, max) {
 
 function writeDataFile(counter) {
   counter++;
-  if (counter>=endLoop) { //if last loop, write the file /
+  if (counter>=endLoop || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
     fs.writeFile('data/pages-out.json', JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log('file written');
@@ -62,14 +69,14 @@ function writeDataFile(counter) {
 }
 
 //recursive loop for setTimeout
-var i = 0;
+var i = 1500;
 
 function crawler () {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
 
 
         var page = new Object;
-        page.url = pagesIn.mapsTo[i]; //url
+        page.url = pagesIn.mapsFrom[i]; //url
 
         //this scraper only handles english and is not equipped for non-english pages
         var url = 'https://en.wikipedia.org/wiki/'+page.url;
@@ -84,6 +91,8 @@ function crawler () {           //  create a loop function
             console.log('scraping mapsFrom '+mapsFromURL);
             page.mapsFrom = mF.scrape(body);
            //  console.log(page.mapsFrom);
+
+
 
            if (!skip(page.url, exceptions)) {
 
@@ -131,8 +140,8 @@ function crawler () {           //  create a loop function
          crawler();
     }
 
-    //set delay to a random interval between 500 and 3000 milliseconds
-  }, getRando(500,3000))
+    //set delay between 1200 and 3600 milliseconds per request
+  }, getRando(1200,3600))
 }
 //
 crawler();

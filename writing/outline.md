@@ -4,10 +4,10 @@
   3. and network analyses as a mode of visualizing knowledge
 
 ##Dada (brief overview) Foster (1996)
-  1. Impact on art. (Duchamp)
-  2. Impact on design. (Proto-modernism)
-  3. Impact on music. (Mechanical music etc)
-  4. Politics.
+  1. Dada as the proto-postmodernist movement
+  2. Relationship to politics
+  3. International spread
+  4. Relationship to other art movements  
 
 ##Data source, structure, and methodology and visualization.
 

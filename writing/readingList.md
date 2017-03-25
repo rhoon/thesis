@@ -1,6 +1,7 @@
 
 
 Foster, Stephen C. *Crisis and the arts: the history of Dada.* New York: G.K. Hall, 1996.
+<!--Bobst. -->
 
 Friedkin, Noah E., and Eugene C. Johnsen, *Social influence network theory: a sociological examination of small group dynamics.* Structural Analysis in the Social Sciences. New York, NY: Cambridge University Press, 2011.
 
@@ -11,10 +12,13 @@ Halavais, A., & Lackaff, D., "An analysis of topical coverage of Wikipedia." *Jo
 Mesgari, Mostafa, Chitu Okoli, Mohamad Mehdi, Finn Årup Nielsen and Arto Lanamäki, “The sum of all human knowledge: A systematic review of scholarly research on the content of Wikipedia.” *Journal of the American Society for Information Science and Technology* (2014): Accessed Feb. 12, 2017.
 
 Lima, Manuel. *Visual complexity: mapping patterns of information.* New York: Princeton Architectural Press, 2013.
+<!-- Available online -->
 
 Lima, Manuel. *Book of Trees: Visualizing Branches of Knowledge.* Princeton Architectural Press, 2014.
+<!-- Available at list center -->
 
 *The Duchamp effect.* Cambridge, MA: MIT Press, 1994.
+<!-- Relevance? Not sure. -->
 
 Reagle, J., & Rhue, L. "Gender Bias in Wikipedia and Britannica." *International Journal of Communication* 5(0), 21 (2011)
 
