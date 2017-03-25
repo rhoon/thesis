@@ -2,7 +2,7 @@ In recent years, the wealth of data available over the internet has given birth 
 
 We attempt to answer these questions using Wikipedia’s link structure as a data source. This underlying set of interconnections allows us to gauge the cognitive proximity of concepts, and thereby the influence of one upon another, without the limitations of geographic or chronologic distance, as determined by the community of amateur researchers powering Wikipedia. In building a model, we establish a single case study to act as the central node for our influence-network: the art movement Dada.
 
-###“Why Dada?”
+### “Why Dada?”
 
 Cultural influence, while not currently quantified as a metric, is actively tracked through a multitude of historic and philosophical studies: art history, cultural history, intellectual history, “The History of Thought” and even Memetics (although the persistence of this last discipline is debatable).
 
@@ -12,7 +12,7 @@ Further, ongoing debate on Dada as a modernist or postmodernist movement gives u
 
 Jean Arp, a central figure in Dada, furthers these anti-establishment ideals with anti-war sentiment:
 
->“In Zurich, we had no interest in the abattoirs of the World War, and devoted ourselves to fine art. While the thunder of artillery rumbled away in the distance, we were putting together collages, reciting, writing verse, and singing with all our hearts. We were looking for an elementary type of art that we thought would save mankind from the raging madness of those times. We aspired to a new order that could reestablish the balance between heaven and hell.”
+> “In Zurich, we had no interest in the abattoirs of the World War, and devoted ourselves to fine art. While the thunder of artillery rumbled away in the distance, we were putting together collages, reciting, writing verse, and singing with all our hearts. We were looking for an elementary type of art that we thought would save mankind from the raging madness of those times. We aspired to a new order that could reestablish the balance between heaven and hell.”
 
 Dada is deeply intertwined with politics, with (some argue unwanted) ties to the Kommunistische Partei Deutshlands (Kane, 1982), Huelsenberg’s assertions that “Dada is German Bolshevism” (Motherwell, 1951), a few members labeled as anarchists (often overlapping with communists), and a general distrust, and satire, of authority. At one point, Andre Breton argues the Dadaists will declare themselves in favor of any revolution, so long as it is in opposition to conservatism. Dada earns infamy among the ranks of authority figures through a variety of art pieces and pranks: depicting a police officer as a pig in the First International Dada Fair; a founding of a ‘Dada Republic’ where soldiers are summoned in reaction to a non-existent revolution; photocollage satires of major political figures...the list goes on. (Dachy, 2006) In these acts of dissidence, Dada extends beyond art movement into the space of direct action and political protest, providing a wellspring of inspiration for arts-activism to come. We should expect Wikipedia’s link structure to reflect this. Conversely, a link structure that paints Dada as a friend to authoritarian figures would be worthy of skepticism, helping establish theoretical underpinnings for validation (or rejection) of our analysis.
 
