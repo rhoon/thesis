@@ -48,7 +48,7 @@ Further review on gender inclusion by Reagle and Rue (2011) finds that women are
 
 (to be cont'd)
 
-The phrase ‘geek culture’ is used first by James Wales, the founder of Wikipedia, in his Wikimania 2006 keynote address: "We are stronger in science than in many other areas. we come from geek culture, we come from the free software movement, we have a lot of technologists involved. that’s where our major strengths are. We know we have systemic biases.” (Halavais and Lackoff 2008)
-Mesgari et al (2014) argues that over representation should not really be considered an issue for encyclopedias, as previous encyclopedias were edited for brevity so they could fit within the confines of print. While this is certainly true, over representation of a topic in our analysis poses an increased possibility of spurious connections.
+1. The phrase ‘geek culture’ is used first by James Wales, the founder of Wikipedia, in his Wikimania 2006 keynote address: "We are stronger in science than in many other areas. we come from geek culture, we come from the free software movement, we have a lot of technologists involved. that’s where our major strengths are. We know we have systemic biases.” (Halavais and Lackoff 2008)
+2. Mesgari et al (2014) argues that over representation should not really be considered an issue for encyclopedias, as previous encyclopedias were edited for brevity so they could fit within the confines of print. While this is certainly true, over representation of a topic in our analysis poses an increased possibility of spurious connections.
 
 "Size comparisons." Wikipedia. March 21, 2017. Accessed March 22, 2017. https://en.wikipedia.org/wiki/Wikipedia:Size_comparisons.
