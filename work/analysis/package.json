@@ -1,0 +1,14 @@
+{
+  "name": "analysis",
+  "version": "1.0.0",
+  "description": "data analysis work done with node",
+  "main": "hash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Riley Hoonan",
+  "license": "MIT",
+  "dependencies": {
+    "d3": "^4.7.4"
+  }
+}
