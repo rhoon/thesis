@@ -1,12 +1,12 @@
 ### link quantities in first-round scrape
 
-instances of a page that has...
-any links: 352432
-more than 2 links: 136553
-more than 5 links: 33307
-more than 10 links: 11666
-more than 20 links: 4134
-more than 50 links: 1170
+instances of a page that has...<br />
+any links: 352432<br />
+more than 2 links: 136553<br />
+more than 5 links: 33307<br />
+more than 10 links: 11666<br />
+more than 20 links: 4134<br />
+more than 50 links: 1170<br />
 more than 100 links: 571
 
 ### more than 50 links:
