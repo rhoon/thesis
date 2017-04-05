@@ -9,6 +9,8 @@
   "author": "Riley Hoonan",
   "license": "MIT",
   "dependencies": {
-    "d3": "^4.7.4"
+    "compromise": "^9.0.0",
+    "d3": "^4.7.4",
+    "rita": "^1.1.51"
   }
 }

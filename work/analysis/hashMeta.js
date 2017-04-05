@@ -11,6 +11,9 @@ tenPlus = [];
 twentyPlus = [];
 fiftyPlus = [];
 hundoPlus = [];
+twohundoPlus = [];
+threehundoPlus = [];
+fivehundoPlus = [];
 
 for (var i in hash) {
       if (hash.hasOwnProperty(i)) {
@@ -39,6 +42,18 @@ for (var i in hash) {
           hundoPlus.push(i);
         }
 
+        if(hash[i]>=200) {
+          twohundoPlus.push(i);
+        }
+
+        if(hash[i]>=300) {
+          threehundoPlus.push(i);
+        }
+
+        if(hash[i]>=500) {
+          fivehundoPlus.push(i);
+        }
+
         count++;
       }
 }
@@ -50,4 +65,13 @@ console.log('more than 10 links: '+tenPlus.length);
 console.log('more than 20 links: '+twentyPlus.length);
 console.log('more than 50 links: '+fiftyPlus.length);
 console.log('more than 100 links: '+hundoPlus.length);
-// console.log(fiftyPlus);
+console.log('more than 200 links: '+twohundoPlus.length);
+console.log('more than 300 links: '+threehundoPlus.length);
+console.log(threehundoPlus);
+console.log('more than 500 links: '+fivehundoPlus.length);
+console.log(fivehundoPlus);
+
+fs.writeFile('data/hundoPlus.json', JSON.stringify(hundoPlus), function(err) {
+    if (err) {throw err;}
+    console.log('file written');
+});

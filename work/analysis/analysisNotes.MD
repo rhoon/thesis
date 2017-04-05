@@ -9,6 +9,92 @@ more than 20 links: 4134<br />
 more than 50 links: 1170<br />
 more than 100 links: 571
 
+### urls with 100+ links - 'instance of' properties
+
+{ human: 84,
+  'art movement': 55,
+  'sovereign state,federal republic
+  start time
+  12 September 1848Gregorian,country
+  start time
+  12 September 1848Gregorian,landlocked country,member state of the United Nations
+  start time
+  10 September 2002,confederation
+  start time
+  7 August 1815Gregorian
+  end time
+  12 September 1848Gregorian': 1,
+  'world war': 2,
+  'artistic technique': 1,
+  'artistic theme': 1,
+  'art genre': 5,
+  'art movement,literary movement': 2,
+  'artist collective,art movement': 2,
+  'art group': 4,
+  'literary genre': 3,
+  'sovereign state,member state of the European Union,country,federation,member state of the United Nations
+  start time
+  18 September 1973,member state of the Council of Europe,republic,social state,legal state,state': 1,
+  'found object,urinal': 1,
+  'metropolis,global city,city of New York,port city,city with millions of inhabitants': 1,
+  'artwork series': 1,
+  'art magazine,artist collective,art movement': 1,
+  organization: 1,
+  'art museum': 1,
+  'art genre,genre of sculpture': 1,
+  'article about events in a specific year or time period': 127,
+  'music genre': 17,
+  'art school': 1,
+  painting: 4,
+  'painting movement': 2,
+  'art exhibition': 2,
+  'Wikimedia category': 3,
+  profession: 2,
+  'art movement,architectural style': 2,
+  'architectural style': 5,
+  'art movement,cultural movement': 2,
+  'literary genre,film genre,science fiction genre': 1,
+  'literary work': 1,
+  'aspect of history': 2,
+  'music term': 2,
+  'music scene\n\n\n\n\n\nstart time\n\n\n\n1977\n\n\n\n\n\nend time\n\n\n\n1982': 1,
+  'cultural movement,art movement,literary movement': 1,
+  'literary society': 1,
+  'Wikimedia list article': 8,
+  'former country,historical period,sovereign state\n\n\n\n\n\nstart time\n\n\n\n1933\n\n\n\n\n\nend time\n\n\n\n1945': 1,
+  'art movement,artist collective': 2,
+  'theatrical genre': 3,
+  'art movement,cultural movement,literary movement': 1,
+  Q20202269: 1,
+  'artist collective': 5,
+  'literary movement': 3,
+  'artist collective,art movement,art group': 1,
+  'micronation,art movement': 1,
+  'art movement,art genre': 2,
+  'art style': 1,
+  'art movement,art group': 1,
+  '-ism': 1,
+  'painting technique,art movement': 1,
+  'art movement\n\n\n\n\n\nof\n\n\n\nmusic': 1,
+  'art movement,Notname,group of humans': 1,
+  'art style,architectural style\n\n\n\n\n\nstart time\n\n\n\n1140s\n\n\n\n\n\nend time\n\n\n\n1550s\n\n\n\n\n\nof\n\n\n\nEurope,Medieval art,art movement': 1,
+  exhibition: 1,
+  building: 1,
+  'voluntary association': 2,
+  'film genre': 2,
+  'architectural style,art movement': 1,
+  'Wikimedia list article,article about events in a specific year or time period': 1,
+  'art movement,painting style': 1,
+  'music scene': 1,
+  'literary movement,art movement': 1,
+  'art group,secession': 1,
+  'art magazine': 1,
+  method: 2,
+  'academic discipline': 1,
+  'school of Buddhism': 1,
+  'manifesto,cultural movement': 1,
+  magazine: 1 }
+
 ### more than 50 links:
 [ 'File:Wiktionary-logo-v2.svg',
   'Dada',
