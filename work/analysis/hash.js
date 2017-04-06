@@ -1,3 +1,5 @@
+// creates a hash of all links to get count information per url
+
 var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
