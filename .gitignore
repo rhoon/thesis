@@ -1,3 +1,4 @@
 # Do not track data
 work/crawler/data/
 work/node_modules
+visualization/prototype/example

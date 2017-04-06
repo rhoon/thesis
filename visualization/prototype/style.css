@@ -1,0 +1,11 @@
+body {
+  color: #333;
+  background-color: #f2f2f2;
+  font-family: 'Space Mono', monospace;
+}
+
+text {
+  fill: #333;
+  color: #333;
+  font-size: 10px;
+}

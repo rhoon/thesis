@@ -1,3 +1,5 @@
+[Progress Report April 6th 2017](/work/progress-report-1.pdf)
+
 [Written Thesis](/writing/writtenThesis.md)
 
 [Desktop Prototype](/visualization/prototypes-r1.pdf)
