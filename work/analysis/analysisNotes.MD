@@ -3,14 +3,15 @@ total links: 780694 <br />
 unique links: 310292 <br />
 
 ### pointers
-more than 2 links: 119043 <br />
-more than 5 links: 27059 <br />
-more than 10 links: 9060 <br />
-more than 20 links: 3092 <br />
-more than 50 links: 893 <br />
-more than 100 links: 378 <br />
-more than 200 links: 111 <br />
-more than 300 links: 34 <br />
+has any links: 309097 <br />
+more than 2 links: 118492 <br />
+more than 5 links: 26911 <br />
+more than 10 links: 9025 <br />
+more than 20 links: 3082 <br />
+more than 50 links: 890 <br />
+more than 100 links: 375 <br />
+more than 200 links: 110 <br />
+more than 300 links: 33 <br />
 [ 'Dada',
   'Cubism',
   'Surrealism',
@@ -43,15 +44,10 @@ more than 300 links: 34 <br />
   'Minimalism_(visual_arts)',
   'Soci%C3%A9t%C3%A9_Normande_de_Peinture_Moderne',
   'Bauhaus',
-  'Conceptual_art',
-  'International_Standard_Book_Number' ] <br />
-more than 500 links: 5 <br />
-[ 'Dada',
-  'Surrealism',
-  'Avant-garde',
-  'Expressionism',
-  'International_Standard_Book_Number' ]
-<br />
-Improvements since uncleaned data: <br />
-42k+ unique urls removed <br />
-150k + total links removed <br />
+  'Conceptual_art' ] <br />
+more than 500 links: 4 <br />
+[ 'Dada', 'Surrealism', 'Avant-garde', 'Expressionism' ] <br />
+ <br />
+### Improvements since uncleaned data: <br />
+43k+ unique urls removed <br />
+150k+ total links removed <br />
