@@ -4,9 +4,13 @@ var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
 
-var dataIn_1 = JSON.parse(fs.readFileSync('data/dada-mapsTo.json'));
-var dataIn_2 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500-1700.json'));
-var dataIn_3 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500.json'));
+// var dataIn_1 = JSON.parse(fs.readFileSync('data/dada-mapsTo.json'));
+// var dataIn_2 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500-1700.json'));
+// var dataIn_3 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500.json'));
+
+var dataIn_4 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
+var dataIn_5 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
+
 
 hash = {};
 countTotal = 0;
@@ -54,16 +58,15 @@ function hashBuilder(data) {
 
 }
 
-hashBuilder(dataIn_1);
-hashBuilder(dataIn_2);
-hashBuilder(dataIn_3);
+hashBuilder(dataIn_4);
+hashBuilder(dataIn_5);
 
 console.log(hash);
 console.log(countTotal);
 console.log(countIndy);
 console.log(count_bad3);
 
-fs.writeFile('data/hash.json', JSON.stringify(hash), function(err) {
+fs.writeFile('data/hash-cleaned.json', JSON.stringify(hash), function(err) {
     if (err) {throw err;}
     console.log('file written');
 });

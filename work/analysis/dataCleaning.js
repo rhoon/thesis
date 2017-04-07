@@ -14,7 +14,12 @@ var junkURLs = [
   "_century",
   "Culture_of_",
   "History_of_",
-  "Timeline_of_"
+  "Timeline_of_",
+  "es.wikipedia.org",
+  "de.wikipedia.org",
+  "Category:",
+  "wikisource.org",
+  "Glossary_of_"
 ];
 
 var cut = [
@@ -79,6 +84,12 @@ function isYr(earl) {
   if (hasNumber(earl)) {
     for (var yr = 1800; yr<2018; yr++) {
       if (earl.includes(yr+'_in_')) {
+        fact = true;
+        break;
+      } else if (earl == yr) {
+        fact = true;
+        break;
+      } else if (earl == yr+'s') {
         fact = true;
         break;
       }
