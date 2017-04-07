@@ -2,7 +2,7 @@ var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
 
-var hash = JSON.parse(fs.readFileSync('data/hash.json'));
+var hash = JSON.parse(fs.readFileSync('data/hash-cleaned.json'));
 
 count = 0;
 twoPlus = [];

@@ -5,7 +5,7 @@ var w = 2000 - margin.left - margin.right,
     h = 2000 - margin.top - margin.bottom;
 
 
-d3.json('data/prototype-mapsFrom.json', drawChart);
+d3.json('data/cleaned-mapsFrom.json', drawChart);
 
 
 function drawChart(data) {

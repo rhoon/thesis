@@ -19,7 +19,9 @@ var junkURLs = [
   "de.wikipedia.org",
   "Category:",
   "wikisource.org",
-  "Glossary_of_"
+  "Glossary_of_",
+  "Wikipedia:Verifiability",
+  "International_Standard_Book_Number"
 ];
 
 var cut = [
@@ -129,7 +131,6 @@ function objCheck(d, i) {
 
 }
 
-
 var totalLoops = 0;
 
 function scrubber(data) {
@@ -163,12 +164,12 @@ function scrubber(data) {
       var mF = data[i].mapsFrom;
       console.log('mapsFrom-------->URL: '+data[i].url);
 
-      for (var j in mT) {
+      for (var j in mF) {
 
         //cut JunkURLs and year surveys
-        if (isJunk(mT[j]) || isYr(mT[j])) {
-          console.log('cutting TO: '+mT[j])
-          mT.splice(j, 1);
+        if (isJunk(mF[j]) || isYr(mF[j])) {
+          console.log('cutting TO: '+mF[j])
+          mF.splice(j, 1);
         }
 
       } // end loop j
