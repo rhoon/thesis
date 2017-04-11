@@ -4,16 +4,16 @@
 
 .links line {
   stroke: #999;
-  stroke-opacity: 0.6;
+  stroke-opacity: 0.2;
 }
 
 .nodes circle {
-  stroke: #fff;
-  stroke-width: 1.5px;
+  /*stroke: #fff;*/
+  /*stroke-width: 1.5px;*/
 }
 
 </style>
-<svg width="960" height="600"></svg>
+<svg width="1000" height="1000"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -22,11 +22,18 @@ var svg = d3.select("svg"),
     height = +svg.attr("height");
 
 // var color = d3.scaleOrdinal(d3.schemeCategory20);
+// .force("link", d3.forceLink(links).distance(20).strength(1))
 
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(1))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
+
+
+    // force.charge(function(node) {
+    //     if (node.className === 'red')  return -3000;
+    //     return -30;
+    // });
 
 d3.json("data/forceChart-sm.json", function(error, graph) {
   if (error) throw error;
@@ -45,7 +52,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) {
     .selectAll("circle")
     .data(graph.nodes)
     .enter().append("circle")
-      .attr("r", 5)
+      .attr("r", 2)
       .attr("fill", 'blue');
   //
   node.append("title")
@@ -62,6 +69,8 @@ d3.json("data/forceChart-sm.json", function(error, graph) {
 
 
   function ticked() {
+    console.log('ticked call');
+
     link
         .attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
