@@ -1,6 +1,6 @@
 ### cleaned data
-total links: 780694 <br />
-unique links: 310292 <br />
+total links: 777047 <br />
+unique links: 309097 <br />
 
 ### pointers
 has any links: 309097 <br />

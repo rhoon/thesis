@@ -6,11 +6,12 @@ var d3 = require('d3');
 // var dataIn_2 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500-1700.json'));
 // var dataIn_3 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500.json'));
 
-var dataIn_4 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
-var dataIn_5 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
+var dataIn_4 = JSON.parse(fs.readFileSync('data/forceChart-sm.json'));
+var dataIn_5 = JSON.parse(fs.readFileSync('data/forceChart.json'));
 
 toFind = [
-  'List_of_art_movements'
+  'wiktionary.org',
+  'Dada'
 ]
 
 found = [];
@@ -20,10 +21,10 @@ function locator(data) {
   for (var i in data) {
     for (var j in toFind) {
 
-      var seek = data[i].url;
+      var seek = data[i].id;
       var find = toFind[j];
 
-      if (find == seek) {
+      if (seek.includes(find)) {
         console.log(data[i]);
 
         found.push(find);
