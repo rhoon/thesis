@@ -14,6 +14,14 @@
 
 # Mapping Dada
 
+### Features:
+1. Learn how Dada is relevant to contemporary artists, events, and thinking.
+2. Sort through categories to isolate different components of the art movement and it’s ideological offspring.
+3. See the evolution of a concept, over time and space.
+4. Navigate knowledge/wikipedia in a new way.
+5. Search for specific pages in the Dada wikipedia epoch.
+6. See an art movement in historic context.
+
 ### Quantifying the Influence of a 1920’s Art Movement through Wikipedia's Link Structure
 
 This thesis is an investigation of linked article structures, Wikipedia metadata, and what we can learn from analyzing these complex networks - for instance, how does an art movement’s influence spread over time? And geographically? Can we measure said influence quantitatively? The thesis attempts to build a model using Dada as an example, using network analysis and ranking algorithms, to answer these questions and visualize these relationships to allow the audience to judge the effectiveness of said model.
