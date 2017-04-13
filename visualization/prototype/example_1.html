@@ -35,7 +35,7 @@ var simulation = d3.forceSimulation()
     //     return -30;
     // });
 
-d3.json("data/forceChart-sm.json", function(error, graph) {
+d3.json("data/forceChart-1.json", function(error, graph) {
   if (error) throw error;
 
   console.log(graph.nodes[100].id);
@@ -52,7 +52,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) {
     .selectAll("circle")
     .data(graph.nodes)
     .enter().append("circle")
-      .attr("r", 2)
+      .attr("r", 3)
       .attr("fill", 'blue');
   //
   node.append("title")

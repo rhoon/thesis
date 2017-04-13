@@ -39,13 +39,30 @@ getGroups(in_mapsFrom);
 // console.log(groups);
 
 // hash of urls with group as value
-urls = {};
-nullgroup = 999;
+var urls = {};
+var nullgroup = 999;
+var links = [];
 
-function getURLs(data) {
+function getURLs(data, pointsAtDada) {
 
   for (var i in data) {
+
     if (data[i].hasOwnProperty('url')) {
+
+      var link = {};
+      
+      if (pointsAtDada) {
+        // commit url to dadaLinks as src and Dada as target
+        link.source = data[i].url;
+        link.target = 'Dada';
+      } else {
+        // commit url
+        link.source = 'Dada';
+        link.target = data[i].url;
+      }
+
+      links.push(link);
+
       // check if data has instanceOf in metaData
       if (!urls.hasOwnProperty(data[i].url)) {
 
@@ -71,8 +88,8 @@ function getURLs(data) {
   }
 }
 
-getURLs(in_mapsTo);
-getURLs(in_mapsFrom);
+getURLs(in_mapsTo, true);
+getURLs(in_mapsFrom, false);
 // console.log(urls);
 
 var nodes;
@@ -88,12 +105,14 @@ function makeNodes(data) {
     delete nodes[i].value;
   }
 
+  //create dada node
+  var dada = { id: 'Dada' }
+
 }
 
 makeNodes(urls);
 console.log(nodes.length);
 
-var links = [];
 // for each object in dataSet
 function makeLinks(data) {
 
@@ -127,11 +146,12 @@ makeLinks(in_mapsTo);
 makeLinks(in_mapsFrom);
 
 // console.log(links);
-console.log(links.length);
+console.log('links-length '+links.length);
 
 var formattedData = {};
 formattedData.nodes = nodes;
 formattedData.links = links;
+formattedData.groupKey = groups;
 
 var shortFormattedData = {}
 shortFormattedData.nodes = nodes;
