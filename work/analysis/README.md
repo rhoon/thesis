@@ -2,6 +2,12 @@
 Listed roughly in order of importance.
 
 
+### analysisNotes.MD
+Contains output of from various stages of data cleaning, restructuring and building the coefficient.
+
+### coefficient.js
+Building a ranking coefficient to use in narrowing the dataset and establishing strength of relationship to Dada.
+
 ### dataCleaning.js
 Further cleaning of scraped data. Removes unwanted files that may introduce more noise than signal into visualization and analysis.
 

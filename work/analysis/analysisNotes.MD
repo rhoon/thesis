@@ -1,3 +1,19 @@
+### coefficient
+Distribution of PageRank scores on first level scrape:
+![](charts/urldist-1step.png)
+Quartiles:
+1st - 0.0006516 (lowest possible score: 0.0006285)
+2nd - 0.0009597
+3rd - 0.0009597
+4th - 0.0055290
+Max - 0.0828100
+
+#####Score algorithm (coefficient.js) - April 15th 2017
+```
+rankOut[iteration][url] += (args[mfurl].rank/args[mfurl].mapsToLen);
+```
+Will need to be modified to include distance from dada argument.
+
 ### cleaned data
 total links: 777047 <br />
 unique links: 309097 <br />
@@ -48,6 +64,7 @@ more than 300 links: 33 <br />
 more than 500 links: 4 <br />
 [ 'Dada', 'Surrealism', 'Avant-garde', 'Expressionism' ] <br />
  <br />
+
 ### Improvements since uncleaned data: <br />
 43k+ unique urls removed <br />
 150k+ total links removed <br />

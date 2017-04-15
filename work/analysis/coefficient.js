@@ -54,44 +54,59 @@ function parameters(data) {
 parameters(dataIn_1);
 parameters(dataIn_2);
 
-function rankings() {
+// rankings output array of url hash objects to track iterations of rankings function
+var rankOut = [];
+
+function rankings(iteration) {
+
+  rankOut[iteration] = {};
 
   for (var url in args) {
     if (args.hasOwnProperty(url)) {
 
+      // seperate output space from parameter space
+      rankOut[iteration][url] = args[url].rank;
+
+      // calculate rank and assign to output space
       for (var j in args[url].mapsFrom) {
         var mfurl = args[url].mapsFrom[j];
-        // console.log(args[mfurl]);
-        args[url].rank += (initRank/args[mfurl].mapsToLen);
-        // console.log('mfurl rank:'+args[mfurl].rank);
-        // console.log('mfurl mapsToLen: '+args[mfurl].mapsToLen);
-      }
 
-      // console.log('FOR SUM: '+url+' rank: '+args[url].rank);
+        if (iteration==0) {
+          // initial values
+          rankOut[iteration][url] += (args[mfurl].rank/args[mfurl].mapsToLen);
+        } else {
+          // using previous
+          rankOut[iteration][url] += (rankOut[iteration-1][url]/args[mfurl].mapsToLen);
+        }
+      }
 
     }
   }
 
 }
-// Google recalculates PageRank scores each time it crawls the Web and rebuilds its index.
-// As Google increases the number of documents in its collection, the initial approximation
-// of PageRank decreases for all documents.
-rankings();
 
-// build ranking stats
-function rankStats() {
+// call rankings function
+rankings(0);
 
+var fileOut;
+// build ranking stats per iteration
+function rankStats(iteration) {
+
+    console.log('---->ITERATION: '+iteration)
     var justRanks = [];
-    for (var i in args) {
-      justRanks.push(args[i].rank);
+    for (var url in rankOut[iteration]) {
+      justRanks.push(rankOut[iteration][url]);
     }
+    fileOut = d3.entries(rankOut[iteration]);
+
     console.log('url count:'+justRanks.length);
-    console.log('singular rank (1 link): '+initRank);
+    console.log('singular rank (1 link): '+initRank+'\n');
+
     console.log('MAX: '+d3.max(justRanks));
     console.log('MIN: '+d3.min(justRanks));
     console.log('MEAN: '+d3.mean(justRanks));
     console.log('MEDIAN: '+d3.median(justRanks));
-    console.log('STD DEV: '+d3.deviation(justRanks));
+    console.log('STD DEV: '+d3.deviation(justRanks)+'\n');
 
     console.log('MAX (links): '+d3.max(justRanks)*justRanks.length);
     console.log('MIN (links): '+d3.min(justRanks)*justRanks.length);
@@ -99,20 +114,18 @@ function rankStats() {
     console.log('MEDIAN (links): '+d3.median(justRanks)*justRanks.length);
     console.log('STD DEV (links): '+d3.deviation(justRanks)*justRanks.length);
 
+    console.log(fileOut[0]);
+
 }
 
-rankStats();
+rankStats(0);
 
 console.log('Duplicates: '+duplicates.length);
 console.log();
 
-// console.log(ranks);
-  // create an object rank
 
-  // rank.url = this url
-  // rank.sum = 0;
 
-  // for each url in mapsFrom
-    // divide that url's initRank by how many links IT maps to
-    // add it to the rank sum
-    //
+fs.writeFile('data/urlcoefficients.json', JSON.stringify(fileOut), function(err) {
+    if (err) {throw err;}
+    console.log('file written');
+});
