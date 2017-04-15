@@ -3,9 +3,8 @@ Distribution of PageRank scores on first level scrape:
 ![](charts/urldist-1step.png)<br />
 Quartiles:<br />
 1st - 0.0006516 (lowest possible score: 0.0006285) <br />
-2nd - 0.0009597<br />
-3rd - 0.0009597<br />
-4th - 0.0055290<br />
+Median - 0.0009597<br />
+3rd - 0.0055290<br />
 Max - 0.0828100<br />
 <br />
 ##### Score algorithm (coefficient.js) - April 15th 2017
