@@ -1,18 +1,23 @@
 ### coefficient
 Distribution of PageRank scores on first level scrape:
-![](charts/urldist-1step.png)
-Quartiles:
-1st - 0.0006516 (lowest possible score: 0.0006285)
-2nd - 0.0009597
-3rd - 0.0009597
-4th - 0.0055290
-Max - 0.0828100
+![](charts/urldist-1step.png)<br />
+Quartiles:<br />
+1st - 0.0006516 (lowest possible score: 0.0006285) <br />
+2nd - 0.0009597<br />
+3rd - 0.0009597<br />
+4th - 0.0055290<br />
+Max - 0.0828100<br />
+<br />
+##### Score algorithm (coefficient.js) - April 15th 2017
 
-#####Score algorithm (coefficient.js) - April 15th 2017
 ```
-rankOut[iteration][url] += (args[mfurl].rank/args[mfurl].mapsToLen);
+for (var j in args[url].mapsFrom) {
+  rankOut[iteration][url] += (args[mfurl].rank/args[mfurl].mapsToLen);
+}
 ```
-Will need to be modified to include distance from dada argument.
+
+Will need to be modified to include distance from dada argument. Rank is initialized at 1/N where N is the total number of urls scraped.
+`args[mfurl].mapsToLen` is the total number of outward-bound links from a link pointing at the current URL. `rankOut[iteration][url]` is the score.
 
 ### cleaned data
 total links: 777047 <br />
