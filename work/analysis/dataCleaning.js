@@ -23,7 +23,8 @@ var junkURLs = [
   "Wikipedia:Verifiability",
   "International_Standard_Book_Number",
   "wiktionary.org",
-  "_(disambiguation)"
+  "_(disambiguation)",
+  "Book_talk:"
 ];
 
 var cut = [

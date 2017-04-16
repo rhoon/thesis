@@ -101,6 +101,12 @@
 		"oAP": "\/example_1.html",
 		"oF": 0
 		},
+	"\/example_2.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/example_2.html",
+		"oF": 0
+		},
 	"\/index.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -132,6 +138,15 @@
 		"oA": 2,
 		"oAP": "\/tutorial\/index.html",
 		"oF": 0
+		},
+	"\/worker.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/worker-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
 		}
 	},
 "hooks": [

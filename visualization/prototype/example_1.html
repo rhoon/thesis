@@ -1,21 +1,34 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
 
-.links line {
-  stroke: #999;
-  stroke-opacity: 0.2;
-}
+<head>
+  <meta charset="utf-8">
+  <style>
 
-.nodes circle {
-  /*stroke: #fff;*/
-  /*stroke-width: 1.5px;*/
-}
+  .links line {
+    stroke: #999;
+    stroke-opacity: 0.2;
+  }
 
-</style>
-<svg width="1000" height="1000"></svg>
+  .nodes circle {
+    /*stroke: #fff;*/
+    /*stroke-width: 1.5px;*/
+  }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="chartBox">
+    <svg width="1000" height="1000"></svg>
+  </div>
+
+</body>
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
+
+// selectors
 
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
@@ -35,23 +48,37 @@ var simulation = d3.forceSimulation()
     //     return -30;
     // });
 
-d3.json("data/forceChart-1.json", function(error, graph) {
+d3.json("data/forceChart-sm-1.json", function(error, graph) {
   if (error) throw error;
 
-  console.log(graph.nodes[100].id);
+  // var gtoggle = d3.select("#chartBox")
+  //     .selectAll("div.gtoggle")
+  //     .data(graph.nodes)
+  //     .enter()
+  //     .append("div")
+  //     .classed("gtoggle", true)
+  //     .text(function(d) {
+  //       if (d.hasOwnProperty('group')) {
+  //         return d.group;
+  //       }
+  //     });
+
+  console.log(graph.nodes);
 
   var link = svg.append("g")
       .attr("class", "links")
-    .selectAll("line")
-    .data(graph.links)
-    .enter().append("line")
+      .selectAll("line")
+      .data(graph.links)
+      .enter()
+      .append("line")
       .attr("stroke-width", 1);
   //
   var node = svg.append("g")
       .attr("class", "nodes")
-    .selectAll("circle")
-    .data(graph.nodes)
-    .enter().append("circle")
+      .selectAll("circle")
+      .data(graph.nodes)
+      .enter()
+      .append("circle")
       .attr("r", 3)
       .attr("fill", 'blue');
   //

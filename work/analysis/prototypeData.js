@@ -13,58 +13,6 @@ var dataIn_2 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
 
 var urls = [];
 
-// var cut = [
-//   "BNE ID",
-// "Benezit ID",
-// "BnF ID",
-// "CANTIC-ID",
-// "Elonet person ID",
-// "Encyclop\u00e6dia Britannica Online ID",
-// "FAST-ID",
-// "Filmportal ID",
-// "Gran Enciclop\u00e8dia Catalana ID",
-// "IMDb ID",
-// "ISNI",
-// "Kinopoisk person ID",
-// "LCAuth ID",
-// "Les Archives du Spectacle ID",
-// "MoMA artist id",
-// "NDLAuth ID",
-// "NGA artist id",
-// "NNDB people ID",
-// "National Gallery of Victoria artist ID",
-// "National Library of Israel ID",
-// "National Thesaurus for Author Names ID",
-// "Open Library ID",
-// "PORT person ID",
-// "People Australia ID",
-// "Photographers' Identities Catalog ID",
-// "Quora topic ID",
-// "RKDartists ID",
-// "SFDb person ID",
-// "SUDOC authorities",
-// "Social Networks and Archival Context ID",
-// "Tate artist identifier",
-// "Te Papa artist ID",
-// "Thyssen-Bornemisza artist ID",
-// "ULAN ID",
-// "VIAF ID",
-// "openMLOL author ID",
-// "\u010cSFD person ID",
-// "Encyclop\u00e6dia Britannica Online ID",
-// "GeoNames ID",
-// "Gran Enciclop\u00e8dia Catalana ID",
-// "HDS ID",
-// "ISNI",
-// "LCAuth ID",
-// "MusicBrainz area ID",
-// "NE.se ID",
-// "National Library of Israel ID",
-// "OpenStreetMap Relation identifier",
-// "SUDOC authorities",
-// "Swiss municipality code",
-// ]
-
 function getURLs(data) {
 
   for (var i in data) {
@@ -115,20 +63,6 @@ function curator(data) {
       } // end loop j
     } // end if mapsFrom
 
-
-    // check wikiData item and remove matches to 'cut' array
-    // if (data[i].hasOwnProperty('metaData')) {
-    //   var wD = data[i].metaData;
-    //   console.log('metaData---------->URL: '+data[i].url);
-    //
-    //     for (var k in cut) {
-    //       if (wD.hasOwnProperty(cut[k])) {
-    //         delete wD[cut[k]];
-    //         console.log('cutting '+cut[k]);
-    //       }
-    //     }
-    //
-    // } // end if has wikiData
 
   }
 
