@@ -18,12 +18,12 @@ onmessage = function(event) {
         // .force("center", d3.forceCenter(960 / 2, 960 / 2)) //960 are standins for width / height
         .force("charge", d3.forceManyBody())
         .force("link", d3.forceLink(links).id(function(d) { return d.id; }).distance(10))
+        .force("center", d3.forceCenter(960/2, 960/2))
         .force("x", d3.forceX())
         .force("y", d3.forceY())
         .stop();
 
-    // Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay()))
-    for (var i = 0, n = 500; i < n; ++i) {
+    for (var i = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); i < n; ++i) {
       postMessage({type: "tick", progress: i / n});
       simulation.tick();
       console.log(i+' '+n);

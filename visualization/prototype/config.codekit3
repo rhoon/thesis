@@ -9,6 +9,27 @@
 	],
 "creatorBuild": "25813",
 "files": {
+	"\/archive\/example_1.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/archive\/example_1.html",
+		"oF": 0
+		},
+	"\/archive\/example_2.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/archive\/example_2.html",
+		"oF": 0
+		},
+	"\/archive\/quickGraph.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/archive\/quickGraph-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/chart-min.js": {
 		"ft": 64,
 		"mi": 1,
@@ -95,18 +116,6 @@
 		"oAP": "\/example\/index.html",
 		"oF": 0
 		},
-	"\/example_1.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/example_1.html",
-		"oF": 0
-		},
-	"\/example_2.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/example_2.html",
-		"oF": 0
-		},
 	"\/index.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -138,6 +147,15 @@
 		"oA": 2,
 		"oAP": "\/tutorial\/index.html",
 		"oF": 0
+		},
+	"\/worker-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/worker-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
 		},
 	"\/worker.js": {
 		"ft": 64,

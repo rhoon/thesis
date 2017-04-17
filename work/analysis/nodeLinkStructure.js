@@ -50,7 +50,7 @@ function getURLs(data, pointsAtDada) {
     if (data[i].hasOwnProperty('url')) {
 
       var link = {};
-      
+
       if (pointsAtDada) {
         // commit url to dadaLinks as src and Dada as target
         link.source = data[i].url;
@@ -155,7 +155,8 @@ formattedData.groupKey = groups;
 
 var shortFormattedData = {}
 shortFormattedData.nodes = nodes;
-shortFormattedData.links = links.slice(0,5000)
+shortFormattedData.links = links.slice(0,5000);
+shortFormattedData.groupKey = groups;
 
 fs.writeFile('data/forceChart.json', JSON.stringify(formattedData), function(err) {
     if (err) {throw err;}

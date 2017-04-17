@@ -1,70 +1,83 @@
-//
-var margin = { top: 10, right: 10, bottom: 0, left: 0 };
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
 
-var w = 2000 - margin.left - margin.right,
-    h = 2000 - margin.top - margin.bottom;
+d3.json("data/forceChart-sm-1.json", function(error, graph) {
+  if (error) throw error;
 
+  console.log(graph);
 
-d3.json('data/cleaned-mapsFrom.json', drawChart);
+  var links = graph.links;
+  var nodes = graph.nodes;
 
+  var meter = document.querySelector("#progress");
+  //     canvas = document.querySelector("canvas"),
+  //     context = canvas.getContext("2d"),
+  //     width = canvas.width,
+  //     height = canvas.height;
 
-function drawChart(data) {
+  var worker = new Worker("worker.js");
 
-  console.log(data);
-  console.log(data.length);
+  worker.postMessage({
+    nodes: nodes,
+    links: links
+  });
 
-  var chart = d3.select('div.chartBox')
-          .append('svg')
-          .attr('width', w)
-          .attr('height', h);
+  worker.onmessage = function(event) {
+    switch (event.data.type) {
+      case "tick": return ticked(event.data);
+      case "end": return ended(event.data);
+    }
+  };
 
-  // calculate positions - assign each object an x / y attr
-  chart.selectAll('circles')
-    .data(data)
-    .enter()
-    .append('circle')
-    .attrs({
-      r: 5,
-      cx: function(d) { return links(d)[0] },
-      cy: function(d) { return links(d)[1] },
-      fill: 'blue',
-      opacity: .1
+  function ticked(data) {
+    var progress = data.progress;
+    meter.style.width = 100 * progress + "%";
+  }
+
+  function ended(data) {
+    var nodes = data.nodes,
+        links = data.links;
+
+    meter.style.display = "none";
+
+    console.log(nodes);
+    console.log(links);
+
+    var link = svg.append('g')
+      .attr('class', 'links')
+      .selectAll('line')
+      .data(links)
+      .enter()
+      .append('line')
+      .attr('stroke-width', 1);
+
+    var node = svg.append('g')
+      .attr('class', 'nodes')
+      .selectAll('circle')
+      .data(nodes)
+      .enter()
+      .append('circle')
+      .attr('r', 3)
+      .attr('fill', 'blue');
+
+    //positions
+    link.attrs({
+      x1: function(d) { return d.source.x; },
+      y1: function(d) { return d.source.y; },
+      x2: function(d) { return d.target.x; },
+      y2: function(d) { return d.target.y; }
     })
 
-  chart.selectAll('text.url')
-    .data(data)
-    .enter()
-    .append('text')
-    .attrs({
-      x: function(d) { return links(d)[0] },
-      y: function(d) { return links(d)[1] },
-      class: 'url'
+    node.attrs({
+      cx: function(d) { return d.x; },
+      cy: function(d) { return d.y; }
     })
-    .text(function(d) { return d.url });
 
-  chart.selectAll('text.data')
-    .data(data)
-    .enter()
-    .append('text')
-    .attrs({
-      x: function(d) { return links(d)[0] },
-      y: function(d) { return links(d)[1]+10 },
-      class: 'url',
-    })
-    .text(function(d) { return links(d)[0]+' '+links(d)[1] });
+    node.append("title")
+        .text(function(d) { return d.id; });
 
-  //  var clickInfo = d3.select('div.chartBox')
+  }
 
-}
 
-var ang = 0;
-var c = [w/2, h/2]
-var cPos = [1,1]
-
-function links(d) {
-  var mT = 0,
-      mF = 0;
-  if (d.hasOwnProperty('mapsTo')) {  mT = d.mapsTo.length; }
-  if (d.hasOwnProperty('mapsFrom')) { mF = d.mapsFrom.length; }
-  return [mT, mF];
-}
+});
