@@ -1,22 +1,65 @@
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+var svg = d3.select('svg'),
+    width = +svg.attr('width'),
+    height = +svg.attr('height');
 
-d3.json("data/forceChart-sm-1.json", function(error, graph) {
+var zg = svg.append('g');
+
+function pathBack() {
+  return function(d) {
+
+    // this function finds the optimal path back to dada
+    // from the clicked element
+    // using a 'd' value
+
+    // checks d values of connected elements
+    // finds the element(s) with the lowest d
+    //
+
+  }
+}
+
+function toggler() {
+  return function(d) {
+
+    var thisToggle = d3.select('div.toggle.g'+d.value);
+    var theseCircles = d3.select('svg').selectAll('circle.g'+d.value);
+
+    if (!thisToggle.classed('clicked')) {
+      thisToggle.classed('clicked', true);
+      theseCircles.classed('toggled', true);
+    } else {
+      thisToggle.classed('clicked', false);
+      theseCircles.classed('toggled', false);
+    }
+
+
+  }
+}
+
+d3.json("data/forceChart-sm.json", function(error, graph) {
   if (error) throw error;
 
-  console.log(graph);
+  console.log(graph.groupKey);
 
-  var links = graph.links;
-  var nodes = graph.nodes;
+  //filters
+  var toggle = d3.select('#sidebar')
+    .selectAll('div.toggle')
+    .data(graph.groupKey)
+    .enter()
+    .append('div')
+    .attr('class', function(d) {
+      return 'toggle g'+d.value;
+    })
+    .text( function(d) { return d.key })
+    .on('mouseup', toggler()); //haven't checked this yet
 
-  var meter = document.querySelector("#progress");
-  //     canvas = document.querySelector("canvas"),
-  //     context = canvas.getContext("2d"),
-  //     width = canvas.width,
-  //     height = canvas.height;
+  //buttons coming soon...
 
-  var worker = new Worker("worker.js");
+  // force diagram
+  var links = graph.links,
+      nodes = graph.nodes
+      meter = document.querySelector("#progress"),
+      worker = new Worker("worker.js");
 
   worker.postMessage({
     nodes: nodes,
@@ -44,40 +87,54 @@ d3.json("data/forceChart-sm-1.json", function(error, graph) {
     console.log(nodes);
     console.log(links);
 
-    var link = svg.append('g')
+    var link = zg.append('g')
       .attr('class', 'links')
       .selectAll('line')
       .data(links)
       .enter()
       .append('line')
-      .attr('stroke-width', 1);
+      .attrs({
+        r: 3,
+        x1: function(d) { return d.source.x; },
+        y1: function(d) { return d.source.y; },
+        x2: function(d) { return d.target.x; },
+        y2: function(d) { return d.target.y; },
+      });
 
-    var node = svg.append('g')
+    var node = zg.append('g')
       .attr('class', 'nodes')
       .selectAll('circle')
       .data(nodes)
       .enter()
       .append('circle')
-      .attr('r', 3)
-      .attr('fill', 'blue');
-
-    //positions
-    link.attrs({
-      x1: function(d) { return d.source.x; },
-      y1: function(d) { return d.source.y; },
-      x2: function(d) { return d.target.x; },
-      y2: function(d) { return d.target.y; }
-    })
-
-    node.attrs({
-      cx: function(d) { return d.x; },
-      cy: function(d) { return d.y; }
-    })
+      .attrs({
+        r: 3,
+        cx: function(d) { return d.x; },
+        cy: function(d) { return d.y; },
+        class: function(d) { return 'g'+d.group },
+      });
 
     node.append("title")
         .text(function(d) { return d.id; });
 
   }
 
+  // https://github.com/d3/d3-zoom
+  // need to greatly refine zoom
+  // this puts a rectangle over entire visualization,
+  // blocking access to hovers / circle clicks
+
+  // svg.append("rect")
+  //     .attr("width", width)
+  //     .attr("height", height)
+  //     .style("fill", "none")
+  //     .style("pointer-events", "all")
+  //     .call(d3.zoom()
+  //         .scaleExtent([1 / 2, 4])
+  //         .on("zoom", zoomed));
+  //
+  // function zoomed() {
+  //   zg.attr("transform", d3.event.transform);
+  // }
 
 });

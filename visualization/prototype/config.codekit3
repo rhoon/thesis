@@ -64,18 +64,18 @@
 		"oO": 0,
 		"oS": 1
 		},
-	"\/data\/forceChart-1.json": {
+	"\/data\/forceChart-sm.json": {
 		"ft": 524288,
 		"oA": 1,
-		"oAP": "\/data\/forceChart-1-min.json",
+		"oAP": "\/data\/forceChart-sm-min.json",
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
 		},
-	"\/data\/forceChart-sm-1.json": {
+	"\/data\/forceChart.json": {
 		"ft": 524288,
 		"oA": 1,
-		"oAP": "\/data\/forceChart-sm-1-min.json",
+		"oAP": "\/data\/forceChart-min.json",
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
@@ -114,6 +114,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/example\/index.html",
+		"oF": 0
+		},
+	"\/example\/panner.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/example\/panner.html",
 		"oF": 0
 		},
 	"\/index.html": {

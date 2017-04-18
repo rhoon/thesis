@@ -107,10 +107,14 @@ function makeNodes(data) {
 
   //create dada node
   var dada = { id: 'Dada' }
+  nodes.push(dada);
 
 }
 
 makeNodes(urls);
+// console.log(urls);
+var key = d3.entries(groups);
+console.log(key);
 console.log(nodes.length);
 
 // for each object in dataSet
@@ -151,12 +155,12 @@ console.log('links-length '+links.length);
 var formattedData = {};
 formattedData.nodes = nodes;
 formattedData.links = links;
-formattedData.groupKey = groups;
+formattedData.groupKey = key;
 
 var shortFormattedData = {}
 shortFormattedData.nodes = nodes;
 shortFormattedData.links = links.slice(0,5000);
-shortFormattedData.groupKey = groups;
+shortFormattedData.groupKey = key;
 
 fs.writeFile('data/forceChart.json', JSON.stringify(formattedData), function(err) {
     if (err) {throw err;}
