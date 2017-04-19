@@ -80,7 +80,7 @@ function writeDataFile(counter) {
 }
 
 //recursive loop for setTimeout
-var i = 0;
+var i = 1250;
 
 function crawler () {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
