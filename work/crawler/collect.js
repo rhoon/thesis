@@ -25,7 +25,7 @@ var mT = require('./s-mainPage');
 var pagesIn = JSON.parse(fs.readFileSync('pages.json'));
 var pages = [];
 
-var endLoop = pagesIn.mapsFrom.length-1;
+var endLoop = 10;//pagesIn.mapsFrom.length-1;
 
 var exceptions = [
   'wikisource.org',
@@ -63,12 +63,18 @@ function getRando(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+//store the last batch saved
+var lastBatch = 0;
+
 function writeDataFile(counter) {
   counter++;
   if (counter>=endLoop || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
-    fs.writeFile('data/mapsFrom-r2-batch'+counter+'.json', JSON.stringify(pages), function(err) {
+    fs.writeFile('data/mapsFrom-r2-batch'+lastBatch+'.json', JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log('file written');
+        lastBatch++;
+        // clear pages to make room in memory
+        pages = [];
     });
   }
 }
