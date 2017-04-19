@@ -64,7 +64,7 @@ function getRando(min, max) {
 }
 
 //store the last batch saved
-var lastBatch = 0;
+var lastBatch = 1;
 
 function writeDataFile(counter) {
   counter++;
