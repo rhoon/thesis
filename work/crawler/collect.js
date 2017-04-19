@@ -25,7 +25,7 @@ var mT = require('./s-mainPage');
 var pagesIn = JSON.parse(fs.readFileSync('pages.json'));
 var pages = [];
 
-var endLoop = 10;//pagesIn.mapsFrom.length-1;
+var endLoop = pagesIn.mapsFrom.length-1;
 
 var exceptions = [
   'wikisource.org',
