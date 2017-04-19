@@ -25,7 +25,7 @@ var mT = require('./s-mainPage');
 var pagesIn = JSON.parse(fs.readFileSync('pages.json'));
 var pages = [];
 
-var endLoop = pagesIn.mapsFrom.length-1;
+var endLoop = 1250;
 
 var exceptions = [
   'wikisource.org',
@@ -80,7 +80,7 @@ function writeDataFile(counter) {
 }
 
 //recursive loop for setTimeout
-var i = 1250;
+var i = 1000;
 
 function crawler () {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
