@@ -4,6 +4,57 @@ var svg = d3.select('svg'),
 
 var zg = svg.append('g');
 
+function showDeets() {
+  return function(d) {
+
+    console.log(d);
+
+    var label = d.id;
+    // need the other data!
+    var boxHeight = 50;
+    var circle = d3.select(this);
+
+    circle.transition()
+      .attrs({
+        r: 8
+      });
+
+    var box = d3.select('div#chart')
+      .append('div')
+      .attrs({
+        class: 'nodeDeets',
+      })
+      .styles({
+        left: d.x+25+'px',
+        top: d.y-boxHeight+'px',  
+        opacity: 0
+      })
+
+    box.append('p')
+      .text(label);
+
+    //delay box fade-in to avoid jumpiness
+    box.transition()
+      .style('opacity', 1);
+
+  }
+}
+
+function hideDeets() {
+  return function(d) {
+
+    d3.select('div.nodeDeets').remove();
+
+    var circle = d3.select(this);
+
+    circle.transition()
+      .attrs({
+        r: 3
+      });
+
+  }
+}
+
 function pathBack() {
   return function(d) {
 
@@ -13,7 +64,7 @@ function pathBack() {
 
     // checks d values of connected elements
     // finds the element(s) with the lowest d
-    //
+
 
   }
 }
@@ -51,7 +102,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) {
       return 'toggle g'+d.value;
     })
     .text( function(d) { return d.key })
-    .on('mouseup', toggler()); //haven't checked this yet
+    .on('mouseup', toggler());
 
   //buttons coming soon...
 
@@ -112,7 +163,9 @@ d3.json("data/forceChart-sm.json", function(error, graph) {
         cx: function(d) { return d.x; },
         cy: function(d) { return d.y; },
         class: function(d) { return 'g'+d.group },
-      });
+      })
+      .on('mouseover', showDeets())
+      .on('mouseout', hideDeets());
 
     node.append("title")
         .text(function(d) { return d.id; });

@@ -2,29 +2,45 @@
 // and produces a basic data object with the included descriptors
 // assigned to categories, and values assigned to arrays
 
-var fs = require('fs');
 var cheerio = require('cheerio');
-var request = require('request');
-var nlp = require('nlp_compromise');
 
-// exception list
-var exceptions = [
-  'Dewey Decimal Classification',
-  'BNCF Thesaurus',
-  'NKCR AUT ID',
-  'Freebase ID',
-  'GND ID',
-  'AAT ID',
-  'PSH ID',
-  'Enciclopedia Treccani ID',
-  'Cultureel Woordenboek identifier'
+// inclusions list (FIX CODE)
+var inclusions = [
+  // base categorical info
+  'instance of',
+  'part of',
+  'influenced by',
+  // date info
+  'inception',
+  'publication date',
+  'date of birth',
+  'date of death',
+  'first performance',
+  // geo info
+  'location',
+  'sovereign state',
+  'coordinate location',
+  'country',
+  'located in the administrative territorial entity',
+  'country of origin',
+  'country of citizenship',
+  'place of birth',
+  'place of death',
+  'place of burial',
+  // incidentals
+  'occupation',
+  'sex or gender',
+  'languages spoken, written or signed',
+  'image',
+  'pseudonym',
+  'educated at',
+  'given name'
 ]
 
 module.exports = {
 
   scrape: function(content) { //content
 
-    // var content = fs.readFileSync('data/Q6034.html');
     var attrs = {};
     var $ = cheerio.load(content);
 
@@ -33,10 +49,10 @@ module.exports = {
       var cat = $(elem).find('div.wikibase-statementgroupview-property').text().trim();
 
       // check for categories
-      var skip = false;
-      for (var e in exceptions) {
-        if (cat.includes(exceptions[e])) {
-          skip = true;
+      var skip = true;
+      for (var i in inclusions) {
+        if (cat.includes(inclusions[i])) {
+          skip = false;
           break;
         }
       }

@@ -73,6 +73,7 @@ function rankings(iteration) {
 
         if (iteration==0) {
           // initial values
+          // need to add distance penalty to calculation
           rankOut[iteration][url] += (args[mfurl].rank/args[mfurl].mapsToLen);
         } else {
           // using previous

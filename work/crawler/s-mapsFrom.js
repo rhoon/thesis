@@ -1,10 +1,7 @@
 //mapsFrom collects links pointing at the main page
 //from wikipedia's 'what links here' page
 
-var fs = require('fs');
 var cheerio = require('cheerio');
-var request = require('request');
-var nlp = require('nlp_compromise');
 var _ = require('lodash');
 
 // exception list
@@ -16,13 +13,29 @@ var exceptions = [
   'Wikipedia_talk:',
   'User:',
   'Portal:',
-  'w/index.php?'
+  'w/index.php?',
+  //added april 18
+  "Index_of_",
+  "List_of_",
+  "_century",
+  "Culture_of_",
+  "History_of_",
+  "Timeline_of_",
+  "es.wikipedia.org",
+  "de.wikipedia.org",
+  "Category:",
+  "wikisource.org",
+  "Glossary_of_",
+  "Wikipedia:Verifiability",
+  "International_Standard_Book_Number",
+  "wiktionary.org",
+  "_(disambiguation)",
+  "Book_talk:"
 ]
 
 module.exports = {
 
   scrape: function(content) {
-    // var content = fs.readFileSync('data/mapsFrom.txt');
     var mapsFrom = [];
     var wiki = '/wiki/'
     var $ = cheerio.load(content);

@@ -12,10 +12,7 @@
 // Looking at the first three sentences of wikipedia articles for extra information? (NLP...)
 //
 
-var fs = require('fs');
 var cheerio = require('cheerio');
-var request = require('request');
-var nlp = require('nlp_compromise');
 var _ = require('lodash');
 
 var exceptions = [
@@ -27,7 +24,24 @@ var exceptions = [
   'Public_domain',
   'Wikipedia:Citation_needed',
   'File:Wikiquote-logo.svg',
-  'File:Commons-logo.svg'
+  'File:Commons-logo.svg',
+  //added april 18
+  "Index_of_",
+  "List_of_",
+  "_century",
+  "Culture_of_",
+  "History_of_",
+  "Timeline_of_",
+  "es.wikipedia.org",
+  "de.wikipedia.org",
+  "Category:",
+  "wikisource.org",
+  "Glossary_of_",
+  "Wikipedia:Verifiability",
+  "International_Standard_Book_Number",
+  "wiktionary.org",
+  "_(disambiguation)",
+  "Book_talk:"
 ]
 
 module.exports = {
@@ -40,6 +54,14 @@ module.exports = {
   var data = new Object;
   data.mapsTo = [];
   // url = url.slice(wiki.length, url.length);
+
+  // get the first image for interface
+  data.image = $('img').attr('src').trim();
+  // slice at $('a.image').indexOf('File:')
+  console.log(data.image);
+
+  data.title = $('h1.firstHeading').text();
+  console.log(data.title);
 
   //from content, remove navboxes which are tangential information related to metadata
   $('div.navbox').remove();

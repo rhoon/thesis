@@ -34,6 +34,24 @@ div.toggle.clicked {
 .toggled {
   fill: orange !important; }
 
+div#chart {
+  position: absolute;
+  top: 0;
+  left: 25%; }
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/* NODE DETAIL HOVERS */
+div.nodeDeets {
+  color: black;
+  background-color: white;
+  border: 1px solid pink;
+  position: absolute;
+  z-index: 100; }
+
 /* PROGRESS BAR */
 #progress {
   position: fixed;
