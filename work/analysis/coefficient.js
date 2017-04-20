@@ -15,9 +15,7 @@ args = {};
 console.log(dataIn_1[2]['mapsTo'].length);
 
 duplicates = [];
-
 // the PageRank conferred by an outbound link is equal to the document's own PageRank score divided by the number of outbound links L( )
-
 
 // restructure for easy reference / less lookups in calculations
 function parameters(data) {

@@ -3,6 +3,8 @@
 * *analysisNotes.MD* <br />
 Contains output of from various stages of data cleaning, restructuring and building the coefficient.
 
+### Pipeline
+
 1. *dataCleaning.js* <br />
 Further cleaning of scraped data. Removes unwanted files that may introduce more noise than signal into visualization and analysis.
 
