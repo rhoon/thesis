@@ -64,22 +64,6 @@
 		"oO": 0,
 		"oS": 1
 		},
-	"\/data\/forceChart-sm.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/forceChart-sm-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/forceChart.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/forceChart-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
 	"\/data\/miserables.json": {
 		"ft": 524288,
 		"oA": 1,

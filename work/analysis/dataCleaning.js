@@ -4,9 +4,16 @@ var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
 
-var dataIn_1 = JSON.parse(fs.readFileSync('data/dada-mapsTo.json'));
-var dataIn_2 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500-1700.json'));
-var dataIn_3 = JSON.parse(fs.readFileSync('data/dada-mapsFrom-batch1500.json'));
+var dataIn_1 = JSON.parse(fs.readFileSync('data/ec2/mapsTo-r2-batch2.json'));
+var dataIn_2 = JSON.parse(fs.readFileSync('data/ec2/mapsTo-r2-batch3.json'));
+var dataIn_3 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch0.json'));
+var dataIn_4 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch1.json'));
+var dataIn_5 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch2.json'));
+var dataIn_6 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch3.json'));
+var dataIn_7 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch4.json'));
+
+var mapsTo_In = dataIn_1.concat(dataIn_2);
+var mapsFrom_In = dataIn_1.concat(dataIn_3, dataIn_4, dataIn_5, dataIn_6, dataIn_7);
 
 var junkURLs = [
   "Index_of_",
@@ -196,21 +203,17 @@ function scrubber(data) {
 
 }
 
-scrubber(dataIn_1);
-scrubber(dataIn_2);
-scrubber(dataIn_3);
+scrubber(mapsTo_In);
+scrubber(mapsFrom_In);
 
 console.log(totalLoops);
 
-//concat mapsFrom sets (dataIn_2, dataIn_3)
-var mapsFromFin = dataIn_2.concat(dataIn_3);
-
-fs.writeFile('data/cleaned-mapsFrom.json', JSON.stringify(mapsFromFin), function(err) {
+fs.writeFile('data/cleaned-mapsFrom.json', JSON.stringify(mapsFrom_In), function(err) {
     if (err) {throw err;}
     console.log('mapsFrom written');
 });
 
-fs.writeFile('data/cleaned-mapsTo.json', JSON.stringify(dataIn_1), function(err) {
+fs.writeFile('data/cleaned-mapsTo.json', JSON.stringify(mapsTo_In), function(err) {
     if (err) {throw err;}
     console.log('mapsTo written');
 });

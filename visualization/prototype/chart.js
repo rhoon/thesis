@@ -26,7 +26,7 @@ function showDeets() {
       })
       .styles({
         left: d.x+25+'px',
-        top: d.y-boxHeight+'px',  
+        top: d.y-boxHeight+'px',
         opacity: 0
       })
 
@@ -82,12 +82,10 @@ function toggler() {
       thisToggle.classed('clicked', false);
       theseCircles.classed('toggled', false);
     }
-
-
   }
 }
 
-d3.json("data/forceChart-sm.json", function(error, graph) {
+d3.json("data/forceChart.json", function(error, graph) {
   if (error) throw error;
 
   console.log(graph.groupKey);

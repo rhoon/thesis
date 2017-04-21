@@ -36,10 +36,10 @@ var exceptions = [
 ]
 
 var fullSkip = [
-  'wikipedia', // no foriegn pages (not in scope)
+  'wikipedia',      // no foriegn pages (not in scope)
   'wiktionary.org', // no wiktionary pages
-  'wikiquote', // no wikiquote pages
-  '_talk:', // no talk pages
+  'wikiquote',      // no wikiquote pages
+  '_talk:',         // no talk pages
   'Draft:'
 ]
 
