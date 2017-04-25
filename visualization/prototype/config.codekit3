@@ -72,6 +72,22 @@
 		"oO": 0,
 		"oS": 1
 		},
+	"\/data\/old-forceChart-sm.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/old-forceChart-sm-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/data\/old-forceChart.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/old-forceChart-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/data\/prototype-mapsFrom.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -132,11 +148,31 @@
 		"oF": 0,
 		"oS": 0
 		},
+	"\/tutorial\/clustering.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/tutorial\/clustering.html",
+		"oF": 0
+		},
+	"\/tutorial\/clustering_2.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/tutorial\/clustering_2.html",
+		"oF": 0
+		},
 	"\/tutorial\/index.html": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/tutorial\/index.html",
 		"oF": 0
+		},
+	"\/tutorial\/miserables.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/tutorial\/miserables-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
 		},
 	"\/worker-min.js": {
 		"ft": 64,

@@ -1,8 +1,9 @@
-importScripts("https://d3js.org/d3-collection.v1.min.js");
-importScripts("https://d3js.org/d3-dispatch.v1.min.js");
-importScripts("https://d3js.org/d3-quadtree.v1.min.js");
-importScripts("https://d3js.org/d3-timer.v1.min.js");
-importScripts("https://d3js.org/d3-force.v1.min.js");
+// importScripts("https://d3js.org/d3-collection.v1.min.js");
+// importScripts("https://d3js.org/d3-dispatch.v1.min.js");
+// importScripts("https://d3js.org/d3-quadtree.v1.min.js");
+// importScripts("https://d3js.org/d3-timer.v1.min.js");
+// importScripts("https://d3js.org/d3-force.v1.min.js");
+importScripts("https://d3js.org/d3.v4.min.js");
 
 onmessage = function(event) {
 
@@ -23,7 +24,7 @@ onmessage = function(event) {
     for (var i = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); i < n; ++i) {
       postMessage({type: "tick", progress: i / n});
       simulation.tick();
-      console.log(i+' '+n);
+      // console.log(i+' '+n);
     }
 
     postMessage({type: "end", nodes: nodes, links: links});

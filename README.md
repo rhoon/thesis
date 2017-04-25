@@ -1,26 +1,19 @@
-[Progress Report April 6th 2017](/work/progress-report-1.pdf)
+[Desktop Prototype](/visualization/prototypes-r2.pdf)
 
 [Written Thesis](/writing/writtenThesis.md)
 
-[Desktop Prototype](/visualization/prototypes-r1.pdf)
-
-[Mobile Prototype](/visualization/mobile-prototypes-r1.pdf)
-
-[Outline](/writing/outline.md)
-
 [Reading List](/writing/readingList.md)
-
-[Wireframes](/visualization/wireframes-r2.pdf)
 
 # Mapping Dada
 
 ### Features:
-1. Learn how Dada is relevant to contemporary artists, events, and thinking.
+1. Visualized conceptual and historical ties from contemporary figures and movements to Dada.
 2. Sort through categories to isolate different components of the art movement and it’s ideological offspring.
-3. See the evolution of a concept, over time and space.
-4. Navigate knowledge/wikipedia in a new way.
-5. Search for specific pages in the Dada wikipedia epoch.
-6. See an art movement in historic context.
+3. See the quantified strength of network nodes to gauge the most power points of influence.
+4. Visually clustered offshoots based on common influences.
+5. Search available article titles for specific uses.
+6. Zoom and pan to navigate the network in-depth.
+
 
 ### Quantifying the Influence of a 1920’s Art Movement through Wikipedia's Link Structure
 

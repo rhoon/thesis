@@ -7,9 +7,8 @@ var zg = svg.append('g');
 function showDeets() {
   return function(d) {
 
-    console.log(d);
+    var label = d.value.title;
 
-    var label = d.id;
     // need the other data!
     var boxHeight = 50;
     var circle = d3.select(this);
@@ -32,6 +31,21 @@ function showDeets() {
 
     box.append('p')
       .text(label);
+
+    if (d.value.hasOwnProperty('location')) {
+      box.append('p').text(d.value.location);
+    }
+
+    if (d.value.hasOwnProperty('date')) {
+      box.append('p').text(d.value.date);
+    }
+
+    if (d.value.hasOwnProperty('image')) {
+      box.append('img')
+        .attr('src', d.value.image)
+        .attr('width', '100px');
+    }
+
 
     //delay box fade-in to avoid jumpiness
     box.transition()
@@ -71,9 +85,8 @@ function pathBack() {
 
 function toggler() {
   return function(d) {
-
-    var thisToggle = d3.select('div.toggle.g'+d.value);
-    var theseCircles = d3.select('svg').selectAll('circle.g'+d.value);
+    var thisToggle = d3.select('div.toggle.g'+d.value.id);
+    var theseCircles = d3.select('svg').selectAll('circle.g'+d.value.id);
 
     if (!thisToggle.classed('clicked')) {
       thisToggle.classed('clicked', true);
@@ -88,8 +101,6 @@ function toggler() {
 d3.json("data/forceChart.json", function(error, graph) {
   if (error) throw error;
 
-  console.log(graph.groupKey);
-
   //filters
   var toggle = d3.select('#sidebar')
     .selectAll('div.toggle')
@@ -97,7 +108,7 @@ d3.json("data/forceChart.json", function(error, graph) {
     .enter()
     .append('div')
     .attr('class', function(d) {
-      return 'toggle g'+d.value;
+      return 'toggle g'+d.value.id;
     })
     .text( function(d) { return d.key })
     .on('mouseup', toggler());
@@ -160,13 +171,20 @@ d3.json("data/forceChart.json", function(error, graph) {
         r: 3,
         cx: function(d) { return d.x; },
         cy: function(d) { return d.y; },
-        class: function(d) { return 'g'+d.group },
+        class: function(d) {
+          console.log(d);
+          var classes = '';
+          for (var i in d.value.group) {
+            classes = classes+' g'+d.value.group[i];
+          }
+          return classes;
+        },
       })
       .on('mouseover', showDeets())
       .on('mouseout', hideDeets());
 
-    node.append("title")
-        .text(function(d) { return d.id; });
+    // node.append("title")
+    //     .text(function(d) { return d.id; });
 
   }
 
