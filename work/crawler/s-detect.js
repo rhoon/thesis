@@ -1,3 +1,4 @@
+// these are checked with 'includes'
 var junkURLs = [
   'Special:',
   'Category:',
@@ -8,6 +9,7 @@ var junkURLs = [
   'Wikipedia:Citation_needed',
   'File:Wikiquote-logo.svg',
   'File:Commons-logo.svg',
+  "_modern_and_contemporary_",
   'User_talk',
   'Talk:',
   'Template:',
@@ -24,6 +26,8 @@ var junkURLs = [
   "Timeline_of_",
   "es.wikipedia.org",
   "de.wikipedia.org",
+  "ja.wikipedia.org",
+  "nl.wikipedia.org",
   "Category:",
   "wikisource.org",
   "Glossary_of_",
@@ -32,14 +36,59 @@ var junkURLs = [
   "wiktionary.org",
   "_(disambiguation)",
   "Book_talk:",
-  "fr.wikipedia.org"
+  "fr.wikipedia.org",
+  "_talk:",
+  "Draft:",
+  "21st-century_",
+  "20th-century_",
+  "19th-century_",
+  "18th-century_",
+  "World_War_",
 ];
+
+// these are checked with equality
+var tooBroad = [
+  "Art",
+  "Art_movement",
+  "Poetry",
+  "Performance_art",
+  "Abstract_art",
+  "Painting",
+  "Poet",
+  "Sculpture",
+  "Satire",
+  "Artist",
+  "Literature",
+  "French_literature",
+  "Art_history",
+  "Art_of_Europe",
+  "Western_painting",
+  "Cultural_movement",
+  "Colonialism",
+  "Irrationality",
+  "Fascism_and_ideology",
+  "Comedy_(drama)",
+  "Retrospective",
+]
 
 function hasNumber(myString) {
   return /\d/.test(myString);
 }
 
 module.exports = {
+
+  isTooBroad: function(earl) {
+
+    var fact = false;
+    for (var t in tooBroad) {
+      if (earl===tooBroad[t]) {
+        fact = true;
+        break;
+      }
+    }
+    return fact;
+
+  },
 
   isYr: function(earl) {
 

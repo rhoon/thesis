@@ -6,15 +6,11 @@ var d3 = require('d3');
 var dataIn_1 = JSON.parse(fs.readFileSync('data/prototype-mapsFrom.json'));
 var dataIn_2 = JSON.parse(fs.readFileSync('data/prototype-mapsTo.json'));
 
-totalURLs = 1591;
-initRank = 1/totalURLs;
-cutOff = 0.0055290; //set rank cutOff to the 25% quartile, calc'd in R
-
-args = {};
-duplicates = [];
-
-// rankings output array of url hash objects to track iterations of rankings function
-var fullSet = [];
+var totalURLs = 1591,
+    initRank = 1/totalURLs,
+    args = {},
+    duplicates = [],
+    fullSet = [];
 
 // the PageRank conferred by an outbound link is equal to the document's own PageRank score divided by the number of outbound links L( )
 // restructure for easy reference / less lookups in calculations
@@ -91,7 +87,14 @@ function rankStats(iteration) {
       justRanksFull.push(fullSet[iteration][url]);
     }
 
+    //sort justRanksFull
+    justRanksFull = justRanksFull.sort();
+    console.log(justRanksFull)
+
+    //set rank cutOff to the 25% quartile, calc'd in R
+    var cutOff = d3.quantile(justRanksFull, 0.75);
     var justRanksLean = [];
+
     for (var url in fullSet[iteration]) {
       if (fullSet[iteration][url] > cutOff) {
         topQuartile[url] = fullSet[iteration][url];
@@ -107,6 +110,7 @@ function rankStats(iteration) {
     console.log('FULL MEAN: '+d3.mean(justRanksFull));
     console.log('FULL MEDIAN: '+d3.median(justRanksFull));
 
+    console.log('cutoff: '+cutOff);
     console.log('lean url count:'+justRanksLean.length);
 
     console.log('LEAN MAX: '+d3.max(justRanksLean));

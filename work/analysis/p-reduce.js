@@ -8,6 +8,10 @@ var rank = require('./p-rank')
 
 var dataIn_1 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
 var dataIn_2 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
+// var dadaData =
+
+var dataIn_1_rank = dataIn_1;
+var dataIn_2_rank = dataIn_2;
 
 var urls = [];
 
@@ -30,8 +34,6 @@ function curator(data) {
     // check each set of mapsTo urls, cut ones that aren't in url set
     if (data[i].hasOwnProperty('mapsTo')) {
       var mT = data[i].mapsTo;
-      console.log('mapsTo---------->URL: '+data[i].url);
-
       for (var j = 0; j < mT.length; j++) {
         if (!urls.hasOwnProperty(mT[j])) {
           // cut and iterate back a step
@@ -44,8 +46,6 @@ function curator(data) {
     // check each set of mapsFrom urls, cut ones that aren't in url set
     if (data[i].hasOwnProperty('mapsFrom')) {
       var mF = data[i].mapsFrom;
-      console.log('mapsFrom---------->URL: '+data[i].url);
-
       for (var j = 0; j < mF.length; j++) {
         if (!urls.hasOwnProperty(mF[j])) {
           // cut and iterate back a step
@@ -65,19 +65,38 @@ var fullSet = rankSets[0];
 var topQuartile = rankSets[1];
 
 //output for prototype
-// var mapsFromFull = function()
-// var mapsToFull = function()
+function prototypeDataRanks(data) {
+  var dataReduce = [];
+  for (var i in data) {
+    url = data[i].url;
+    data[i].rank = fullSet[0][url];
+    if (topQuartile.hasOwnProperty(url)) dataReduce.push(data[i]);
+  }
+  return dataReduce;
+}
 
-//output for crawler
-// var mapsToCrawl = function()
-// var mapsToCrawl = function()
+prototypeDataRanks(dataIn_1);
+prototypeDataRanks(dataIn_2);
 
-// fs.writeFile('data/prototype-mapsFrom.json', JSON.stringify(dataIn_2), function(err) {
-//     if (err) {throw err;}
-//     console.log('mapsFrom written');
-// });
-//
-// fs.writeFile('data/prototype-mapsTo.json', JSON.stringify(dataIn_1), function(err) {
-//     if (err) {throw err;}
-//     console.log('mapsTo written');
-// });
+var mapsTo_Crawl = prototypeDataRanks(dataIn_1_rank);
+var mapsFrom_Crawl = prototypeDataRanks(dataIn_2_rank);
+
+fs.writeFile('data/prototype-mapsFrom.json', JSON.stringify(dataIn_2), function(err) {
+    if (err) {throw err;}
+    console.log('mapsFrom written');
+});
+
+fs.writeFile('data/prototype-mapsTo.json', JSON.stringify(dataIn_1), function(err) {
+    if (err) {throw err;}
+    console.log('mapsTo written');
+});
+
+fs.writeFile('data/mapsTo_Crawl.json', JSON.stringify(mapsTo_Crawl), function(err) {
+    if (err) {throw err;}
+    console.log('mapsTo_Crawl written');
+});
+
+fs.writeFile('data/mapsFrom_Crawl.json', JSON.stringify(mapsFrom_Crawl), function(err) {
+    if (err) {throw err;}
+    console.log('mapsFrom_Crawl written');
+});

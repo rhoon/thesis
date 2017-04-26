@@ -68,14 +68,37 @@ var cut = [
   "Swiss municipality code",
 ]
 
+// imgJunk = [
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Quill_and_ink.svg/25px-Quill_and_ink.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/50px-Question_book-new.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/20px-Padlock-silver.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/e/e7/Cscr-featured.svg/20px-Cscr-featured.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/0/06/Wiktionary-logo-v2.svg/40px-Wiktionary-logo-v2.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/f/f2/Edit-clear.svg/40px-Edit-clear.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/9/94/Symbol_support_vote.svg/19px-Symbol_support_vote.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Text_document_with_red_question_mark.svg/40px-Text_document_with_red_question_mark.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/d/db/Symbol_list_class.svg/16px-Symbol_list_class.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Ambox_important.svg/40px-Ambox_important.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Wikisource-logo.svg/12px-Wikisource-logo.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/6/6c/Wiki_letter_w.svg/40px-Wiki_letter_w.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Nuvola_apps_kdict.svg/40px-Nuvola_apps_kdict.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/8/89/Symbol_book_class2.svg/16px-Symbol_book_class2.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/f/fd/Portal-puzzle.svg/16px-Portal-puzzle.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Sharp.svg/40px-Sharp.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Unbalanced_scales.svg/45px-Unbalanced_scales.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Blue_flag_waving.svg/70px-Blue_flag_waving.svg.png",
+// ]
+
+
 // recursive function that removes junk objects until it reaches not junk objects
 function objCheck(d, i) {
   earl = d[i].url;
   console.log('objCheck: '+earl);
-  if (detect.isYr(earl) || detect.isJunk(earl)) {
+  if (detect.isYr(earl) || detect.isJunk(earl) || detect.isTooBroad(earl)) {
     console.log('cutting object ^')
     d.splice(i, 1);
-    if (detect.isYr(earl) || detect.isJunk(earl)) {
+    if (detect.isYr(earl) || detect.isJunk(earl) || detect.isTooBroad(earl)) {
       console.log('calling again');
       objCheck(d, i);
     }
@@ -99,7 +122,7 @@ function scrubber(data) {
 
       for (var j in mT) {
         //cut JunkURLs and year surveys
-        if (detect.isJunk(mT[j]) || detect.isYr(mT[j])) {
+        if (detect.isJunk(mT[j]) || detect.isYr(mT[j]) || detect.isTooBroad(mT[j])) {
           console.log('cutting TO: '+mT[j])
           mT.splice(j, 1);
         }
@@ -113,7 +136,7 @@ function scrubber(data) {
 
       for (var j in mF) {
         //cut JunkURLs and year surveys
-        if (detect.isJunk(mF[j]) || detect.isYr(mF[j])) {
+        if (detect.isJunk(mF[j]) || detect.isYr(mF[j]) || detect.isTooBroad(mF[j])) {
           console.log('cutting FROM: '+mF[j])
           mF.splice(j, 1);
         }
@@ -141,12 +164,12 @@ function scrubber(data) {
 scrubber(mapsTo_In);
 scrubber(mapsFrom_In);
 
-// fs.writeFile('data/cleaned-mapsFrom.json', JSON.stringify(mapsFrom_In), function(err) {
-//     if (err) {throw err;}
-//     console.log('mapsFrom written');
-// });
-//
-// fs.writeFile('data/cleaned-mapsTo.json', JSON.stringify(mapsTo_In), function(err) {
-//     if (err) {throw err;}
-//     console.log('mapsTo written');
-// });
+fs.writeFile('data/cleaned-mapsFrom.json', JSON.stringify(mapsFrom_In), function(err) {
+    if (err) {throw err;}
+    console.log('mapsFrom written');
+});
+
+fs.writeFile('data/cleaned-mapsTo.json', JSON.stringify(mapsTo_In), function(err) {
+    if (err) {throw err;}
+    console.log('mapsTo written');
+});

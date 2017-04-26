@@ -94,6 +94,7 @@ function crawler () {           //  create a loop function
         if(!skip(pagesIn.mapsTo[i], dups)) {
 
           var page = new Object;
+          page.distance = 2; 
           page.root = pagesIn.url; // will need to modify this for next batch?
           page.url = testURL_1; //pagesIn.mapsTo[i]; //'Dada';
           //track already scraped pages
