@@ -1,3 +1,14 @@
+// Thesis - Data Wrangling - To Do:
+
+// • Need to gather countries and remove them in pre-processing
+// • Add Dada set into final data via…? needs to be ranked - it has to come in early.
+//  	- re-scrape Dada with updated crawler,
+//      add that in p-reduce, remove that from the other stuff
+//
+// -> How does final dataset get made?
+// • Continue scrape
+//
+//-----------------------------------------------------------------------------
 //collect.js gets gets pages and runs them through the data pipeline
 
 //  Output data structure:
@@ -21,6 +32,7 @@ var async = require('async');
 var dataScrape = require('./s-wikiData');
 var mF = require('./s-mapsFrom');
 var mT = require('./s-mainPage');
+var detect = require('./s-detect');
 
 //data
 var pagesIn = JSON.parse(fs.readFileSync('pages.json'));
@@ -28,7 +40,8 @@ var pages = [];
 
 // test URLs
 // pagesIn.mapsTo[2] - Francis_Picabia
-var testURL_1 = 'Ann%C3%A9es_folles';
+// 'Ann%C3%A9es_folles' - bad image test URL
+var testURL_1 = 'Dada';
 
 var endLoop = 3; //pagesIn.mapsTo.length-1;
 
@@ -74,7 +87,7 @@ var lastBatch = 0;
 function writeDataFile(counter) {
   counter++;
   if (counter>=endLoop || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
-    fs.writeFile('data/junk-test'+lastBatch+'.json', JSON.stringify(pages), function(err) {
+    fs.writeFile('data/Dada-update'+lastBatch+'.json', JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log('file written');
         lastBatch++;
@@ -94,7 +107,7 @@ function crawler () {           //  create a loop function
         if(!skip(pagesIn.mapsTo[i], dups)) {
 
           var page = new Object;
-          page.distance = 2; 
+          page.distance = 1;
           page.root = pagesIn.url; // will need to modify this for next batch?
           page.url = testURL_1; //pagesIn.mapsTo[i]; //'Dada';
           //track already scraped pages

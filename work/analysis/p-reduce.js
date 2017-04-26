@@ -4,11 +4,12 @@
 var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
+
+//local module
 var rank = require('./p-rank')
 
 var dataIn_1 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
 var dataIn_2 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
-// var dadaData =
 
 var dataIn_1_rank = dataIn_1;
 var dataIn_2_rank = dataIn_2;

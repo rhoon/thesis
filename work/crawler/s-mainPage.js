@@ -10,7 +10,7 @@ var cheerio = require('cheerio');
 var _ = require('lodash');
 var detect = require('./s-detect');
 
-//an array of images not to ignore (they mean the page doesn't have a distinct image)
+//an array of images to ignore (they mean the page doesn't have a distinct image)
 imgJunk = [
   "//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Quill_and_ink.svg/25px-Quill_and_ink.svg.png",
   "//upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/50px-Question_book-new.svg.png",
@@ -49,7 +49,7 @@ module.exports = {
   data.image = $('img').attr('src').trim();
   // check for noise-images
   for (var img in imgJunk) {
-    if (data.image = imgJunk[img]) {
+    if (data.image===imgJunk[img]) {
       data.image = null;
       break;
     }
@@ -69,18 +69,20 @@ module.exports = {
 
     var link = $(elem).attr('href');
 
-    //check for junk, then check for wiki in href
     if (link!=undefined) {
 
-      var skip = false;
-      if (detect.isJunk(link) || detect.isYr(link)) skip = true;
-
-      if (link.includes('wiki') && !link.includes(wiki+url) && !skip) {
+      if (link.includes('wiki') && !link.includes(wiki+url)) {
 
         // reformat link to minimize excess
         link = link.slice(wiki.length, link.length);
+
+        //check for junk, then check for wiki in href
+        var skip = false;
+        if (detect.isJunk(link) || detect.isYr(link) || detect.isTooBroad(link) || detect.isCountry(link)) skip = true;
+
         // create new object
-        data.mapsTo.push(link);
+        if (!skip) data.mapsTo.push(link);
+
       }
     }
 

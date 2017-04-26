@@ -15,17 +15,14 @@ module.exports = {
     $('ul#mw-whatlinkshere-list').find('a').each(function(i, elem) {
 
       var link = $(elem).attr('href');
+      link = link.slice(wiki.length, link.length);
 
       // check for exceptions
       var skip = false;
-      if (detect.isJunk(link) || detect.isYr(link)) skip = true;
+      if (detect.isJunk(link) || detect.isYr(link) || detect.isTooBroad(link) || detect.isCountry(link)) skip = true;
 
       // add not-junk to mapsFrom array
-      if (!skip) {
-        link = link.slice(wiki.length, link.length);
-        mapsFrom.push(link)
-        // console.log(link);
-      }
+      if (!skip) mapsFrom.push(link)
 
     })
 

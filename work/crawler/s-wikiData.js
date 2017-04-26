@@ -68,7 +68,6 @@ function yearScrubber(str) {
   var dateX = /\d\d\d\d/;
   var d;
   for (var j in dateJunk) {
-    console.log(str);
     str = replaceAll(str, dateJunk[j], '');
   }
   var strs = str.split(' ');
@@ -117,7 +116,6 @@ module.exports = {
           for (var d in date) {
             if (date[d]==cat) {
               attrs[cat][0] = yearScrubber(attrs[cat][0]);
-              console.log(attrs[cat]);
             }
           }
 

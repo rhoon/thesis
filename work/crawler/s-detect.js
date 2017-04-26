@@ -1,3 +1,8 @@
+var fs = require('fs');
+
+//all of wikipedia's countryURLs
+var countryURLs = JSON.parse(fs.readFileSync('data/countries.json'));
+
 // these are checked with 'includes'
 var junkURLs = [
   'Special:',
@@ -62,6 +67,8 @@ var tooBroad = [
   "French_literature",
   "Art_history",
   "Art_of_Europe",
+  "Art_of_Asia",
+  "Art_of_America",
   "Western_painting",
   "Cultural_movement",
   "Colonialism",
@@ -71,11 +78,39 @@ var tooBroad = [
   "Retrospective",
 ]
 
-function hasNumber(myString) {
-  return /\d/.test(myString);
+// for filtering
+var months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+]
+
+function hasYear(myString) {
+  return /\d\d\d\d/.test(myString);
 }
 
 module.exports = {
+
+  isCountry: function(earl) {
+
+    var fact = false;
+    for (var c in countryURLs) {
+      if (earl===countryURLs[c]) {
+        fact = true;
+        break;
+      }
+    }
+    return fact;
+  },
 
   isTooBroad: function(earl) {
 
@@ -93,8 +128,9 @@ module.exports = {
   isYr: function(earl) {
 
     var fact = false;
-    if (hasNumber(earl)) {
+    if (hasYear(earl)) {
       for (var yr = 1800; yr<2018; yr++) {
+
         if (earl.includes(yr+'_in_')) {
           fact = true;
           break;
@@ -105,9 +141,18 @@ module.exports = {
           fact = true;
           break;
         }
+
+        if (earl.length>10) {
+          for (var mo in months) {
+            if (earl.includes(months[mo]+'_'+yr)) {
+              fact = true;
+              break;
+            }
+          }
+        }
+
       }
     }
-
     return fact;
 
   },
