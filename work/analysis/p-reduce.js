@@ -1,8 +1,10 @@
-// assembles/curates the lean data for the prototype
+// reduce removes any urls not currently included
+// and calls p-rank to assign ranks / produce a top quartile set
 
 var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
+var rank = require('./p-rank')
 
 var dataIn_1 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
 var dataIn_2 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
@@ -35,11 +37,8 @@ function curator(data) {
           // cut and iterate back a step
           mT.splice(j, 1);
           j--;
-          console.log('cutting TO: '+mT[j]);
-        } else {
-          console.log('saving TO: '+mT[j]);
-        } // end if has prop
-      } // end loop j
+        }
+      }
     } // end if has mapsTo
 
     // check each set of mapsFrom urls, cut ones that aren't in url set
@@ -52,30 +51,33 @@ function curator(data) {
           // cut and iterate back a step
           mF.splice(j, 1);
           j--;
-          console.log('cutting FROM: '+mF[j]);
-        } else {
-          console.log('saving FROM: '+mF[j]);
-        } // end if has property
-      } // end loop j
-    } // end if mapsFrom
-
-
+        }
+      }
+    }
   }
-
 }
 
 curator(dataIn_1);
 curator(dataIn_2);
 
-//concat mapsFrom sets (dataIn_2, dataIn_3)
-// var mapsFromFin = dataIn_2.concat(dataIn_3);
+var rankSets = rank.ranks(dataIn_1, dataIn_2);
+var fullSet = rankSets[0];
+var topQuartile = rankSets[1];
 
-fs.writeFile('data/prototype-mapsFrom.json', JSON.stringify(dataIn_2), function(err) {
-    if (err) {throw err;}
-    console.log('mapsFrom written');
-});
+//output for prototype
+// var mapsFromFull = function()
+// var mapsToFull = function()
 
-fs.writeFile('data/prototype-mapsTo.json', JSON.stringify(dataIn_1), function(err) {
-    if (err) {throw err;}
-    console.log('mapsTo written');
-});
+//output for crawler
+// var mapsToCrawl = function()
+// var mapsToCrawl = function()
+
+// fs.writeFile('data/prototype-mapsFrom.json', JSON.stringify(dataIn_2), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsFrom written');
+// });
+//
+// fs.writeFile('data/prototype-mapsTo.json', JSON.stringify(dataIn_1), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsTo written');
+// });

@@ -21,56 +21,27 @@ dateKeys = [
   'inception'
 ]
 
-dateJunk = [
-  'Gregorian',
-  'Julian',
-  'instance',
-  'sourcing',
-  '\n',
-  'earliest',
-  'latest',
-  'locationThéâtre',
-  'place'
-]
-
-imgJunk = [
-  "//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Quill_and_ink.svg/25px-Quill_and_ink.svg.png",
-  "//upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/50px-Question_book-new.svg.png",
-  "//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/20px-Padlock-silver.svg.png",
-  "//upload.wikimedia.org/wikipedia/en/thumb/e/e7/Cscr-featured.svg/20px-Cscr-featured.svg.png",
-  "//upload.wikimedia.org/wikipedia/commons/thumb/0/06/Wiktionary-logo-v2.svg/40px-Wiktionary-logo-v2.svg.png",
-  "//upload.wikimedia.org/wikipedia/en/thumb/f/f2/Edit-clear.svg/40px-Edit-clear.svg.png",
-  "//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png",
-  "//upload.wikimedia.org/wikipedia/en/thumb/9/94/Symbol_support_vote.svg/19px-Symbol_support_vote.svg.png",
-  "//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Text_document_with_red_question_mark.svg/40px-Text_document_with_red_question_mark.svg.png",
-  "//upload.wikimedia.org/wikipedia/en/thumb/d/db/Symbol_list_class.svg/16px-Symbol_list_class.svg.png",
-  "//upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Ambox_important.svg/40px-Ambox_important.svg.png",
-  "//upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Wikisource-logo.svg/12px-Wikisource-logo.svg.png",
-  "//upload.wikimedia.org/wikipedia/en/thumb/6/6c/Wiki_letter_w.svg/40px-Wiki_letter_w.svg.png",
-  "//upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Nuvola_apps_kdict.svg/40px-Nuvola_apps_kdict.svg.png"
-]
-
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-};
-
-//goes through variety of string inputs, returns year
-function yearScrubber(str) {
-  var dateX = /\d\d\d\d/;
-  var d;
-  for (var j in dateJunk) {
-    str = str.replaceAll(dateJunk[j], '');
-  }
-  var strs = str.split(' ');
-  for (s in strs) {
-    if (dateX.test(strs[s])) {
-      d = strs[s];
-      // console.log('DATE '+ d);
-    }
-  }
-  return d;
-}
+// imgJunk = [
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Quill_and_ink.svg/25px-Quill_and_ink.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/50px-Question_book-new.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/20px-Padlock-silver.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/e/e7/Cscr-featured.svg/20px-Cscr-featured.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/0/06/Wiktionary-logo-v2.svg/40px-Wiktionary-logo-v2.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/f/f2/Edit-clear.svg/40px-Edit-clear.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/9/94/Symbol_support_vote.svg/19px-Symbol_support_vote.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Text_document_with_red_question_mark.svg/40px-Text_document_with_red_question_mark.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/d/db/Symbol_list_class.svg/16px-Symbol_list_class.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Ambox_important.svg/40px-Ambox_important.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Wikisource-logo.svg/12px-Wikisource-logo.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/6/6c/Wiki_letter_w.svg/40px-Wiki_letter_w.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Nuvola_apps_kdict.svg/40px-Nuvola_apps_kdict.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/8/89/Symbol_book_class2.svg/16px-Symbol_book_class2.svg.png",
+//   "//upload.wikimedia.org/wikipedia/en/thumb/f/fd/Portal-puzzle.svg/16px-Portal-puzzle.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Sharp.svg/40px-Sharp.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Unbalanced_scales.svg/45px-Unbalanced_scales.svg.png",
+//   "//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Blue_flag_waving.svg/70px-Blue_flag_waving.svg.png",
+// ]
 
 // function
 var groupID = 0;
@@ -140,7 +111,7 @@ function getURLs(data, pointsAtDada) {
     if (data[i].hasOwnProperty('url')) {
 
       var link = {};
-
+      console.log(data[i].root);
       if (pointsAtDada) {
         // commit url to dadaLinks as src and Dada as target
         link.source = data[i].url;
@@ -181,15 +152,6 @@ function getURLs(data, pointsAtDada) {
             }
             // console.log(urls[earl].group);
 
-            // get dates; humans are different
-            if (human) {
-              if(mD.hasOwnProperty('date of birth')) {
-                urls[earl].date = 'b.' + yearScrubber(mD['date of birth'][0]);
-              }
-              if(mD.hasOwnProperty( 'date of death')) {
-                 urls[earl].date = urls[earl].date + ' d.' + yearScrubber(mD['date of death'][0])
-               }
-            }
           } else {
             // set group equal to nullgroup / eg 'misc'
             urls[earl].group.push(nullgroup);
@@ -201,14 +163,6 @@ function getURLs(data, pointsAtDada) {
               urls[earl].location = mD[locationKeys[l]][0].split('\n')[0];
             }
           }
-
-          // check for non-human date information
-          for (var d in dateKeys) {
-            if (mD.hasOwnProperty(dateKeys[d])) {
-              // console.log('non human date'+mD[dateKeys[d]]);
-              urls[earl].date = yearScrubber(mD[dateKeys[d]][0]);
-            }
-          }
         }
 
         if (data[i].title != undefined) {
@@ -217,12 +171,9 @@ function getURLs(data, pointsAtDada) {
           urls[earl].title = data[i].url.slice(0, 15)+'...';
         }
 
-        var isImgJunk = false;
-        for (var ij in imgJunk) { if (data[i].image==imgJunk[ij]) { isImgJunk = true; } }
-        if (!isImgJunk ) {  urls[earl].image = data[i].image; }
-
+        urls[earl].image = data[i].image;
         urls[earl].root = data[i].root;
-
+        //also need to include a 'rank' object
         //need to include some kind of 'distance' object
 
       }

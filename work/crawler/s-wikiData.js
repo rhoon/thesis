@@ -4,19 +4,17 @@
 
 var cheerio = require('cheerio');
 
-// inclusions list (FIX CODE)
-var inclusions = [
-  // base categorical info
-  'instance of',
-  'part of',
-  'influenced by',
-  // date info
+// date info
+var date = [
   'inception',
   'publication date',
   'date of birth',
   'date of death',
-  'first performance',
-  // geo info
+  'first performance'
+]
+
+// geo info
+var geo = [
   'location',
   'sovereign state',
   'coordinate location',
@@ -26,8 +24,10 @@ var inclusions = [
   'country of citizenship',
   'place of birth',
   'place of death',
-  'place of burial',
-  // incidentals
+  'place of burial'
+]
+
+var misc = [
   'occupation',
   'sex or gender',
   'languages spoken, written or signed',
@@ -36,6 +36,53 @@ var inclusions = [
   'educated at',
   'given name'
 ]
+
+var base = [
+  // base categorical info
+  'instance of',
+  'part of',
+  'influenced by',
+]
+
+dateJunk = [
+  'Gregorian',
+  'Julian',
+  'instance',
+  'sourcing',
+  '\n',
+  'earliest',
+  'latest',
+  'locationThéâtre',
+  'place'
+]
+
+function escapeRegExp(str) {
+    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
+
+function yearScrubber(str) {
+  var dateX = /\d\d\d\d/;
+  var d;
+  for (var j in dateJunk) {
+    console.log(str);
+    str = replaceAll(str, dateJunk[j], '');
+  }
+  var strs = str.split(' ');
+  for (s in strs) {
+    if (dateX.test(strs[s])) {
+      d = strs[s];
+      // console.log('DATE '+ d);
+    }
+  }
+  return d;
+}
+
+var inclusions = []
+inclusions = base.concat(date, geo, misc);
 
 module.exports = {
 
@@ -65,6 +112,15 @@ module.exports = {
           var item = $(elem).text().trim();
           attrs[cat].push(item);
           // console.log(item);
+
+          // check for and clean date information
+          for (var d in date) {
+            if (date[d]==cat) {
+              attrs[cat][0] = yearScrubber(attrs[cat][0]);
+              console.log(attrs[cat]);
+            }
+          }
+
         });
       }
     }); // end div.wikibase-statementgroupview.listview-item

@@ -22,10 +22,15 @@ var dataScrape = require('./s-wikiData');
 var mF = require('./s-mapsFrom');
 var mT = require('./s-mainPage');
 
+//data
 var pagesIn = JSON.parse(fs.readFileSync('pages.json'));
 var pages = [];
 
-var endLoop = pagesIn.mapsTo.length-1;
+// test URLs
+// pagesIn.mapsTo[2] - Francis_Picabia
+var testURL_1 = 'Ann%C3%A9es_folles';
+
+var endLoop = 3; //pagesIn.mapsTo.length-1;
 
 var exceptions = [
   'wikisource.org',
@@ -64,12 +69,12 @@ function getRando(min, max) {
 }
 
 //store the last batch saved
-var lastBatch = 2;
+var lastBatch = 0;
 
 function writeDataFile(counter) {
   counter++;
   if (counter>=endLoop || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
-    fs.writeFile('data/mapsTo-r2-batch'+lastBatch+'.json', JSON.stringify(pages), function(err) {
+    fs.writeFile('data/junk-test'+lastBatch+'.json', JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log('file written');
         lastBatch++;
@@ -80,7 +85,7 @@ function writeDataFile(counter) {
 }
 
 //recursive loop for setTimeout
-var i = 0;
+var i = 2;
 
 function crawler () {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
@@ -90,7 +95,7 @@ function crawler () {           //  create a loop function
 
           var page = new Object;
           page.root = pagesIn.url; // will need to modify this for next batch?
-          page.url = pagesIn.mapsTo[i]; //url //'Dada';
+          page.url = testURL_1; //pagesIn.mapsTo[i]; //'Dada';
           //track already scraped pages
           dups.push(page.url);
 

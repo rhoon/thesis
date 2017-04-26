@@ -3,35 +3,7 @@
 
 var cheerio = require('cheerio');
 var _ = require('lodash');
-
-// exception list
-var exceptions = [
-  'User_talk',
-  'Talk:',
-  'Template:',
-  'Wikipedia:',
-  'Wikipedia_talk:',
-  'User:',
-  'Portal:',
-  'w/index.php?',
-  //added april 18
-  "Index_of_",
-  "List_of_",
-  "_century",
-  "Culture_of_",
-  "History_of_",
-  "Timeline_of_",
-  "es.wikipedia.org",
-  "de.wikipedia.org",
-  "Category:",
-  "wikisource.org",
-  "Glossary_of_",
-  "Wikipedia:Verifiability",
-  "International_Standard_Book_Number",
-  "wiktionary.org",
-  "_(disambiguation)",
-  "Book_talk:"
-]
+var detect = require('./s-detect');
 
 module.exports = {
 
@@ -46,13 +18,7 @@ module.exports = {
 
       // check for exceptions
       var skip = false;
-      for (var c in exceptions) {
-        if (link.includes(exceptions[c])) {
-          skip = true;
-          // console.log('skipping');
-          break;
-        }
-      }
+      if (detect.isJunk(link) || detect.isYr(link)) skip = true;
 
       // add not-junk to mapsFrom array
       if (!skip) {

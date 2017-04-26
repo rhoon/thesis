@@ -3,6 +3,7 @@
 var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
+var detect = require('../crawler/s-detect');
 
 var dataIn_1 = JSON.parse(fs.readFileSync('data/ec2/mapsTo-r2-batch2.json'));
 var dataIn_2 = JSON.parse(fs.readFileSync('data/ec2/mapsTo-r2-batch3.json'));
@@ -14,25 +15,6 @@ var dataIn_7 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch4.json'));
 
 var mapsTo_In = dataIn_1.concat(dataIn_2);
 var mapsFrom_In = dataIn_1.concat(dataIn_3, dataIn_4, dataIn_5, dataIn_6, dataIn_7);
-
-var junkURLs = [
-  "Index_of_",
-  "List_of_",
-  "_century",
-  "Culture_of_",
-  "History_of_",
-  "Timeline_of_",
-  "es.wikipedia.org",
-  "de.wikipedia.org",
-  "Category:",
-  "wikisource.org",
-  "Glossary_of_",
-  "Wikipedia:Verifiability",
-  "International_Standard_Book_Number",
-  "wiktionary.org",
-  "_(disambiguation)",
-  "Book_talk:"
-];
 
 var cut = [
   "BNE ID",
@@ -86,54 +68,14 @@ var cut = [
   "Swiss municipality code",
 ]
 
-function hasNumber(myString) {
-  return /\d/.test(myString);
-}
-
-function isYr(earl) {
-
-  var fact = false;
-  if (hasNumber(earl)) {
-    for (var yr = 1800; yr<2018; yr++) {
-      if (earl.includes(yr+'_in_')) {
-        fact = true;
-        break;
-      } else if (earl == yr) {
-        fact = true;
-        break;
-      } else if (earl == yr+'s') {
-        fact = true;
-        break;
-      }
-    }
-  }
-
-  return fact;
-
-}
-
-function isJunk(earl) {
-
-  var fact = false;
-  for (var j in junkURLs) {
-    if(earl.includes(junkURLs[j])) {
-      fact = true;
-      break;
-    }
-  }
-
-  return fact;
-
-}
-
 // recursive function that removes junk objects until it reaches not junk objects
 function objCheck(d, i) {
   earl = d[i].url;
   console.log('objCheck: '+earl);
-  if (isYr(earl) || isJunk(earl)) {
+  if (detect.isYr(earl) || detect.isJunk(earl)) {
     console.log('cutting object ^')
     d.splice(i, 1);
-    if (isYr(earl) || isJunk(earl)) {
+    if (detect.isYr(earl) || detect.isJunk(earl)) {
       console.log('calling again');
       objCheck(d, i);
     }
@@ -147,25 +89,20 @@ function scrubber(data) {
 
   for (var i in data) {
 
-    totalLoops++;
-
     // check each url for junk / yr, cut ones that are. is a recursive function
     objCheck(data, i);
 
     // check each set of mapsTo urls, cut ones that are included in junk set
-    // will need to use 'includes' rather than a direct match
     if (data[i].hasOwnProperty('mapsTo')) {
       var mT = data[i].mapsTo;
       console.log('mapsTo---------->URL: '+data[i].url);
 
       for (var j in mT) {
-
         //cut JunkURLs and year surveys
-        if (isJunk(mT[j]) || isYr(mT[j])) {
+        if (detect.isJunk(mT[j]) || detect.isYr(mT[j])) {
           console.log('cutting TO: '+mT[j])
           mT.splice(j, 1);
         }
-
       } // end loop j
     } // end if has mapsTo
 
@@ -175,13 +112,11 @@ function scrubber(data) {
       console.log('mapsFrom-------->URL: '+data[i].url);
 
       for (var j in mF) {
-
         //cut JunkURLs and year surveys
-        if (isJunk(mF[j]) || isYr(mF[j])) {
-          console.log('cutting TO: '+mF[j])
+        if (detect.isJunk(mF[j]) || detect.isYr(mF[j])) {
+          console.log('cutting FROM: '+mF[j])
           mF.splice(j, 1);
         }
-
       } // end loop j
     }
 
@@ -206,14 +141,12 @@ function scrubber(data) {
 scrubber(mapsTo_In);
 scrubber(mapsFrom_In);
 
-console.log(totalLoops);
-
-fs.writeFile('data/cleaned-mapsFrom.json', JSON.stringify(mapsFrom_In), function(err) {
-    if (err) {throw err;}
-    console.log('mapsFrom written');
-});
-
-fs.writeFile('data/cleaned-mapsTo.json', JSON.stringify(mapsTo_In), function(err) {
-    if (err) {throw err;}
-    console.log('mapsTo written');
-});
+// fs.writeFile('data/cleaned-mapsFrom.json', JSON.stringify(mapsFrom_In), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsFrom written');
+// });
+//
+// fs.writeFile('data/cleaned-mapsTo.json', JSON.stringify(mapsTo_In), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsTo written');
+// });
