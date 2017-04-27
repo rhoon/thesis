@@ -2,7 +2,7 @@
 
 //  Output schema:
 ///    this page's URL                  url        str
-///---->    the next closest root to Dada    url        [] (handle case dup)
+///    the next closest root to Dada    url        str (will need to recalc this in post-processing)
 ///    the page's title                 words      str
 ///    the page's image, if it has one  url        str
 ///    links from this page             mapsTo     []
@@ -25,23 +25,13 @@ var pages = [];
 
 // test URLs - 'Francis_Picabia' - 'Ann%C3%A9es_folles' - 'Dada'
 
-<<<<<<< HEAD
-// pagesIn[pgI] counter
-var pgI = 0;
-// array of urls to scrape (this will be a parameter)
-var urlArr = pagesIn[pgI].mapsFrom;
-// loop start
-var i = 1000;
-// loop endPoint
-var endLoop = urlArr.length-1;
-=======
 var pgI = 0,                        // pagesIn[pgI] counter
     urlArr = pagesIn[pgI].mapsFrom, // array of urls to scrape (this will be a parameter)
     i = 0,                          // loop start
     endLoop = urlArr.length-1,      // loop endPoint
     lastBatch = 0,                  // initialize lastBatch
     dups = [];                      // NEEDS TO BE IMPROVED track already scraped pages to avoid dups
->>>>>>> crawlerScaleUP
+
 
 var exceptions = [
   'wikisource.org',
@@ -107,7 +97,7 @@ function crawler () {           //  create a loop function
         if(!skipMatch(pagesIn[pgI].mapsTo[i], dups)) {
 
           var page = new Object;
-          page.distance = 1;
+          page.distance = 2;
           page.root = pagesIn[pgI].url; // will need to modify this for next batch?
           page.url =  urlArr[i];        // testURL_1;
           dups.push(page.url);
@@ -182,3 +172,29 @@ function crawler () {           //  create a loop function
 //  pushes filenames to array
 //  writes array to .json after task complete
 // clears vars
+
+
+// assuming openFiles is an array of file names
+async.each(openFiles, function(file, callback) {
+
+    // Perform operation on file here.
+    console.log('Processing file ' + file);
+
+    if( file.length > 32 ) {
+      console.log('This file name is too long');
+      callback('File name too long');
+    } else {
+      // Do work to process file here
+      console.log('File processed');
+      callback();
+    }
+}, function(err) {
+    // if any of the file processing produced an error, err would equal that error
+    if( err ) {
+      // One of the iterations produced an error.
+      // All processing will now stop.
+      console.log('A file failed to process');
+    } else {
+      console.log('All files have been processed successfully');
+    }
+});
