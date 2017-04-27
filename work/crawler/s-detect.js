@@ -54,12 +54,14 @@ var junkURLs = [
 // these are checked with equality
 var tooBroad = [
   "Art",
+  "Visual_arts",
   "Art_movement",
   "Poetry",
   "Performance_art",
   "Abstract_art",
   "Painting",
   "Poet",
+  "Theatre",
   "Sculpture",
   "Satire",
   "Artist",

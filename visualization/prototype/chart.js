@@ -63,7 +63,9 @@ function hideDeets() {
 
     circle.transition()
       .attrs({
-        r: 3
+        r: function(d) {
+          return Math.ceil(+d.value.rank*100);
+        }
       });
 
   }
@@ -154,7 +156,6 @@ d3.json("data/forceChart.json", function(error, graph) {
       .enter()
       .append('line')
       .attrs({
-        r: 3,
         x1: function(d) { return d.source.x; },
         y1: function(d) { return d.source.y; },
         x2: function(d) { return d.target.x; },
@@ -168,7 +169,9 @@ d3.json("data/forceChart.json", function(error, graph) {
       .enter()
       .append('circle')
       .attrs({
-        r: 3,
+        r: function(d) {
+          return Math.ceil(+d.value.rank*100);
+        },
         cx: function(d) { return d.x; },
         cy: function(d) { return d.y; },
         class: function(d) {

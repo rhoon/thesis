@@ -65,19 +65,19 @@ function replaceAll(str, find, replace) {
 }
 
 function yearScrubber(str) {
-  var dateX = /\d\d\d\d/;
-  var d;
-  for (var j in dateJunk) {
-    str = replaceAll(str, dateJunk[j], '');
-  }
-  var strs = str.split(' ');
-  for (s in strs) {
-    if (dateX.test(strs[s])) {
-      d = strs[s];
-      // console.log('DATE '+ d);
+    var dateX = /\d\d\d\d/;
+    var d;
+    for (var j in dateJunk) {
+      str = replaceAll(str, dateJunk[j], '');
     }
-  }
-  return d;
+    var strs = str.split(' ');
+    for (s in strs) {
+      if (dateX.test(strs[s])) {
+        d = strs[s];
+        // console.log('DATE '+ d);
+      }
+    }
+    return d;
 }
 
 var inclusions = []
@@ -114,7 +114,7 @@ module.exports = {
 
           // check for and clean date information
           for (var d in date) {
-            if (date[d]==cat) {
+            if (date[d]==cat && attrs[cat][0] != undefined) {
               attrs[cat][0] = yearScrubber(attrs[cat][0]);
             }
           }

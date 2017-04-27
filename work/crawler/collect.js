@@ -35,15 +35,19 @@ var mT = require('./s-mainPage');
 var detect = require('./s-detect');
 
 //data
-var pagesIn = JSON.parse(fs.readFileSync('pages.json'));
+var pagesIn = JSON.parse(fs.readFileSync('data/Dada-update0.json'));
 var pages = [];
 
-// test URLs
-// pagesIn.mapsTo[2] - Francis_Picabia
-// 'Ann%C3%A9es_folles' - bad image test URL
-var testURL_1 = 'Dada';
+// test URLs - 'Francis_Picabia' - 'Ann%C3%A9es_folles' - 'Dada'
 
-var endLoop = 3; //pagesIn.mapsTo.length-1;
+// pagesIn[pgI] counter
+var pgI = 0;
+// array of urls to scrape (this will be a parameter)
+var urlArr = pagesIn[pgI].mapsFrom;
+// loop start
+var i = 0;
+// loop endPoint
+var endLoop = urlArr.length-1;
 
 var exceptions = [
   'wikisource.org',
@@ -68,48 +72,58 @@ var dups = [];
 
 // check for exceptions
 function skip(link, exc) {
+  var fact = false;
   for (var c in exc) {
     if (link.includes(exc[c])) {
-      return true;
-      // console.log('skipping');
+      fact = true;
       break;
     }
   }
+  return fact;
+}
+
+// check for matches
+function skipMatch(link, exc) {
+  var fact = false;
+  for (var c in exc) {
+    if (link===exc[c]) {
+      fact = true;
+      console.log('COLLECT CAUGHT DUP: '+link);
+      break;
+    }
+  }
+  return fact;
 }
 
 function getRando(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-//store the last batch saved
+//initialize lastBatch
 var lastBatch = 0;
 
 function writeDataFile(counter) {
   counter++;
   if (counter>=endLoop || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
-    fs.writeFile('data/Dada-update'+lastBatch+'.json', JSON.stringify(pages), function(err) {
+    fs.writeFile('data/MapsFrom-update'+lastBatch+'-'+counter+'.json', JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log('file written');
-        lastBatch++;
-        // clear pages to make room in memory
+        lastBatch=counter;
         pages = [];
     });
   }
 }
 
-//recursive loop for setTimeout
-var i = 2;
-
 function crawler () {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
 
         // check for already scraped urls
-        if(!skip(pagesIn.mapsTo[i], dups)) {
+        if(!skipMatch(pagesIn[pgI].mapsTo[i], dups)) {
 
           var page = new Object;
           page.distance = 1;
-          page.root = pagesIn.url; // will need to modify this for next batch?
-          page.url = testURL_1; //pagesIn.mapsTo[i]; //'Dada';
+          page.root = pagesIn[pgI].url; // will need to modify this for next batch?
+          page.url =  urlArr[i]; //testURL_1;
           //track already scraped pages
           dups.push(page.url);
 
@@ -126,7 +140,6 @@ function crawler () {           //  create a loop function
               console.log('scraping mapsFrom '+mapsFromURL);
               page.mapsFrom = mF.scrape(body);
              //  console.log(page.mapsFrom);
-
              if (!skip(page.url, exceptions)) {
 
               // collect links pointing outwards from the page
@@ -140,16 +153,23 @@ function crawler () {           //  create a loop function
                   page.image = s.image;
                   page.title = s.title;
 
-                 // collect wikiData (categorical info)
-                 request(page.wikiData, function(err, resp, body) {
-                    if (err) {throw err;}
-                     console.log('scraping wikiData '+page.wikiData);
-                     page.metaData = dataScrape.scrape(body);
-                     pages.push(page);
-                     writeDataFile(i);
 
-                 }); // end wikiData request
+                 if (page.wikiData!=undefined) {
+                   // collect wikiData (categorical info)
+                   request(page.wikiData, function(err, resp, body) {
+                      if (err) {throw err;}
+                       console.log('scraping wikiData '+page.wikiData);
+                       page.metaData = dataScrape.scrape(body);
+                       pages.push(page);
+                       writeDataFile(i);
 
+                   }); // end wikiData request
+                 } else {
+                   // case no wikiData
+                   page.metaData = null;
+                   pages.push(page);
+                   writeDataFile(i);
+                 }
               }); // end mainPage request
 
             } else {
@@ -164,7 +184,7 @@ function crawler () {           //  create a loop function
         } else {
           page.noScrape = 1;
           pages.push(page);
-          console.log('---------------------NO SCRAPE---------------------');
+          console.log('-NO SCRAPE-');
           writeDataFile(i);
         } // end fullSkip conditional
 
@@ -172,7 +192,7 @@ function crawler () {           //  create a loop function
 
     //update count and check for end case
     i++;
-    if (i < endLoop) { //pagesIn.mapsTo.length-1
+    if (i < endLoop) { //pagesIn[pgI].mapsTo.length-1
          console.log(i+' of '+ endLoop);
          crawler();
     }

@@ -48,18 +48,18 @@
 		"sC": 1,
 		"tS": 0
 		},
-	"\/data\/cleaned-mapsFrom.json": {
+	"\/data\/forceChart-sm.json": {
 		"ft": 524288,
 		"oA": 1,
-		"oAP": "\/data\/cleaned-mapsFrom-min.json",
+		"oAP": "\/data\/forceChart-sm-min.json",
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
 		},
-	"\/data\/cleaned-mapsTo.json": {
+	"\/data\/forceChart.json": {
 		"ft": 524288,
 		"oA": 1,
-		"oAP": "\/data\/cleaned-mapsTo-min.json",
+		"oAP": "\/data\/forceChart-min.json",
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
@@ -68,38 +68,6 @@
 		"ft": 524288,
 		"oA": 1,
 		"oAP": "\/data\/miserables-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/old-forceChart-sm.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/old-forceChart-sm-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/old-forceChart.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/old-forceChart-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/prototype-mapsFrom.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/prototype-mapsFrom-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/prototype-mapsTo.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/prototype-mapsTo-min.json",
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
