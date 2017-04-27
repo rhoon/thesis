@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 //all of wikipedia's countryURLs
-var countryURLs = JSON.parse(fs.readFileSync('data/countries.json'));
+var countryURLs = JSON.parse(fs.readFileSync('countries.json'));
 
 // these are checked with 'includes'
 var junkURLs = [
