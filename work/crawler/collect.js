@@ -45,7 +45,7 @@ var pgI = 0;
 // array of urls to scrape (this will be a parameter)
 var urlArr = pagesIn[pgI].mapsFrom;
 // loop start
-var i = 0;
+var i = 1000;
 // loop endPoint
 var endLoop = urlArr.length-1;
 
