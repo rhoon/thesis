@@ -1,4 +1,4 @@
-[Desktop Prototype](/visualization/prototypes-r2.pdf)
+[Desktop Prototype](/visualization/prototypes-r3.pdf)
 
 [Written Thesis](/writing/writtenThesis.md)
 
