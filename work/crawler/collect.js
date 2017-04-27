@@ -35,7 +35,7 @@ var mT = require('./s-mainPage');
 var detect = require('./s-detect');
 
 //data
-var pagesIn = JSON.parse(fs.readFileSync('data/Dada-update0.json'));
+var pagesIn = JSON.parse(fs.readFileSync('Dada-update0.json'));
 var pages = [];
 
 // test URLs - 'Francis_Picabia' - 'Ann%C3%A9es_folles' - 'Dada'
