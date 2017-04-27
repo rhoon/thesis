@@ -29,8 +29,8 @@ var pgI = 0,                        // pagesIn[pgI] counter
     urlArr = pagesIn[pgI].mapsFrom, // array of urls to scrape (this will be a parameter)
     i = 0,                          // loop start
     endLoop = urlArr.length-1,      // loop endPoint
-    lastBatch = 0,                  //initialize lastBatch
-    var dups = [];                  // track already scraped pages to avoid dups
+    lastBatch = 0,                  // initialize lastBatch
+    dups = [];                      // NEEDS TO BE IMPROVED track already scraped pages to avoid dups
 
 var exceptions = [
   'wikisource.org',
@@ -163,9 +163,11 @@ function crawler () {           //  create a loop function
   }, getRando(1200,3600))
 }
 
-crawler();
+// crawler();
 
 // async loop
 // moves through each array item
-// updates filenames
-// clears
+// updates filenames in logical way
+//  pushes filenames to array
+//  writes array to .json after task complete
+// clears vars
