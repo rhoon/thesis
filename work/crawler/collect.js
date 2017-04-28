@@ -189,7 +189,7 @@ function nextList() {
     urlArr = pagesIn[nl_c].mapsFrom;
   }
 
-  tester(); // crawler();
+  crawler(); // tester();
 
 }
 
