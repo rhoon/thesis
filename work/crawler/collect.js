@@ -19,19 +19,28 @@ var mF = require('./s-mapsFrom');
 var mT = require('./s-mainPage');
 var detect = require('./s-detect');
 
+var pagesIn = JSON.parse(fs.readFileSync('mapsFrom_Crawl.json'))
+    pagesIn_2 = JSON.parse(fs.readFileSync('mapsTo_Crawl.json'));
+
+pagesIn = pagesIn.concat(pagesIn_2);
+
+var dups = JSON.parse(fs.readFileSync('dups.json'));
+
 //data
-var pagesIn = JSON.parse(fs.readFileSync('Dada-update0.json'));
-var pages = [];
+var pages = [],
+    lastBatch = 0;
+
+//c = count, s = stop, d = done (boolean)
+var nl_c = 0,
+    nl_s = 10,
+    mapsToDone = false,
+    mapsFromDone = false,
+    urlArr,                       // urlArr to scrape
+    filenames = [],               // store filenames
+    t_c = 0,                      // inner counter
+    t_s = 10;                     // inner stop point (init value is random)
 
 // test URLs - 'Francis_Picabia' - 'Ann%C3%A9es_folles' - 'Dada'
-
-var pgI = 0,                        // pagesIn[pgI] counter
-    urlArr = pagesIn[pgI].mapsTo, // array of urls to scrape (this will be a parameter)
-    i = 0,                          // loop start
-    endLoop = urlArr.length-1,      // loop endPoint
-    lastBatch = 0,                  // initialize lastBatch
-    dups = {};                      // NEEDS TO BE IMPROVED track already scraped pages to avoid dups
-
 
 var exceptions = [
   'wikisource.org',
@@ -61,46 +70,35 @@ function skip(link, exc) {
   return fact;
 }
 
-// check for matches
-function skipMatch(link, exc) {
-  var fact = false;
-  for (var c in exc) {
-    if (link===exc[c]) {
-      fact = true;
-      console.log('COLLECT CAUGHT DUP: '+link);
-      break;
-    }
-  }
-  return fact;
-}
-
 function getRando(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
 function writeDataFile(counter) {
-  counter++;
-  if (counter>=endLoop || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
-    fs.writeFile('data/MapsTo-update'+lastBatch+'-'+counter+'.json', JSON.stringify(pages), function(err) {
+  //counter++;
+  if (counter>=t_s || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
+    var filename = 'data/d2-'+lastBatch+'-'+counter+'.json';
+    fs.writeFile(filename, JSON.stringify(pages), function(err) {
         if (err) {throw err;}
-        console.log('file written');
-        lastBatch=counter;
+        console.log(filename+' written');
+        filenames.push(filename);
+        lastBatch = counter;
         pages = [];
     });
   }
 }
 
-function crawler () {           //  create a loop function
+function crawler() {           //  create a loop function
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
 
         // check for already scraped urls
-        if(!dups.hasOwnProperty(pagesIn[pgI].mapsTo[i])) {
+        if(!dups.hasOwnProperty(urlArr[t_c])) {
 
           var page = new Object;
           page.distance = 2;
-          page.root = pagesIn[pgI].url; // will need to modify this for next batch?
-          page.url =  urlArr[i];        // testURL_1;
-          dups[pagesIn[pgI].mapsTo[i]] = 1;
+          page.root = pagesIn[nl_c].url;
+          page.url =  urlArr[t_c];        // testURL_1;
+          dups[urlArr[t_c]] = 1;
 
           var url = 'https://en.wikipedia.org/wiki/'+page.url;
           var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
@@ -132,131 +130,130 @@ function crawler () {           //  create a loop function
                        console.log('scraping wikiData '+page.wikiData);
                        page.metaData = dataScrape.scrape(body);
                        pages.push(page);
-                       writeDataFile(i);
+                       writeDataFile(t_c);
                    });
                  } else {
                    // case no wikiData
                    page.metaData = null;
                    pages.push(page);
-                   writeDataFile(i);
+                   writeDataFile(t_c);
                  }
               }); // end mainPage request
             } else {
               // some page types don't have link info, push as-is
               pages.push(page);
-              writeDataFile(i);
+              writeDataFile(t_c);
             }
           });
         } else {
           page.noScrape = 1;
           pages.push(page);
           console.log('-NO SCRAPE-');
-          writeDataFile(i);
+          writeDataFile(t_c);
         } // end fullSkip conditional
+      } else {
+        dups[urlArr[t_c]]++;
       } // end dups conditional
-    //update count and check for end case
-    i++;
-    if (i < endLoop) { //pagesIn[pgI].mapsTo.length-1
-         console.log(i+' of '+ endLoop);
-         crawler();
+
+    // iterator
+    if (t_c < t_s) { //pagesIn[pgI].mapsTo.length-1
+      console.log(t_c+' of '+ t_s);
+      t_c++;
+      crawler();
+    } else {
+      console.log('CRAWL: '+nl_c);
+      // clear memory with setTimeout (recursion results in stack overflow)
+      setTimeout( function() {
+        isDone();
+      }, 0 );
     }
+
   //set delay between 1200 and 3600 milliseconds per request
   }, getRando(1200,3600))
 }
+// ------------------------------------------------------------------------------
 
-crawler();
+function nextList() {
 
-// async loop
-// moves through each array item
-// updates filenames in logical way
-//  pushes filenames to array
-//  writes array to .json after task complete
-// clears vars
+  nl_s =  pagesIn.length-1;
 
-// ---------------------------------------
-// var pagesFull = JSON.parse(fs.readFileSync('data/data/MapsFrom-update0-250.json'));
-// var pagesCrawl_1 = JSON.
-// // recursive loop
-// // conditional iteration - waits for crawler to update global value
-// // before moving to next object
-// //c = count, s = stop, d = done (boolean)
-// var t_c = 0;
-// var t_s = 10;
-// var t_d = false;
-//
-// var howManyIsThat = 0;
-//
-// function tester() {
-//
-//   if(!dups.hasOwnProperty(urlArrTest[t_c])) {
-//     console.log('T: '+t_c);
-//     console.log('URL: '+urlArrTest[t_c]);
-//     howManyIsThat++;
-//     dups[urlArrTest[t_c]] = 1;
-//   }
-//   // check for stop condition, if not, iterate, call self
-//   if (t_c < t_s) {
-//     t_c++;
-//     tester();
-//   } else {
-//     t_d= true;
-//     console.log('TEST END');
-//   }
-// }
-//
-// var nl_c = 0;
-// var nl_s =  pagesFull.length-1;
-// var mapsToDone = false;
-// var mapsFromDone = false;
-// var urlArrTest;
-//
-// function nextList() {
-//
-//   // do things here
-//
-//   // if the page does not have url attr, mark it done
-//   if (!pagesFull[nl_c].hasOwnProperty('mapsTo')) mapsToDone = true;
-//   if (!pagesFull[nl_c].hasOwnProperty('mapsFrom')) mapsToDone = true;
-//
-//   if (!mapsToDone) {
-//     t_s = pagesFull[nl_c].mapsTo.length-1;
-//     urlArrTest = pagesFull[nl_c].mapsTo;
-//   } else {
-//     t_s = pagesFull[nl_c].mapsFrom.length-1;
-//     urlArrTest = pagesFull[nl_c].mapsFrom;
-//   }
-//
-//   //
-//   tester();
-//   console.log(nl_c);
-//
-//   // check for stop condition, if not, iterate, call self & inner
-//   if (t_d) {
-//     // stop condition
-//     if (nl_c < nl_s) {
-//       // iterate nLCount, reset inner count
-//       t_c = 0;
-//       if (!mapsToDone) {
-//         mapsToDone = true;
-//         nextList();
-//       } else {
-//         mapsFromDone = true;
-//       }
-//       // only iterate nl_c if it has done mapsTo and mapsFrom
-//       if (mapsToDone && mapsFromDone) {
-//         nl_c++;
-//         mapsToDone = false;
-//         mapsFromDone = false;
-//         nextList();
-//       }
-//
-//     } else {
-//       console.log('DONE');
-//     }
-//   }
-//
-// }
-//
-// nextList();
-// console.log('HOW MANY? THIS MANY: '+howManyIsThat);
+  // if the page does not have url attr, mark it done
+  if (!pagesIn[nl_c].hasOwnProperty('mapsTo')) mapsToDone = true;
+  if (!pagesIn[nl_c].hasOwnProperty('mapsFrom')) mapsFromDone = true;
+
+  if (!mapsToDone) {
+    t_s = pagesIn[nl_c].mapsTo.length-1;
+    urlArr = pagesIn[nl_c].mapsTo;
+  } else {
+    t_s = pagesIn[nl_c].mapsFrom.length-1;
+    urlArr = pagesIn[nl_c].mapsFrom;
+  }
+
+  tester(); // crawler();
+
+}
+
+function isDone() {  // if inner loop is complete
+
+  if (nl_c < nl_s) {  // if not end of array of obj
+
+    // iterate nLCount, reset inner count
+    t_c = 0;
+    console.log(nl_s);
+
+    if (!mapsToDone) {
+      console.log('MAPS TO DONE');
+      mapsToDone = true;
+      nextList();
+    } else {
+      console.log('MAPS FROM DONE');
+      mapsFromDone = true;
+    }
+
+    // only iterate nl_c if it has done mapsTo and mapsFrom
+    if (mapsToDone && mapsFromDone) {
+      nl_c++;
+      mapsToDone = false;
+      mapsFromDone = false;
+      nextList();
+    }
+
+  } else {
+    console.log(' done');
+    fs.writeFile('data/filenames.json', JSON.stringify(filenames), function(err) {
+        if (err) {throw err;}
+        console.log('filenames written');
+    });
+
+    fs.writeFile('data/dups.json', JSON.stringify(dups), function(err) {
+        if (err) {throw err;}
+        console.log('dups written');
+    });
+  }
+}
+
+nextList();
+// console.log(pagesIn_2[42].mapsTo);
 // console.log(dups);
+
+// for debugging
+
+function tester() {
+  if(!dups.hasOwnProperty(urlArr[t_c])) {
+    console.log('T: '+t_c);
+    // console.log('URL: '+urlArr[t_c]);
+    dups[urlArr[t_c]] = 1;
+  } else {
+    // console.log('DUP');
+  }
+  // check for stop condition, if not, iterate, call self
+  if (t_c < t_s) {
+    t_c++;
+    tester();
+  } else {
+    // clear memory with setTimeout (recursion results in stack overflow)
+    setTimeout( function() {
+      isDone();
+    }, 0 );
+  }
+}
