@@ -38,7 +38,8 @@ var nl_c = 0,
     urlArr,                       // urlArr to scrape
     filenames = [],               // store filenames
     t_c = 0,                      // inner counter
-    t_s = 10;                     // inner stop point (init value is random)
+    t_s = 10,                     // inner stop point (init value is random)
+    delay = [1200,3600];          // delay for timeout
 
 // test URLs - 'Francis_Picabia' - 'Ann%C3%A9es_folles' - 'Dada'
 
@@ -99,6 +100,7 @@ function crawler() {           //  create a loop function
           page.root = pagesIn[nl_c].url;
           page.url =  urlArr[t_c];        // testURL_1;
           dups[urlArr[t_c]] = 1;
+          delay = [1200,3600];
 
           var url = 'https://en.wikipedia.org/wiki/'+page.url;
           var mapsFromURL = 'https://en.wikipedia.org/w/index.php?title=Special:WhatLinksHere/'+page.url+'&limit=3000';
@@ -152,7 +154,10 @@ function crawler() {           //  create a loop function
           writeDataFile(t_c);
         } // end fullSkip conditional
       } else {
+        // track url distribution
         dups[urlArr[t_c]]++;
+        // no delay on dups
+        delay = [0,0];
       } // end dups conditional
 
     // iterator
@@ -169,7 +174,7 @@ function crawler() {           //  create a loop function
     }
 
   //set delay between 1200 and 3600 milliseconds per request
-  }, getRando(1200,3600))
+}, getRando(delay[0],delay[1]))
 }
 // ------------------------------------------------------------------------------
 
