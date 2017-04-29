@@ -78,7 +78,8 @@ function getRando(min, max) {
 function writeDataFile(location, counter) {
   //counter++;
   if (counter>=t_s || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
-    var filename = 'data/index'+location+'-batch'+lastBatch+'-'+counter+'.json';
+    var maps = function() { if (mapsToDone) { return 'mapsFrom'; } else { return 'mapsTo'; } }
+    var filename = 'data/'+maps+'-index'+location+'-batch'+lastBatch+'-'+counter+'.json';
     fs.writeFile(filename, JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log(filename+' written');
@@ -166,7 +167,7 @@ function crawler() {           //  create a loop function
       t_c++;
       crawler();
     } else {
-      console.log('CRAWL COMPLETE: '+nl_c);
+      console.log('CRAWL COMPLETE: '+nl_c+' OF '+nl_s);
       // clear memory with setTimeout (recursion results in stack overflow)
       setTimeout( function() {
         writeDataFile(nl_c, t_c);
@@ -184,13 +185,13 @@ function nextList() {
   nl_s =  pagesIn.length-1;
 
   // if the page does not have url attr, mark it done
-  if (!pagesIn[nl_c].hasOwnProperty('mapsTo')) mapsToDone = true;
-  if (!pagesIn[nl_c].hasOwnProperty('mapsFrom')) mapsFromDone = true;
+  if (!pagesIn[nl_c].hasOwnProperty('mapsTo') || pagesIn[nl_c].mapsTo.length==0) mapsToDone = true;
+  if (!pagesIn[nl_c].hasOwnProperty('mapsFrom') || pagesIn[nl_c].mapsFrom.length==0) mapsFromDone = true;
 
   if (!mapsToDone) {
     t_s = pagesIn[nl_c].mapsTo.length-1;
     urlArr = pagesIn[nl_c].mapsTo;
-  } else {
+  } else (!mapsFromDone) {
     t_s = pagesIn[nl_c].mapsFrom.length-1;
     urlArr = pagesIn[nl_c].mapsFrom;
   }
@@ -205,6 +206,7 @@ function isDone() {  // if inner loop is complete
 
     // iterate nLCount, reset inner count
     t_c = 0;
+    lastBatch = 0;
     console.log(nl_s);
 
     if (!mapsToDone) {
@@ -227,13 +229,7 @@ function isDone() {  // if inner loop is complete
 
   } else {
     console.log(' done');
-
     writeFilenames();
-
-    fs.writeFile('data/dups.json', JSON.stringify(dups), function(err) {
-        if (err) {throw err;}
-        console.log('dups written');
-    });
   }
 }
 
@@ -246,6 +242,11 @@ function writeFilenames() {
   fs.writeFile('data/filenames.json', JSON.stringify(filenames), function(err) {
       if (err) {throw err;}
       console.log('filenames written');
+  });
+
+  fs.writeFile('data/dups.json', JSON.stringify(dups), function(err) {
+      if (err) {throw err;}
+      console.log('dups written');
   });
 }
 
