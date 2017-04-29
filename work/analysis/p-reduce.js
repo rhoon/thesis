@@ -63,8 +63,9 @@ curator(dataIn_2);
 
 var rankSets = rank.ranks(dataIn_1, dataIn_2);
 var fullSet = rankSets[0];
-var topQuartile = rankSets[1];
+var topQuartile= rankSets[1];
 
+console.log(topQuartile);
 //output for prototype
 function prototypeDataRanks(data) {
   var dataReduce = [];
@@ -100,4 +101,9 @@ fs.writeFile('data/mapsTo_Crawl.json', JSON.stringify(mapsTo_Crawl), function(er
 fs.writeFile('data/mapsFrom_Crawl.json', JSON.stringify(mapsFrom_Crawl), function(err) {
     if (err) {throw err;}
     console.log('mapsFrom_Crawl written');
+});
+
+fs.writeFile('dups.json', JSON.stringify(urls), function(err) {
+    if (err) {throw err;}
+    console.log('dups written');
 });

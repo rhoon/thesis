@@ -54,7 +54,6 @@ function rankings(iteration) {
 
       // seperate output space from input space
       fullSet[iteration][url] = args[url].rank;
-
       // calculate rank and assign to output space
       for (var j in args[url].mapsFrom) {
         var mfurl = args[url].mapsFrom[j];
@@ -62,7 +61,7 @@ function rankings(iteration) {
         if (iteration==0) {
           // initial values
           // ---------------------------------> need to add distance penalty to calculation
-          fullSet[iteration][url] += (args[mfurl].rank/args[mfurl].mapsToLen);
+          fullSet[iteration][url] += args[mfurl].rank/args[mfurl].mapsToLen;
         } else {
           // using previous
           fullSet[iteration][url] += (fullSet[iteration-1][url]/args[mfurl].mapsToLen);
@@ -89,9 +88,9 @@ function rankStats(iteration) {
 
     //sort justRanksFull
     justRanksFull = justRanksFull.sort();
-    console.log(justRanksFull)
+    // console.log(justRanksFull)
 
-    //set rank cutOff to the 25% quartile, calc'd in R
+    //set rank cutOff to the 25% quartile
     var cutOff = d3.quantile(justRanksFull, 0.75);
     var justRanksLean = [];
 

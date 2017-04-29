@@ -166,9 +166,10 @@ function crawler() {           //  create a loop function
       t_c++;
       crawler();
     } else {
-      console.log('CRAWL: '+nl_c);
+      console.log('CRAWL COMPLETE: '+nl_c);
       // clear memory with setTimeout (recursion results in stack overflow)
       setTimeout( function() {
+        writeDataFile(t_c);
         isDone();
       }, 0 );
     }

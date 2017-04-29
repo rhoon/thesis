@@ -5,16 +5,16 @@ var fs = require('fs');
 var d3 = require('d3');
 var detect = require('../crawler/s-detect');
 
-var dataIn_1 = JSON.parse(fs.readFileSync('data/ec2/mapsTo-r2-batch2.json'));
-var dataIn_2 = JSON.parse(fs.readFileSync('data/ec2/mapsTo-r2-batch3.json'));
-var dataIn_3 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch0.json'));
-var dataIn_4 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch1.json'));
-var dataIn_5 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch2.json'));
-var dataIn_6 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch3.json'));
-var dataIn_7 = JSON.parse(fs.readFileSync('data/ec2/mapsFrom-r2-batch4.json'));
+var dataIn_1 = JSON.parse(fs.readFileSync('data/ec2/MapsFrom-update0-250.json'));
+var dataIn_2 = JSON.parse(fs.readFileSync('data/ec2/MapsFrom-update250-500.json'));
+var dataIn_3 = JSON.parse(fs.readFileSync('data/ec2/MapsFrom-update500-750.json'));
+var dataIn_4 = JSON.parse(fs.readFileSync('data/ec2/MapsFrom-update750-1000.json'));
+var dataIn_5 = JSON.parse(fs.readFileSync('data/ec2/MapsFrom-update1250-1453.json'));
+var dataIn_6 = JSON.parse(fs.readFileSync('data/ec2/MapsTo-update0-201.json'));
+var dataIn_7 = JSON.parse(fs.readFileSync('data/ec2/MapsTo-update201-201.json'));
 
-var mapsTo_In = dataIn_1.concat(dataIn_2);
-var mapsFrom_In = dataIn_1.concat(dataIn_3, dataIn_4, dataIn_5, dataIn_6, dataIn_7);
+var mapsTo_In = dataIn_6.concat(dataIn_7);
+var mapsFrom_In = dataIn_1.concat(dataIn_2, dataIn_3, dataIn_4, dataIn_5);
 
 var cut = [
   "BNE ID",
@@ -149,9 +149,11 @@ function scrubber(data) {
       console.log('metaData---------->URL: '+data[i].url);
 
         for (var k in cut) {
-          if (wD.hasOwnProperty(cut[k])) {
-            delete wD[cut[k]];
-            console.log('cutting wikiData item'+cut[k]);
+          if (wD!=null) {
+            if (wD.hasOwnProperty(cut[k])) {
+              delete wD[cut[k]];
+              console.log('cutting wikiData item'+cut[k]);
+            }
           }
         }
 
