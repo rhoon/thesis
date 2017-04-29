@@ -221,15 +221,14 @@ function isDone() {  // if inner loop is complete
       nl_c++;
       mapsToDone = false;
       mapsFromDone = false;
+      writeFilenames();
       nextList();
     }
 
   } else {
     console.log(' done');
-    fs.writeFile('data/filenames.json', JSON.stringify(filenames), function(err) {
-        if (err) {throw err;}
-        console.log('filenames written');
-    });
+
+    writeFilenames();
 
     fs.writeFile('data/dups.json', JSON.stringify(dups), function(err) {
         if (err) {throw err;}
@@ -242,8 +241,15 @@ nextList();
 // console.log(pagesIn_2[42].mapsTo);
 // console.log(dups);
 
-// for debugging
+//periodically update the names of files written so far
+function writeFilenames() {
+  fs.writeFile('data/filenames.json', JSON.stringify(filenames), function(err) {
+      if (err) {throw err;}
+      console.log('filenames written');
+  });
+}
 
+// for debugging
 function tester() {
   if(!dups.hasOwnProperty(urlArr[t_c])) {
     console.log('T: '+t_c);
