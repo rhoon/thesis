@@ -79,7 +79,7 @@ function writeDataFile(location, counter) {
   //counter++;
   if (counter>=t_s || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
     var maps = function() { if (mapsToDone) { return 'mapsFrom'; } else { return 'mapsTo'; } }
-    var filename = 'data/'+maps+'-index'+location+'-batch'+lastBatch+'-'+counter+'.json';
+    var filename = 'data/'+maps()+'-index'+location+'-batch'+lastBatch+'-'+counter+'.json';
     fs.writeFile(filename, JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log(filename+' written');
