@@ -75,10 +75,10 @@ function getRando(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function writeDataFile(counter) {
+function writeDataFile(location, counter) {
   //counter++;
   if (counter>=t_s || counter%250==0) { //if last loop or if counter is divisible by 250, write the file
-    var filename = 'data/d2-'+lastBatch+'-'+counter+'.json';
+    var filename = 'data/index'+location+'-batch'+lastBatch+'-'+counter+'.json';
     fs.writeFile(filename, JSON.stringify(pages), function(err) {
         if (err) {throw err;}
         console.log(filename+' written');
@@ -132,26 +132,26 @@ function crawler() {           //  create a loop function
                        console.log('scraping wikiData '+page.wikiData);
                        page.metaData = dataScrape.scrape(body);
                        pages.push(page);
-                       writeDataFile(t_c);
+                       writeDataFile(nl_c, t_c);
                    });
                  } else {
                    // case no wikiData
                    page.metaData = null;
                    pages.push(page);
-                   writeDataFile(t_c);
+                   writeDataFile(nl_c, t_c);
                  }
               }); // end mainPage request
             } else {
               // some page types don't have link info, push as-is
               pages.push(page);
-              writeDataFile(t_c);
+              writeDataFile(nl_c, t_c);
             }
           });
         } else {
           page.noScrape = 1;
           pages.push(page);
           console.log('-NO SCRAPE-');
-          writeDataFile(t_c);
+          writeDataFile(nl_c, t_c);
         } // end fullSkip conditional
       } else {
         // track url distribution
@@ -169,7 +169,7 @@ function crawler() {           //  create a loop function
       console.log('CRAWL COMPLETE: '+nl_c);
       // clear memory with setTimeout (recursion results in stack overflow)
       setTimeout( function() {
-        writeDataFile(t_c);
+        writeDataFile(nl_c, t_c);
         isDone();
       }, 0 );
     }
