@@ -191,7 +191,7 @@ function nextList() {
   if (!mapsToDone) {
     t_s = pagesIn[nl_c].mapsTo.length-1;
     urlArr = pagesIn[nl_c].mapsTo;
-  } else (!mapsFromDone) {
+  } else if (!mapsFromDone) {
     t_s = pagesIn[nl_c].mapsFrom.length-1;
     urlArr = pagesIn[nl_c].mapsFrom;
   }
