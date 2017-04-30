@@ -30,24 +30,6 @@
 		"sC": 1,
 		"tS": 0
 		},
-	"\/chart-min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/chart-min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/chart.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/chart-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
 	"\/data\/forceChart-sm.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -72,6 +54,22 @@
 		"oO": 0,
 		"oS": 1
 		},
+	"\/data\/v-forceChart-sm.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/v-forceChart-sm-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/data\/v-forceChart.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/v-forceChart-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/example\/flare.csv": {
 		"ft": 8192,
 		"oA": 2,
@@ -90,29 +88,134 @@
 		"oAP": "\/example\/panner.html",
 		"oF": 0
 		},
+	"\/images\/isolate.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/images\/isolate.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/images\/toggleBack.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/images\/toggleBack.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/images\/toggleCircle.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/images\/toggleCircle.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
 	"\/index.html": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/index.html",
 		"oF": 0
 		},
-	"\/style-min.css": {
+	"\/js\/chart-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/chart-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/chart.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/chart-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/nouislider.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/nouislider-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/worker-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/worker-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/worker.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/worker-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/styles\/nouislider.css": {
 		"aP": 1,
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "\/style-min-min.css",
+		"oAP": "\/styles\/nouislider-min.css",
 		"oF": 0,
 		"oS": 0
 		},
-	"\/style.css": {
+	"\/styles\/style-min.css": {
 		"aP": 1,
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "\/style-min.css",
+		"oAP": "\/styles\/style-min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/styles\/style.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/styles\/style-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/styles\/toggler-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/styles\/toggler-min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/styles\/toggler.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/styles\/toggler-min.css",
 		"oF": 0,
 		"oS": 0
 		},
@@ -141,24 +244,6 @@
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
-		},
-	"\/worker-min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/worker-min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/worker.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/worker-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
 		}
 	},
 "hooks": [

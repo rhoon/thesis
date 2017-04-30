@@ -32,7 +32,7 @@ function getGroups(data) {
 
       // select metaData
       var mD = data[i].metaData;
-      if (mD.hasOwnProperty('instance of')) {
+      if (mD!=null && mD.hasOwnProperty('instance of')) {
 
         // loop through instance of array
         // needs to track occurences so can not include n of 1
@@ -111,7 +111,7 @@ function getURLs(data, pointsAtDada) {
         urls[earl] = {};
 
         //get group
-        if (data[i].hasOwnProperty('metaData')) {
+        if (data[i].hasOwnProperty('metaData') && data[i].metaData!=null) {
           var mD = data[i].metaData;
           urls[earl].group = [];
           if (mD.hasOwnProperty('instance of')) {
@@ -176,7 +176,7 @@ function makeNodes(data) {
   }
   console.log(nodes[0]);
   //create dada node
-  var dada = { id: 'Dada', value: { group: groupsTrimmed['art movement'], title: 'Dada', root: null, image: '//upload.wikimedia.org/wikipedia/en/thumb/2/2b/Francis_Picabia%2C_Dame%21_Illustration_for_the_cover_of_the_periodical_Dadaphone_n._7%2C_Paris%2C_March_1920.jpg/220px-Francis_Picabia%2C_Dame%21_Illustration_for_the_cover_of_the_periodical_Dadaphone_n._7%2C_Paris%2C_March_1920.jpg'}}
+  var dada = { id: 'Dada', value: { group: groupsTrimmed['art movement'], rank: 1, title: 'Dada', root: null, image: '//upload.wikimedia.org/wikipedia/en/thumb/2/2b/Francis_Picabia%2C_Dame%21_Illustration_for_the_cover_of_the_periodical_Dadaphone_n._7%2C_Paris%2C_March_1920.jpg/220px-Francis_Picabia%2C_Dame%21_Illustration_for_the_cover_of_the_periodical_Dadaphone_n._7%2C_Paris%2C_March_1920.jpg'}}
   nodes.push(dada);
 
 }

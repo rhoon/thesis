@@ -10,8 +10,9 @@
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Chivo:400,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chivo|Playfair+Display" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <link href="toggler.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -21,8 +22,16 @@
 
     <div id="progress"></div>
 
-    <div id="sidebar">
-      <h1>Mapping<br />Dada</h1>
+    <div id="sidebar" class="bgdark">
+      <h1>Mapping Dada</h1>
+
+      <span class="label labelColor">Search</span>
+      <div id="searchBox" class="card"></div>
+
+      <span class="label labelColor">Time</span>
+      <div id="searchBox" class="card"></div>
+
+      <span class="label labelColor">Categories</span>
       <!-- <div class="toggle"></div> -->
     </div>
 
@@ -34,3 +43,14 @@
   </body>
 
 </html>
+
+
+<!--  <div id="search">
+  <span class="label">Search</span>
+  <div id="searchBox"></div>
+<div>
+
+<div id="timeSlider">
+  <span class="label">Time</span>
+  <svg id="slider"></svg>
+</div>-->
