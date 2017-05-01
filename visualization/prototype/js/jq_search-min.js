@@ -1,0 +1,1 @@
+function search(e){13==event.keyCode&&alert(e.value)}$(function(){var e=["ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"];$("#search").autocomplete({source:e})});

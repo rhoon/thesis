@@ -4,10 +4,39 @@ var svg = d3.select('svg'),
 
 var zg = svg.append('g');
 
+var slider = document.getElementById('slider-connect');
+
+noUiSlider.create(slider, {
+  start: [1500,2018],
+  connect: [false, true, false],
+  range: {
+    'min': 1500,
+    'max': 2018
+  },
+});
+
+var sVals;
+
+slider.noUiSlider.on('update', function() {
+  sVals = slider.noUiSlider.get();
+  d3.select('span#s0').text(Math.floor(sVals[0]));
+  d3.select('span#s1').text(Math.ceil(sVals[1]));
+})
+
+
+
+// var silderVals = slider.noUiSlider.get();
+// console.log(sliderVals);
+
 function showDeets() {
   return function(d) {
 
-    var label = d.value.title;
+    console.log(d);
+
+    var title = d.value.title,
+        location = (d.value.hasOwnProperty('location')) ? d.value.location : '',
+        date = (d.value.hasOwnProperty('date')) ? d.value.date : '',
+        group = 'Rank: '+d.value.rank+'%';
 
     // need the other data!
     var boxHeight = 50;
@@ -21,7 +50,7 @@ function showDeets() {
     var box = d3.select('div#chart')
       .append('div')
       .attrs({
-        class: 'nodeDeets',
+        class: 'nodeDeets card',
       })
       .styles({
         left: d.x+25+'px',
@@ -29,22 +58,28 @@ function showDeets() {
         opacity: 0
       })
 
-    box.append('p')
-      .text(label);
-
-    if (d.value.hasOwnProperty('location')) {
-      box.append('p').text(d.value.location);
+    if (d.value.hasOwnProperty('image') && d.value.image!=null) {
+      box.append('div')
+        .classed('imgBox', true)
+        .append('img')
+        .attrs({
+          src: d.value.image,
+          class: 'svgHoverImg'
+        });
     }
+
+    box.append('p')
+      .text(title)
+      .append('span')
+      .classed('details', true)
+      .html(' <br/> '+group+' <br/> '+location+' <br/> '+date);
+
 
     if (d.value.hasOwnProperty('date')) {
       box.append('p').text(d.value.date);
     }
 
-    if (d.value.hasOwnProperty('image')) {
-      box.append('img')
-        .attr('src', d.value.image)
-        .attr('width', '100px');
-    }
+
 
 
     //delay box fade-in to avoid jumpiness
@@ -57,7 +92,7 @@ function showDeets() {
 function circleSize(hover) {
   return function(d) {
     if (d.id=='Dada') {
-      return 20+hover;
+      return 5+hover;
     } else {
       return Math.ceil(+d.value.rank*100)+hover;
     }
@@ -144,7 +179,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) {
   var links = graph.links,
       nodes = graph.nodes
       meter = document.querySelector("#progress"),
-      worker = new Worker("worker.js");
+      worker = new Worker("js/worker.js");
 
   worker.postMessage({
     nodes: nodes,
@@ -202,6 +237,9 @@ d3.json("data/forceChart-sm.json", function(error, graph) {
           }
           return classes;
         },
+        id: function(d) {
+          return d.id;
+        }
       })
       .on('mouseover', showDeets())
       .on('mouseout', hideDeets());

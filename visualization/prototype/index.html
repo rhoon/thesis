@@ -10,9 +10,15 @@
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/nouislider.js"></script>
+    <script src="js/jq_search.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Chivo|Playfair+Display" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link href="toggler.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/toggler.css" rel="stylesheet">
+    <link href="styles/nouislider.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -25,20 +31,27 @@
     <div id="sidebar" class="bgdark">
       <h1>Mapping Dada</h1>
 
-      <span class="label labelColor">Search</span>
-      <div id="searchBox" class="card"></div>
+      <div class="ui-widget searchBox">
+        <label for="search" class="label labelColor">Search:</label>
+        <img id="searchIcon" src="images/mag-glass.png" />
+        <input id="search" class="card" onkeydown="search(this)">
+      </div>
 
-      <span class="label labelColor">Time</span>
-      <div id="searchBox" class="card"></div>
+      <div id="sliderBox">
+        <span class="label labelColor" id="sliderLabel">Year Range:</span>
+        <div id="slider-connect"></div>
+        <span class="sval" id="s0"></span>
+        <span class="sval" id="s1"></span>
+      </div>
 
-      <span class="label labelColor">Categories</span>
+      <span class="label labelColor">Categories:</span>
       <!-- <div class="toggle"></div> -->
     </div>
 
     <div id="chart">
-      <svg width="1000" height="1000"></svg>
+      <svg id="chartSVG" width="1000" height="1000"></svg>
     </div>
-    <script src="chart-min.js"></script>
+    <script src="js/chart.js"></script>
 
   </body>
 

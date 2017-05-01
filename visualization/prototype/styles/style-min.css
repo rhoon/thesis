@@ -72,32 +72,91 @@ div#sidebar {
   overflow: hidden;
   /* CHANGE LATER */ }
 
-div#searchBox {
-  width: 100%;
-  height: 3em; }
-
-span.label {
+.label {
   text-transform: uppercase;
   font-size: .75em;
   letter-spacing: 1px;
   display: block;
-  margin: 2.5em 0 1em 0; }
+  margin: 3em 0 1em 0; }
+
+#sliderLabel {
+  margin-bottom: 1.5em; }
 
 /* TOGGLES */
 div.toggle {
   width: 100%;
   padding: .75em 0 .75em 0;
   border-top: 1px solid #D4D0C7;
-  cursor: pointer;
   text-transform: capitalize; }
 
-/* ----------------------- */
-/*div.toggle.clicked {
-  background-color: gray;
-}*/
 .toggled {
   fill: orange !important; }
 
+/* SLIDER */
+#sliderBox {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 4.5em; }
+
+.sval {
+  font-size: .75em;
+  margin: 1.5em 0 .5em 0; }
+
+span#s0 {
+  float: left; }
+
+span#s1 {
+  float: right; }
+
+/* SEARCH */
+#search {
+  width: 92%;
+  height: 1em;
+  padding: 1em 4% 1em 4%;
+  border: none; }
+
+#searchIcon {
+  position: absolute;
+  right: 3%;
+  top: 55%;
+  width: 6%;
+  /*height: 15%;*/ }
+
+.searchBox {
+  position: relative; }
+
+/* HOVERS */
+.svgHoverImg {
+  max-height: 4em;
+  max-width: 4em; }
+
+.imgBox {
+  float: left;
+  margin: 0 1em 0 0;
+  padding: 0;
+  height: 100%; }
+
+.nodeDeets {
+  padding: 1em 1em 0em 1em;
+  min-width: 14em;
+  width: auto;
+  height: 6em;
+  position: absolute;
+  z-index: 100;
+  font-size: .8em; }
+
+.nodeDeets p {
+  position: relative;
+  top: -1.2em;
+  line-height: 150%;
+  /*margin-left: 1em;*/ }
+
+.nodeDeets span {
+  color: #C2BEB4; }
+
+/* CHART */
 div#chart {
   position: absolute;
   top: 0;
@@ -108,13 +167,8 @@ svg {
   top: 0;
   left: 0; }
 
-/* NODE DETAIL HOVERS */
-div.nodeDeets {
-  color: black;
-  background-color: white;
-  border: 1px solid pink;
-  position: absolute;
-  z-index: 100; }
+#Dada {
+  fill: #E84E00; }
 
 /* PROGRESS BAR */
 #progress {
@@ -152,4 +206,4 @@ div.nodeDeets {
 .nodes circle {
   /*stroke: #fff;*/
   /*stroke-width: 1.5px;*/
-  fill: blue; }
+  fill: black; }
