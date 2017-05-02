@@ -30,6 +30,14 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"\/data\/forceChart-2.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/forceChart-2-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/data\/forceChart-sm.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -176,6 +184,15 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "\/js\/nouislider-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/svg-pan-zoom.min-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/svg-pan-zoom.min-min-min.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0

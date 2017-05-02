@@ -1,6 +1,7 @@
 # Do not track data
 work/crawler/data/
 work/node_modules
+work/analysis/data/ec2-d2-scrape
 visualization/prototype/example
 visualization/prototype/tutorial
 visualization/prototype/archive

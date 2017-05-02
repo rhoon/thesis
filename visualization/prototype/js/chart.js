@@ -28,6 +28,22 @@ slider.noUiSlider.on('update', function() {
 // var silderVals = slider.noUiSlider.get();
 // console.log(sliderVals);
 
+function getDate(d) {
+    var date = '';
+    if (d.value.hasOwnProperty('date')) {
+      date = d.value.date;
+    }
+
+    if (d.value.hasOwnProperty('bdate')) {
+      date = 'b'+d.value.bdate;
+    }
+
+    if (d.value.hasOwnProperty('ddate')) {
+      date += 'd'+d.value.ddate;
+    }
+    return date;
+}
+
 function showDeets() {
   return function(d) {
 
@@ -35,9 +51,10 @@ function showDeets() {
 
     var title = d.value.title,
         location = (d.value.hasOwnProperty('location')) ? d.value.location : '',
-        date = (d.value.hasOwnProperty('date')) ? d.value.date : '',
+        date = getDate(d),
         group = 'Rank: '+d.value.rank+'%';
-
+        console.log(date);
+        
     // need the other data!
     var boxHeight = 50;
     var circle = d3.select(this);
@@ -58,29 +75,22 @@ function showDeets() {
         opacity: 0
       })
 
-    if (d.value.hasOwnProperty('image') && d.value.image!=null) {
-      box.append('div')
-        .classed('imgBox', true)
-        .append('img')
-        .attrs({
-          src: d.value.image,
-          class: 'svgHoverImg'
-        });
-    }
+    // images slow performance
+    // if (d.value.hasOwnProperty('image') && d.value.image!=null) {
+    //   box.append('div')
+    //     .classed('imgBox', true)
+    //     .append('img')
+    //     .attrs({
+    //       src: d.value.image,
+    //       class: 'svgHoverImg'
+    //     });
+    // }
 
     box.append('p')
       .text(title)
       .append('span')
       .classed('details', true)
       .html(' <br/> '+group+' <br/> '+location+' <br/> '+date);
-
-
-    if (d.value.hasOwnProperty('date')) {
-      box.append('p').text(d.value.date);
-    }
-
-
-
 
     //delay box fade-in to avoid jumpiness
     box.transition()
@@ -117,12 +127,18 @@ function hideDeets() {
 function pathBack() {
   return function(d) {
 
-    // this function finds the optimal path back to dada
-    // from the clicked element
-    // using a 'd' value
+    // perhaps links have clases with source and root names for easy selection
+    // e.g. var path = d3.select('line.'+source+'.'+root)
+    // if distance = 1, highlight link going to dada
+    // if distance = 2, loop through roots array
+    //    for each id, select that node, highlight (use id)
+    //        highlight link to root node
+    //        link : source this target root OR
+    //        link : source root target dada
 
-    // checks d values of connected elements
-    // finds the element(s) with the lowest d
+    //    for each node, highlight it's path to dada
+    //        link : target Dada source this OR
+    //        link : target this source Dada
 
 
   }
@@ -143,7 +159,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-sm.json", function(error, graph) {
+d3.json("data/forceChart.json", function(error, graph) {
   if (error) throw error;
 
   //filters

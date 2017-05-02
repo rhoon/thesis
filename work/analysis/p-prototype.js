@@ -2,8 +2,8 @@ var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
 
-var in_mapsTo = JSON.parse(fs.readFileSync('data/prototype-mapsTo.json'));
-var in_mapsFrom = JSON.parse(fs.readFileSync('data/prototype-mapsFrom.json'));
+var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-d1-d2.json'));
+// var dada = JSON.parse(fs.readFileSync('data/Dada-update0.json'));
 
 locationKeys = [
   'coordinate location',
@@ -58,9 +58,8 @@ function getGroups(data) {
 
 } // end function
 
-getGroups(in_mapsTo);
-getGroups(in_mapsFrom);
-// console.log(groups);
+getGroups(in_d1d2);
+// getGroups(dada);
 
 var groupsTrimmed = {};
 
@@ -88,19 +87,7 @@ function getURLs(data, pointsAtDada) {
 
     if (data[i].hasOwnProperty('url')) {
 
-      var link = {};
-      console.log(data[i].root);
-      if (pointsAtDada) {
-        // commit url to dadaLinks as src and Dada as target
-        link.source = data[i].url;
-        link.target = 'Dada';
-      } else {
-        // commit url
-        link.source = 'Dada';
-        link.target = data[i].url;
-      }
-
-      links.push(link);
+      // console.log(data[i].root);
 
       // check if data has instanceOf in metaData
       if (!urls.hasOwnProperty(data[i].url)) {
@@ -114,21 +101,16 @@ function getURLs(data, pointsAtDada) {
         if (data[i].hasOwnProperty('metaData') && data[i].metaData!=null) {
           var mD = data[i].metaData;
           urls[earl].group = [];
+          var human = false;
+
           if (mD.hasOwnProperty('instance of')) {
-            // set group equal to the first instance of
-            // will want to refine this <--------------------------------
-            // group = groups[mD['instance of'][0]];
-            var human = false;
             for (var g in mD['instance of']) {
               var thisGroup = mD['instance of'][g].split('\n')[0];
               // test for human
               if (thisGroup=='human') { human = true; }
               // push to array
-              // console.log(thisGroup);
-              // console.log(groups[thisGroup].id);
               urls[earl].group.push(groups[thisGroup].id);
             }
-            // console.log(urls[earl].group);
 
           } else {
             // set group equal to nullgroup / eg 'misc'
@@ -141,7 +123,23 @@ function getURLs(data, pointsAtDada) {
               urls[earl].location = mD[locationKeys[l]][0].split('\n')[0];
             }
           }
-        }
+
+          // get date data, if available
+          if (human) {
+            console.log(earl);
+            if (mD.hasOwnProperty('date of birth')) { urls[earl].bdate = mD['date of birth'][0]; }
+            console.log('bdate: '+urls[earl].bdate);
+            if (mD.hasOwnProperty('date of death')) { urls[earl].ddate = mD['date of death'][0]; }
+          } else {
+            for (var d in dateKeys) {
+              if (mD.hasOwnProperty(dateKeys[d])) {
+                urls[earl].date = mD[dateKeys[d][0]];
+                console.log(urls[earl].date);
+              }
+            }
+          }
+
+        } // end has wikiData
 
         if (data[i].title != undefined) {
           urls[earl].title = data[i].title;
@@ -152,16 +150,18 @@ function getURLs(data, pointsAtDada) {
         urls[earl].image = data[i].image;
         urls[earl].root = data[i].root;
         urls[earl].rank = data[i].rank;
-        //also need to include a 'rank' object
-        //need to include some kind of 'distance' object
+
+        if (data[i].hasOwnProperty('roots')) {
+          urls[earl].roots = data[i].roots;
+        }
 
       }
     }
   }
 }
 
-getURLs(in_mapsTo, true);
-getURLs(in_mapsFrom, false);
+// getURLs(dada, false);
+getURLs(in_d1d2, false);
 // console.log(urls);
 
 var nodes;
@@ -175,9 +175,6 @@ function makeNodes(data) {
     delete nodes[i].key;
   }
   console.log(nodes[0]);
-  //create dada node
-  var dada = { id: 'Dada', value: { group: groupsTrimmed['art movement'], rank: 1, title: 'Dada', root: null, image: '//upload.wikimedia.org/wikipedia/en/thumb/2/2b/Francis_Picabia%2C_Dame%21_Illustration_for_the_cover_of_the_periodical_Dadaphone_n._7%2C_Paris%2C_March_1920.jpg/220px-Francis_Picabia%2C_Dame%21_Illustration_for_the_cover_of_the_periodical_Dadaphone_n._7%2C_Paris%2C_March_1920.jpg'}}
-  nodes.push(dada);
 
 }
 
@@ -216,8 +213,8 @@ function makeLinks(data) {
 
 }
 
-makeLinks(in_mapsTo);
-makeLinks(in_mapsFrom);
+makeLinks(in_d1d2);
+// makeLinks(dada);
 
 // console.log(links);
 // console.log('links-length '+links.length);
@@ -227,17 +224,17 @@ formattedData.nodes = nodes;
 formattedData.links = links;
 formattedData.groupKey = key;
 //
-var shortFormattedData = {}
-shortFormattedData.nodes = nodes;
-shortFormattedData.links = links.slice(0,5000);
-shortFormattedData.groupKey = key;
+// var shortFormattedData = {}
+// shortFormattedData.nodes = nodes;
+// shortFormattedData.links = links.slice(0,5000);
+// shortFormattedData.groupKey = key;
 
-fs.writeFile('data/forceChart.json', JSON.stringify(formattedData), function(err) {
+fs.writeFile('data/forceChart-2.json', JSON.stringify(formattedData), function(err) {
     if (err) {throw err;}
-    console.log('forceChart written');
+    console.log('forceChart 2 written');
 });
 
-fs.writeFile('data/forceChart-sm.json', JSON.stringify(shortFormattedData), function(err) {
-    if (err) {throw err;}
-    console.log('sm written');
-});
+// fs.writeFile('data/forceChart-sm.json', JSON.stringify(shortFormattedData), function(err) {
+//     if (err) {throw err;}
+//     console.log('sm written');
+// });

@@ -8,28 +8,32 @@ var d3 = require('d3');
 //local module
 var rank = require('./p-rank')
 
-var dataIn_1 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
-var dataIn_2 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
+// var dataIn_1 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
+// var dataIn_2 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
+var dataIn_unranked = JSON.parse(fs.readFileSync('data/d2-combined-roots.json'));
+var dataIn_ranked_1 = JSON.parse(fs.readFileSync('data/mapsFrom_Crawl.json'));
+var dataIn_ranked_2 = JSON.parse(fs.readFileSync('data/mapsTo_Crawl.json'));
+var dada = JSON.parse(fs.readFileSync('data/Dada-update0.json'));
+var dataIn_ranked = dataIn_ranked_1.concat(dataIn_ranked_2, dada);
 
-var dataIn_1_rank = dataIn_1;
-var dataIn_2_rank = dataIn_2;
+var urlSet_1 = [];
+var urlSet_2 = [];
 
-var urls = [];
-
-function getURLs(data) {
+function getURLs(data, urls) {
 
   for (var i in data) {
     if (data[i].hasOwnProperty('url')) {
       urls[data[i].url] = 1;
     }
   }
+  // console.log(urls);
 
 }
 
-getURLs(dataIn_1);
-getURLs(dataIn_2);
+getURLs(dataIn_unranked, urlSet_1);
+getURLs(dataIn_ranked, urlSet_1);
 
-function curator(data) {
+function curator(data, urls) {
 
   for (var i in data) {
     // check each set of mapsTo urls, cut ones that aren't in url set
@@ -58,10 +62,11 @@ function curator(data) {
   }
 }
 
-curator(dataIn_1);
-curator(dataIn_2);
+curator(dataIn_unranked, urlSet_1);
+curator(dataIn_ranked, urlSet_1);
 
-var rankSets = rank.ranks(dataIn_1, dataIn_2);
+// ranks are calculated based on closed-network - e.g. relevance to Dada, not overall
+var rankSets = rank.ranks(dataIn_unranked, dataIn_ranked);
 var fullSet = rankSets[0];
 var topQuartile= rankSets[1];
 
@@ -74,36 +79,55 @@ function prototypeDataRanks(data) {
     data[i].rank = fullSet[0][url];
     if (topQuartile.hasOwnProperty(url)) dataReduce.push(data[i]);
   }
+  console.log(dataReduce.length);
   return dataReduce;
 }
 
-prototypeDataRanks(dataIn_1);
-prototypeDataRanks(dataIn_2);
+var d2_reduced_topQuartile = prototypeDataRanks(dataIn_unranked);
+var d1_reduced_newRanks = prototypeDataRanks(dataIn_ranked);
 
-var mapsTo_Crawl = prototypeDataRanks(dataIn_1_rank);
-var mapsFrom_Crawl = prototypeDataRanks(dataIn_2_rank);
+var prototypeData = d1_reduced_newRanks.concat(d2_reduced_topQuartile);
 
-fs.writeFile('data/prototype-mapsFrom.json', JSON.stringify(dataIn_2), function(err) {
+getURLs(prototypeData, urlSet_2);
+curator(prototypeData, urlSet_2);
+
+fs.writeFile('data/d2-toCrawl.json', JSON.stringify(d2_reduced_topQuartile), function(err) {
     if (err) {throw err;}
-    console.log('mapsFrom written');
+    console.log('d2-toCrawl written');
 });
 
-fs.writeFile('data/prototype-mapsTo.json', JSON.stringify(dataIn_1), function(err) {
+fs.writeFile('data/prototypeData-d1-d2.json', JSON.stringify(prototypeData), function(err){
     if (err) {throw err;}
-    console.log('mapsTo written');
-});
+    console.log('prototypeData written');
+})
 
-fs.writeFile('data/mapsTo_Crawl.json', JSON.stringify(mapsTo_Crawl), function(err) {
-    if (err) {throw err;}
-    console.log('mapsTo_Crawl written');
-});
 
-fs.writeFile('data/mapsFrom_Crawl.json', JSON.stringify(mapsFrom_Crawl), function(err) {
-    if (err) {throw err;}
-    console.log('mapsFrom_Crawl written');
-});
+// ------------------------------------------------------------------
 
-fs.writeFile('dups.json', JSON.stringify(urls), function(err) {
-    if (err) {throw err;}
-    console.log('dups written');
-});
+// var mapsTo_Crawl = prototypeDataRanks(dataIn_1_rank);
+// var mapsFrom_Crawl = prototypeDataRanks(dataIn_2_rank);
+
+// fs.writeFile('data/prototype-mapsFrom.json', JSON.stringify(dataIn_2), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsFrom written');
+// });
+//
+// fs.writeFile('data/prototype-mapsTo.json', JSON.stringify(dataIn_1), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsTo written');
+// });
+//
+// fs.writeFile('data/mapsTo_Crawl.json', JSON.stringify(mapsTo_Crawl), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsTo_Crawl written');
+// });
+//
+// fs.writeFile('data/mapsFrom_Crawl.json', JSON.stringify(mapsFrom_Crawl), function(err) {
+//     if (err) {throw err;}
+//     console.log('mapsFrom_Crawl written');
+// });
+//
+// fs.writeFile('dups.json', JSON.stringify(urls), function(err) {
+//     if (err) {throw err;}
+//     console.log('dups written');
+// });

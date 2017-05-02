@@ -3,10 +3,10 @@ var fs = require('fs');
 var d3 = require('d3');
 
 // data cannot include points that have not been scraped yet
-var dataIn_1 = JSON.parse(fs.readFileSync('data/prototype-mapsFrom.json'));
-var dataIn_2 = JSON.parse(fs.readFileSync('data/prototype-mapsTo.json'));
+// var dataIn_1 = JSON.parse(fs.readFileSync('data/prototype-mapsFrom.json'));
+// var dataIn_2 = JSON.parse(fs.readFileSync('data/prototype-mapsTo.json'));
 
-var totalURLs = 1591,
+var totalURLs = 1512, //this was updated from 1591, for the old set
     initRank = 1/totalURLs,
     args = {},
     duplicates = [],
@@ -90,8 +90,8 @@ function rankStats(iteration) {
     justRanksFull = justRanksFull.sort();
     // console.log(justRanksFull)
 
-    //set rank cutOff to the 25% quartile
-    var cutOff = d3.quantile(justRanksFull, 0.75);
+    //set rank cutOff to the 25% quartile of initial scrape
+    var cutOff = 0.008114; //d3.quantile(justRanksFull, 0.75);
     var justRanksLean = [];
 
     for (var url in fullSet[iteration]) {
