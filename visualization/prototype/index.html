@@ -31,20 +31,26 @@
     <div id="sidebar" class="bgdark">
       <h1>Mapping Dada</h1>
 
-      <div class="ui-widget searchBox">
-        <label for="search" class="label labelColor">Search:</label>
-        <img id="searchIcon" src="images/mag-glass.png" />
-        <input id="search" class="card" onkeydown="search(this)">
-      </div>
+      <div id="nav">
 
-      <div id="sliderBox">
-        <span class="label labelColor" id="sliderLabel">Year Range:</span>
-        <div id="slider-connect"></div>
-        <span class="sval" id="s0"></span>
-        <span class="sval" id="s1"></span>
-      </div>
+        <div class="ui-widget searchBox">
+          <label for="search" class="label labelColor">Search:</label>
+          <img id="searchIcon" src="images/mag-glass.png" onclick="magClick()"/>
+          <input id="search" class="card" onkeydown="search(this)">
+        </div>
 
-      <span class="label labelColor">Categories:</span>
+        <div id="sliderBox">
+          <span class="label labelColor" id="sliderLabel">Year Range:</span>
+          <div id="slider-connect"></div>
+          <span class="sval" id="s0"></span>
+          <span class="sval" id="s1"></span>
+        </div>
+
+        <div id="catBox">
+          <span class="label labelColor">Categories:</span>
+        </div>
+
+      </div>
       <!-- <div class="toggle"></div> -->
     </div>
 

@@ -145,6 +145,7 @@ span#s1 {
   right: 3%;
   top: 55%;
   width: 6%;
+  cursor: pointer;
   /*height: 15%;*/
 }
 
@@ -238,8 +239,9 @@ svg {
 }
 
 .links line {
+  display: none;
   stroke: #999;
-  stroke-opacity: 0.02;
+  stroke-opacity: 0;
   stroke-width: 1;
 }
 
@@ -247,4 +249,5 @@ svg {
   /*stroke: #fff;*/
   /*stroke-width: 1.5px;*/
   fill: black;
+  opacity: .8;
 }

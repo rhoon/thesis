@@ -70,7 +70,6 @@ var rankSets = rank.ranks(dataIn_unranked, dataIn_ranked);
 var fullSet = rankSets[0];
 var topQuartile= rankSets[1];
 
-console.log(topQuartile);
 //output for prototype
 function prototypeDataRanks(data) {
   var dataReduce = [];
@@ -91,16 +90,29 @@ var prototypeData = d1_reduced_newRanks.concat(d2_reduced_topQuartile);
 getURLs(prototypeData, urlSet_2);
 curator(prototypeData, urlSet_2);
 
-fs.writeFile('data/d2-toCrawl.json', JSON.stringify(d2_reduced_topQuartile), function(err) {
-    if (err) {throw err;}
-    console.log('d2-toCrawl written');
-});
+var d1d2_fullSet = dataIn_ranked.concat(dataIn_unranked);
 
-fs.writeFile('data/prototypeData-d1-d2.json', JSON.stringify(prototypeData), function(err){
+fs.writeFile('data/rankSets.json', JSON.stringify(rankSets), function(err){
     if (err) {throw err;}
-    console.log('prototypeData written');
+    console.log('rankSets written');
 })
 
+// fs.writeFile('data/d2-toCrawl.json', JSON.stringify(d2_reduced_topQuartile), function(err) {
+//     if (err) {throw err;}
+//     console.log('d2-toCrawl written');
+// });
+//
+// fs.writeFile('data/prototypeData-d1-d2.json', JSON.stringify(prototypeData), function(err){
+//     if (err) {throw err;}
+//     console.log('prototypeData written');
+// })
+
+// ------------------------------------------------------------------
+
+// fs.writeFile('data/prototypeData-fullSet.json', JSON.stringify(d1d2_fullSet), function(err){
+//     if (err) {throw err;}
+//     console.log('prototypeData-fullSet written');
+// })
 
 // ------------------------------------------------------------------
 

@@ -2,8 +2,9 @@ var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
 
-var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-d1-d2.json'));
-// var dada = JSON.parse(fs.readFileSync('data/Dada-update0.json'));
+// var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-d1-d2.json'));
+var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-fullSet.json'));
+
 
 locationKeys = [
   'coordinate location',
@@ -150,6 +151,7 @@ function getURLs(data, pointsAtDada) {
         urls[earl].image = data[i].image;
         urls[earl].root = data[i].root;
         urls[earl].rank = data[i].rank;
+        urls[earl].distance = data[i].distance;
 
         if (data[i].hasOwnProperty('roots')) {
           urls[earl].roots = data[i].roots;
@@ -229,9 +231,9 @@ formattedData.groupKey = key;
 // shortFormattedData.links = links.slice(0,5000);
 // shortFormattedData.groupKey = key;
 
-fs.writeFile('data/forceChart-2.json', JSON.stringify(formattedData), function(err) {
+fs.writeFile('data/forceChart-d2fullSet.json', JSON.stringify(formattedData), function(err) {
     if (err) {throw err;}
-    console.log('forceChart 2 written');
+    console.log('forceChart fullSet written');
 });
 
 // fs.writeFile('data/forceChart-sm.json', JSON.stringify(shortFormattedData), function(err) {

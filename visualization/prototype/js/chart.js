@@ -47,14 +47,13 @@ function getDate(d) {
 function showDeets() {
   return function(d) {
 
-    console.log(d);
-
+    // console.log(d);
     var title = d.value.title,
         location = (d.value.hasOwnProperty('location')) ? d.value.location : '',
         date = getDate(d),
         group = 'Rank: '+d.value.rank+'%';
         console.log(date);
-        
+
     // need the other data!
     var boxHeight = 50;
     var circle = d3.select(this);
@@ -75,16 +74,15 @@ function showDeets() {
         opacity: 0
       })
 
-    // images slow performance
-    // if (d.value.hasOwnProperty('image') && d.value.image!=null) {
-    //   box.append('div')
-    //     .classed('imgBox', true)
-    //     .append('img')
-    //     .attrs({
-    //       src: d.value.image,
-    //       class: 'svgHoverImg'
-    //     });
-    // }
+    if (d.value.hasOwnProperty('image') && d.value.image!=null) {
+      box.append('div')
+        .classed('imgBox', true)
+        .append('img')
+        .attrs({
+          src: d.value.image,
+          class: 'svgHoverImg'
+        });
+    }
 
     box.append('p')
       .text(title)
@@ -104,7 +102,7 @@ function circleSize(hover) {
     if (d.id=='Dada') {
       return 5+hover;
     } else {
-      return Math.ceil(+d.value.rank*100)+hover;
+      return Math.ceil(+d.value.rank*100)*2+hover;
     }
   }
 }
@@ -124,8 +122,53 @@ function hideDeets() {
   }
 }
 
-function pathBack() {
+function nodeClick() {
   return function(d) {
+  // hide stuff
+  console.log('CLICK');
+
+  d3.select('#nav').styles({
+    display: 'none',
+  });
+
+  // call pathBack
+  pathBack(d);
+
+  // append stuff
+
+  // zoom in
+
+  }
+}
+
+function pathBack(d) {
+
+    var roots,
+        isMany = false;
+
+    console.log(d);
+    if (d.value.distance==1 || !d.value.hasOwnProperty('distance')) {
+      roots = ['Dada'];
+      console.log(roots);
+    } else {
+      // doesn't scale past d2
+      isMany = true;
+      roots = d.value.roots;
+    }
+
+    //select these things
+    for (var i in roots) {
+      //construct selector
+      var selector = '.'+roots[i]+' .'+d.id;
+      d3.select(selector).styles({
+        'stroke-opacity': 1,
+        display:'visible',
+      })
+      console.log(selector);
+    }
+
+
+    // return [id, isMany];
 
     // perhaps links have clases with source and root names for easy selection
     // e.g. var path = d3.select('line.'+source+'.'+root)
@@ -140,8 +183,6 @@ function pathBack() {
     //        link : target Dada source this OR
     //        link : target this source Dada
 
-
-  }
 }
 
 function toggler() {
@@ -159,11 +200,11 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart.json", function(error, graph) {
+d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
-  var toggle = d3.select('#sidebar')
+  var toggle = d3.select('#catBox')
     .selectAll('div.toggle')
     .data(graph.groupKey)
     .enter()
@@ -196,6 +237,12 @@ d3.json("data/forceChart.json", function(error, graph) {
       nodes = graph.nodes
       meter = document.querySelector("#progress"),
       worker = new Worker("js/worker.js");
+      urlList = [];
+
+  // make the URL list for the jquery search
+  for (var n in nodes) {
+      urlList.push(nodes[n].id);
+  }
 
   worker.postMessage({
     nodes: nodes,
@@ -234,6 +281,7 @@ d3.json("data/forceChart.json", function(error, graph) {
         y1: function(d) { return d.source.y; },
         x2: function(d) { return d.target.x; },
         y2: function(d) { return d.target.y; },
+        class: function(d) { return d.source.id+' '+d.target.id}
       });
 
     var node = zg.append('g')
@@ -258,10 +306,19 @@ d3.json("data/forceChart.json", function(error, graph) {
         }
       })
       .on('mouseover', showDeets())
-      .on('mouseout', hideDeets());
+      .on('mouseout', hideDeets())
+      .on('click', nodeClick());
 
     // node.append("title")
     //     .text(function(d) { return d.id; });
+
+    $( function() {
+        var availableTags = urlList;
+
+        $( "#search" ).autocomplete({
+          source: availableTags,
+        });
+      } );
 
   }
 

@@ -19,10 +19,10 @@ var mF = require('./s-mapsFrom');
 var mT = require('./s-mainPage');
 var detect = require('./s-detect');
 
-var pagesIn = JSON.parse(fs.readFileSync('mapsFrom_Crawl.json'))
-    pagesIn_2 = JSON.parse(fs.readFileSync('mapsTo_Crawl.json'));
+var pagesIn = JSON.parse(fs.readFileSync('quantile-toCrawl.json'));
+    // pagesIn_2 = JSON.parse(fs.readFileSync('mapsTo_Crawl.json'));
 
-pagesIn = pagesIn.concat(pagesIn_2);
+// pagesIn = pagesIn.concat(pagesIn_2);
 
 var dups = JSON.parse(fs.readFileSync('dups.json'));
 
@@ -88,7 +88,7 @@ function writeDataFile(location, counter) {
         lastBatch = counter;
         pages = [];
     });
-    
+
   }
 }
 
@@ -102,7 +102,7 @@ function crawler() {           //  create a loop function
           page.distance = 2;
           page.root = pagesIn[nl_c].url;
           page.url =  urlArr[t_c];        // testURL_1;
-          dups[urlArr[t_c]] = 1;
+          dups[urlArr[t_c]] = 1;          // add to dups
           delay = [1200,3600];
 
           var url = 'https://en.wikipedia.org/wiki/'+page.url;
@@ -230,7 +230,7 @@ function isDone() {  // if inner loop is complete
     }
 
   } else {
-    console.log(' done');
+    console.log('done');
     writeFilenames();
   }
 }

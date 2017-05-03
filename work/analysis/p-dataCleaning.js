@@ -158,9 +158,7 @@ function scrubber(data) {
         }
 
     } // end if has wikiData
-
   }
-
 }
 
 scrubber(mapsTo_In);
