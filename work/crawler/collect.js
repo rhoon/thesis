@@ -12,6 +12,7 @@
 var request = require('request');
 var fs = require('fs');
 var async = require('async');
+var d3 = require('d3');
 
 //local modules
 var dataScrape = require('./s-wikiData');
@@ -19,7 +20,7 @@ var mF = require('./s-mapsFrom');
 var mT = require('./s-mainPage');
 var detect = require('./s-detect');
 
-var pagesIn = JSON.parse(fs.readFileSync('quantile-toCrawl.json'));
+var pagesIn = JSON.parse(fs.readFileSync('randomSample.json'));
     // pagesIn_2 = JSON.parse(fs.readFileSync('mapsTo_Crawl.json'));
 
 // pagesIn = pagesIn.concat(pagesIn_2);
