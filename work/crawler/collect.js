@@ -32,7 +32,7 @@ var pages = [],
     lastBatch = 0;
 
 //c = count, s = stop, d = done (boolean)
-var nl_c = 0,
+var nl_c = 1,
     nl_s = 10,
     mapsToDone = false,
     mapsFromDone = false,
