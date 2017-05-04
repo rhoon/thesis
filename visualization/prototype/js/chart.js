@@ -326,6 +326,9 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
   // need to greatly refine zoom
   // this puts a rectangle over entire visualization,
   // blocking access to hovers / circle clicks
+  //      - may need to be able to toggle it?
+  //      - alternatively, would work just fine if relies
+  //      - on buttons rather than mouse events
 
   // svg.append("rect")
   //     .attr("width", width)

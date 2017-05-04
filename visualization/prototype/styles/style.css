@@ -61,11 +61,6 @@ text {
   font-size: 10px;
 }
 
-svg {
-  position: relative;
-  left: 25%;
-}
-
 h1 {
   font-family: 'Playfair Display', serif;
   font-weight: normal;
@@ -196,7 +191,7 @@ div#chart {
   left: 25%;
 }
 
-svg {
+svg#chartSVG {
   position: absolute;
   top: 0;
   left: 0;
@@ -207,6 +202,7 @@ svg {
 }
 
 /* PROGRESS BAR */
+
 #progress {
   position: fixed;
   top: 0;
@@ -250,4 +246,72 @@ svg {
   /*stroke-width: 1.5px;*/
   fill: black;
   opacity: .8;
+}
+
+/* PAN AND ZOOM */
+
+#panZoomBox {
+  position: fixed;
+  width: 10%;
+  top: 4%;
+  right: 2%;
+
+}
+
+div#pan {
+  background-image: url('../images/panBack.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 300;
+  margin: 0 auto;
+  position: relative;
+  width: 5em;
+  height: 5em;
+}
+
+div#zoom {
+  width: 2em;
+  margin: 1em auto 0 auto;
+}
+
+div#pan div {
+  width: 1em;
+  height: 1em;
+  background-position: center;
+  background-size: 1em 1em;
+  position: absolute;
+}
+
+div#zoom div {
+  width: 2em;
+  height: 2em;
+}
+
+div#pRight {
+  border: none;
+  background-image: url('../images/panRight.svg');
+  top: 2em;
+  right: .5em;
+}
+
+div#pLeft {
+  border: none;
+  background-image: url('../images/panLeft.svg');
+  top: 2em;
+  left: .5em;
+}
+
+div#pUp {
+  border: none;
+  background-image: url('../images/panUp.svg');
+  top: .5em;
+  left: 2em;
+}
+
+div#pDown {
+  border: none;
+  background-image: url('../images/panDown.svg');
+  margin: 0 auto;
+  bottom: .5em;
+  left: 2em;
 }
