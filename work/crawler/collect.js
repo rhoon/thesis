@@ -9,6 +9,9 @@
 ///    pages linking to this one        mapsFrom   []
 ///    metaData from wiki's data page   metaData   {}
 
+// CRAWL COMPLETE: 8 OF 16
+// will need to check for and remove duplicates
+
 var request = require('request');
 var fs = require('fs');
 var async = require('async');
@@ -32,7 +35,7 @@ var pages = [],
     lastBatch = 0;
 
 //c = count, s = stop, d = done (boolean)
-var nl_c = 1,
+var nl_c = 9,
     nl_s = 10,
     mapsToDone = false,
     mapsFromDone = false,
