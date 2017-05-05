@@ -5,6 +5,9 @@ var d3 = require('d3');
 // var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-d1-d2.json'));
 var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-fullSet.json'));
 
+var cleanStr = function(str) {
+  return str.replace(/[^\w\s]/gi, '')
+}
 
 locationKeys = [
   'coordinate location',
@@ -173,7 +176,7 @@ function makeNodes(data) {
   nodes = d3.entries(data);
 
   for (var i in nodes) {
-    nodes[i].id = nodes[i].key;
+    nodes[i].id = cleanStr(nodes[i].key);
     delete nodes[i].key;
   }
   console.log(nodes[0]);
@@ -194,8 +197,8 @@ function makeLinks(data) {
       if (data[i].hasOwnProperty('mapsTo')) {
         for (var j in data[i].mapsTo) {
             var link = {};
-            link.source=data[i].url;
-            link.target=data[i].mapsTo[j];
+            link.source=cleanStr(data[i].url);
+            link.target=cleanStr(data[i].mapsTo[j]);
             links.push(link);
             // console.log(link);
         }
@@ -204,8 +207,8 @@ function makeLinks(data) {
       if (data[i].hasOwnProperty('mapsFrom')) {
         for (var j in data[i].mapsFrom) {
           var link = {};
-          link.target=data[i].url;
-          link.source=data[i].mapsFrom[j];
+          link.target=cleanStr(data[i].url);
+          link.source=cleanStr(data[i].mapsFrom[j]);
           links.push(link);
           // console.log(link);
         }

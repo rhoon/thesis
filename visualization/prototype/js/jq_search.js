@@ -1,7 +1,12 @@
+// var a = fruits.indexOf("Apple");
+// returns index of the thing - use this to compare arrays
+
+
 function search(ele) {
     if(event.keyCode == 13) {
         console.log(ele.value);
-        highlightNode(ele.value);
+        var id = titleList.indexOf(ele.value);
+        highlightNode(urlList[id]);
     }
 }
 
@@ -17,7 +22,7 @@ function magClick() {
 function highlightNode(id) {
     // select a node with matching id
     // and show as the 'clicked' state
-    
+
     id = '#'+id;
     console.log(id);
     var elem = d3.select(id)

@@ -30,10 +30,10 @@
 		"sC": 1,
 		"tS": 0
 		},
-	"\/data\/forceChart-2.json": {
+	"\/data\/forceChart-d2fullSet-classes.json": {
 		"ft": 524288,
 		"oA": 1,
-		"oAP": "\/data\/forceChart-2-min.json",
+		"oAP": "\/data\/forceChart-d2fullSet-classes-min.json",
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
@@ -46,42 +46,10 @@
 		"oO": 0,
 		"oS": 1
 		},
-	"\/data\/forceChart-sm.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/forceChart-sm-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/forceChart.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/forceChart-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
 	"\/data\/miserables.json": {
 		"ft": 524288,
 		"oA": 1,
 		"oAP": "\/data\/miserables-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/v-forceChart-sm.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/v-forceChart-sm-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
-		},
-	"\/data\/v-forceChart.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/data\/v-forceChart-min.json",
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
@@ -125,17 +93,6 @@
 		"oT": 1,
 		"q": 100
 		},
-	"\/images\/panBack.png": {
-		"ft": 32768,
-		"iS": 4777,
-		"oA": 0,
-		"oAP": "\/images\/panBack.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
 	"\/images\/panBack.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -145,17 +102,6 @@
 		"opt": 0,
 		"plM": 3758088159,
 		"prP": 0
-		},
-	"\/images\/panDown.png": {
-		"ft": 32768,
-		"iS": 379,
-		"oA": 0,
-		"oAP": "\/images\/panDown.png",
-		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
-		"oT": 1,
-		"q": 100
 		},
 	"\/images\/panDown.svg": {
 		"ft": 2097152,
@@ -167,17 +113,6 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"\/images\/panLeft.png": {
-		"ft": 32768,
-		"iS": 337,
-		"oA": 0,
-		"oAP": "\/images\/panLeft.png",
-		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
-		"oT": 1,
-		"q": 100
-		},
 	"\/images\/panLeft.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -188,17 +123,6 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"\/images\/panRight.png": {
-		"ft": 32768,
-		"iS": 358,
-		"oA": 0,
-		"oAP": "\/images\/panRight.png",
-		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
-		"oT": 1,
-		"q": 100
-		},
 	"\/images\/panRight.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -208,17 +132,6 @@
 		"opt": 0,
 		"plM": 3758088159,
 		"prP": 0
-		},
-	"\/images\/panUp.png": {
-		"ft": 32768,
-		"iS": 271,
-		"oA": 0,
-		"oAP": "\/images\/panUp.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
 		},
 	"\/images\/panUp.svg": {
 		"ft": 2097152,

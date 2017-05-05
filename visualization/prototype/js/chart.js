@@ -1,4 +1,5 @@
-var svg = d3.select('svg'),
+
+var svg = d3.select('svg')
     width = +svg.attr('width'),
     height = +svg.attr('height');
 
@@ -157,15 +158,15 @@ function pathBack(d) {
     }
 
     //select these things
-    for (var i in roots) {
+    // for (var i in roots) {
       //construct selector
-      var selector = '.'+roots[i]+' .'+d.id;
-      d3.select(selector).styles({
-        'stroke-opacity': 1,
-        display:'visible',
-      })
-      console.log(selector);
-    }
+    var selector = 'line.'+d.id; //'.'+roots[i]+' .'+d.id
+    d3.selectAll(selector).styles({
+      'stroke-opacity': .2,
+      display:'inline',
+    })
+    console.log(selector);
+    // }
 
 
     // return [id, isMany];
@@ -200,7 +201,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-d2fullSet-classes.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -238,10 +239,12 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
       meter = document.querySelector("#progress"),
       worker = new Worker("js/worker.js");
       urlList = [];
+      titleList = [];
 
   // make the URL list for the jquery search
   for (var n in nodes) {
       urlList.push(nodes[n].id);
+      titleList.push(nodes[n].value.title);
   }
 
   worker.postMessage({
@@ -312,17 +315,19 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
     // node.append("title")
     //     .text(function(d) { return d.id; });
 
+
     $( function() {
-        var availableTags = urlList;
+        // var availableTags = ;
 
         $( "#search" ).autocomplete({
-          source: availableTags,
+          source: titleList,
         });
       } );
 
   }
 
   // https://github.com/d3/d3-zoom
+  // http://bl.ocks.org/linssen/7352810
   // need to greatly refine zoom
   // this puts a rectangle over entire visualization,
   // blocking access to hovers / circle clicks
@@ -330,11 +335,13 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
   //      - alternatively, would work just fine if relies
   //      - on buttons rather than mouse events
 
+
   // svg.append("rect")
   //     .attr("width", width)
   //     .attr("height", height)
   //     .style("fill", "none")
   //     .style("pointer-events", "all")
+  //     .attr("id", "zoomRect")
   //     .call(d3.zoom()
   //         .scaleExtent([1 / 2, 4])
   //         .on("zoom", zoomed));
@@ -342,5 +349,55 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
   // function zoomed() {
   //   zg.attr("transform", d3.event.transform);
   // }
+  //
+  // d3.select("zIn")
+  //     .on("click", zoomed);
+  //
+  //   function resetted() {
+  //     svg.transition()
+  //         .duration(750)
+  //         .call(zoom.transform, d3.zoomIdentity);
+  //   }
+
+  // var zoom = d3.behavior.zoom()
+  //   .x(x)
+  //   .y(y)
+  //   .scaleExtent([1, 10])
+  //   .center([width / 2, height / 2])
+  //   .size([width, height]);
+  //   //.on("zoom", zoomed);
+  //
+  // svg.call(zoom);
+  //
+  // d3.selectAll("div#zIn")
+  //     .on("click", function() {
+  //       clicked;
+  //       console.log('clicked');
+  // });
+  //
+  // function clicked() {
+  //   svg.call(zoom.event); // https://github.com/mbostock/d3/issues/2387
+  //
+  //   // Record the coordinates (in data space) of the center (in screen space).
+  //   var center0 = zoom.center(), translate0 = zoom.translate(), coordinates0 = coordinates(center0);
+  //   zoom.scale(zoom.scale() * Math.pow(2, +this.getAttribute("data-zoom")));
+  //
+  //   // Translate back to the center.
+  //   var center1 = point(coordinates0);
+  //   zoom.translate([translate0[0] + center0[0] - center1[0], translate0[1] + center0[1] - center1[1]]);
+  //
+  //   svg.transition().duration(750).call(zoom.event);
+  // }
+  //
+  //   function coordinates(point) {
+  //     var scale = zoom.scale(), translate = zoom.translate();
+  //     return [(point[0] - translate[0]) / scale, (point[1] - translate[1]) / scale];
+  //   }
+  //
+  //   function point(coordinates) {
+  //     var scale = zoom.scale(), translate = zoom.translate();
+  //     return [coordinates[0] * scale + translate[0], coordinates[1] * scale + translate[1]];
+  //   }
+
 
 });

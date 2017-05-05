@@ -70,8 +70,10 @@ h1 {
 /* SIDEBAR AND TOGGLES */
 div#sidebar {
   width: 22%;
+  min-width: 200px;
   padding: 1%;
   position: fixed;
+  z-index: 400;
   height: 100%;
   left: 0;
   top: 0;
@@ -132,7 +134,6 @@ span#s1 {
   height: 1em;
   padding: 1em 4% 1em 4%;
   border: none;
-
 }
 
 #searchIcon {
@@ -193,6 +194,7 @@ div#chart {
 
 svg#chartSVG {
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
 }
@@ -252,7 +254,8 @@ svg#chartSVG {
 
 #panZoomBox {
   position: fixed;
-  width: 10%;
+  z-index: 300;
+  width: 8%;
   top: 4%;
   right: 2%;
 
@@ -262,7 +265,6 @@ div#pan {
   background-image: url('../images/panBack.svg');
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 300;
   margin: 0 auto;
   position: relative;
   width: 5em;
@@ -272,6 +274,12 @@ div#pan {
 div#zoom {
   width: 2em;
   margin: 1em auto 0 auto;
+}
+
+div#zoom div {
+  width: 1em;
+  margin: 1em;
+  position: relative;
 }
 
 div#pan div {
@@ -285,6 +293,9 @@ div#pan div {
 div#zoom div {
   width: 2em;
   height: 2em;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
 }
 
 div#pRight {
@@ -314,4 +325,16 @@ div#pDown {
   margin: 0 auto;
   bottom: .5em;
   left: 2em;
+}
+
+div#zIn {
+  background-image: url('../images/zoomIn.svg');
+}
+
+div#zOut {
+  background-image: url('../images/zoomOut.svg');
+}
+
+#zoomRect {
+  display: none;
 }
