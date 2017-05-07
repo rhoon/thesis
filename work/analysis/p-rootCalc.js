@@ -20,42 +20,38 @@ async.eachSeries(filenames, function(item, callback) {
     console.log('DONE LOADING DATA');
     console.log(data.length);
 
-          // for each url in data, locate matches in d1 mapsTo arrays
-          // async.eachSeries(data, function(d_item, callback_2) {
-          for (var i in data) {
+    // for each url in data, locate matches in d1 mapsTo arrays
+    async.eachSeries(data, function(d_item, d_cb) {
+    // data.forEach(function(d_item) {
 
-            data[i].roots = [];
-            earl = data[i].url;
-            // console.log(data[i].url)
-            for (var j in d1) {
-              if (d1[j].hasOwnProperty('mapsTo')) {
+      d_item.roots = [];
+      earl = d_item.url;
+      // console.log(data[i].url)
 
-                // if d1[j].mapsTo has this url
-                var index = d1[j].mapsTo.indexOf(earl);
-                if (index!=-1) {
-                  // make it a root
-                  data[i].roots.push(d1[j].mapsTo[index]);
-                  // console.log('match!');
-                  // console.log(data[i].url);
-                  // console.log(d1[j].url);
-
-                }
-              }
-              if (d1[j].hasOwnProperty('mapsFrom')) {
-                var index = d1[j].mapsFrom.indexOf(earl);
-                if (index!=-1) {
-                  data[i].roots.push(d1[j].mapsFrom[index]);
-                }
-              }
-            } // end loop j
-
-        // console.log(data[i].url);
-        // console.log(data[i].roots.length);
+      d1.forEach(function(item) {
+        if (item.hasOwnProperty('mapsTo')) {
+          var index = item.mapsTo.indexOf(earl);
+          if (index!=-1) {
+            d_item.roots.push(item.url);
+          }
         }
+        if (item.hasOwnProperty('mapsFrom')) {
+          var index = item.mapsFrom.indexOf(earl);
+          if (index!=-1) {
+            d_item.roots.push(item.url);
+          }
+        }
+     });
 
-      fs.writeFile('data/d2-sample-combined-roots.json', JSON.stringify(data), function(err) {
-          if (err) {throw err;}
-          console.log('d2-combined-roots written');
-      });
+     d_item.roots = _.uniq(d_item.roots);
+     setTimeout(d_cb, 0);
 
+    }, function() {
+
+        fs.writeFile('data/d2-sample-combined-roots.json', JSON.stringify(data), function(err) {
+            if (err) {throw err;}
+            console.log('d2-combined-roots written');
+        });
+
+    });
 });

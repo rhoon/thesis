@@ -3,7 +3,7 @@ var fs = require('fs');
 var d3 = require('d3');
 
 // var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-d1-d2.json'));
-var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-fullSet.json'));
+var in_d1d2 = JSON.parse(fs.readFileSync('data/prototypeData-sample.json'));
 
 var cleanStr = function(str) {
   return str.replace(/[^\w\s]/gi, '')
@@ -70,7 +70,7 @@ var groupsTrimmed = {};
 function curateGroups() {
 
   for (var g in groups) {
-    if (groups[g].count > 5) {
+    if (groups[g].count > 9) {
       groupsTrimmed[g] = groups[g];
     }
   }
@@ -130,15 +130,12 @@ function getURLs(data, pointsAtDada) {
 
           // get date data, if available
           if (human) {
-            console.log(earl);
             if (mD.hasOwnProperty('date of birth')) { urls[earl].bdate = mD['date of birth'][0]; }
-            console.log('bdate: '+urls[earl].bdate);
             if (mD.hasOwnProperty('date of death')) { urls[earl].ddate = mD['date of death'][0]; }
           } else {
             for (var d in dateKeys) {
               if (mD.hasOwnProperty(dateKeys[d])) {
                 urls[earl].date = mD[dateKeys[d][0]];
-                console.log(urls[earl].date);
               }
             }
           }
@@ -179,13 +176,17 @@ function makeNodes(data) {
     nodes[i].id = cleanStr(nodes[i].key);
     delete nodes[i].key;
   }
-  console.log(nodes[0]);
 
 }
 
 makeNodes(urls);
 
 var key = d3.entries(groupsTrimmed);
+key.sort(function(a, b) {
+    return parseFloat(b.value.count) - parseFloat(a.value.count);
+});
+console.log(key);
+
 // console.log(key);
 console.log(nodes.length);
 

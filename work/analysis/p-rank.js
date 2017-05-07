@@ -91,7 +91,7 @@ function rankStats(iteration) {
     // console.log(justRanksFull)
 
     //set rank cutOff to the 25% quartile of initial scrape
-    var cutOff = 0.008114; //d3.quantile(justRanksFull, 0.75);
+    var cutOff = d3.quantile(justRanksFull, 0.75); // 0.008114;
     var justRanksLean = [];
 
     for (var url in fullSet[iteration]) {

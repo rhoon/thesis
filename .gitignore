@@ -2,6 +2,8 @@
 work/crawler/data/
 work/node_modules
 work/analysis/data/ec2-d2-scrape
+work/analysis/data/ec2-may7
+work/analysis/data/archive
 visualization/prototype/example
 visualization/prototype/tutorial
 visualization/prototype/archive

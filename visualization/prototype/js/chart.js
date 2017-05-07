@@ -201,7 +201,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-d2fullSet-classes.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -325,79 +325,5 @@ d3.json("data/forceChart-d2fullSet-classes.json", function(error, graph) { //suf
       } );
 
   }
-
-  // https://github.com/d3/d3-zoom
-  // http://bl.ocks.org/linssen/7352810
-  // need to greatly refine zoom
-  // this puts a rectangle over entire visualization,
-  // blocking access to hovers / circle clicks
-  //      - may need to be able to toggle it?
-  //      - alternatively, would work just fine if relies
-  //      - on buttons rather than mouse events
-
-
-  // svg.append("rect")
-  //     .attr("width", width)
-  //     .attr("height", height)
-  //     .style("fill", "none")
-  //     .style("pointer-events", "all")
-  //     .attr("id", "zoomRect")
-  //     .call(d3.zoom()
-  //         .scaleExtent([1 / 2, 4])
-  //         .on("zoom", zoomed));
-  //
-  // function zoomed() {
-  //   zg.attr("transform", d3.event.transform);
-  // }
-  //
-  // d3.select("zIn")
-  //     .on("click", zoomed);
-  //
-  //   function resetted() {
-  //     svg.transition()
-  //         .duration(750)
-  //         .call(zoom.transform, d3.zoomIdentity);
-  //   }
-
-  // var zoom = d3.behavior.zoom()
-  //   .x(x)
-  //   .y(y)
-  //   .scaleExtent([1, 10])
-  //   .center([width / 2, height / 2])
-  //   .size([width, height]);
-  //   //.on("zoom", zoomed);
-  //
-  // svg.call(zoom);
-  //
-  // d3.selectAll("div#zIn")
-  //     .on("click", function() {
-  //       clicked;
-  //       console.log('clicked');
-  // });
-  //
-  // function clicked() {
-  //   svg.call(zoom.event); // https://github.com/mbostock/d3/issues/2387
-  //
-  //   // Record the coordinates (in data space) of the center (in screen space).
-  //   var center0 = zoom.center(), translate0 = zoom.translate(), coordinates0 = coordinates(center0);
-  //   zoom.scale(zoom.scale() * Math.pow(2, +this.getAttribute("data-zoom")));
-  //
-  //   // Translate back to the center.
-  //   var center1 = point(coordinates0);
-  //   zoom.translate([translate0[0] + center0[0] - center1[0], translate0[1] + center0[1] - center1[1]]);
-  //
-  //   svg.transition().duration(750).call(zoom.event);
-  // }
-  //
-  //   function coordinates(point) {
-  //     var scale = zoom.scale(), translate = zoom.translate();
-  //     return [(point[0] - translate[0]) / scale, (point[1] - translate[1]) / scale];
-  //   }
-  //
-  //   function point(coordinates) {
-  //     var scale = zoom.scale(), translate = zoom.translate();
-  //     return [coordinates[0] * scale + translate[0], coordinates[1] * scale + translate[1]];
-  //   }
-
 
 });

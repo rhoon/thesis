@@ -10,11 +10,10 @@ var rank = require('./p-rank')
 
 // var dataIn_1 = JSON.parse(fs.readFileSync('data/cleaned-mapsTo.json'));
 // var dataIn_2 = JSON.parse(fs.readFileSync('data/cleaned-mapsFrom.json'));
-var dataIn_unranked = JSON.parse(fs.readFileSync('data/d2-combined-roots.json'));
-var dataIn_ranked_1 = JSON.parse(fs.readFileSync('data/mapsFrom_Crawl.json'));
-var dataIn_ranked_2 = JSON.parse(fs.readFileSync('data/mapsTo_Crawl.json'));
+var dataIn_unranked = JSON.parse(fs.readFileSync('data/d2-sample-combined-roots.json'));
+var dataIn_ranked_1 = JSON.parse(fs.readFileSync('data/quantile-toCrawl.json'));
 var dada = JSON.parse(fs.readFileSync('data/Dada-update0.json'));
-var dataIn_ranked = dataIn_ranked_1.concat(dataIn_ranked_2, dada);
+var dataIn_ranked = dataIn_ranked_1.concat(dada);
 
 var urlSet_1 = [];
 var urlSet_2 = [];
@@ -90,18 +89,18 @@ var prototypeData = d1_reduced_newRanks.concat(d2_reduced_topQuartile);
 getURLs(prototypeData, urlSet_2);
 curator(prototypeData, urlSet_2);
 
-var d1d2_fullSet = dataIn_ranked.concat(dataIn_unranked);
+// var d1d2_fullSet = dataIn_ranked.concat(dataIn_unranked);
 
-fs.writeFile('data/rankSets.json', JSON.stringify(rankSets), function(err){
-    if (err) {throw err;}
-    console.log('rankSets written');
-})
-
-// fs.writeFile('data/d2-toCrawl.json', JSON.stringify(d2_reduced_topQuartile), function(err) {
+// fs.writeFile('data/rankSets.json', JSON.stringify(rankSets), function(err){
 //     if (err) {throw err;}
-//     console.log('d2-toCrawl written');
-// });
-//
+//     console.log('rankSets written');
+// })
+
+fs.writeFile('data/prototypeData-sample.json', JSON.stringify(prototypeData), function(err) {
+    if (err) {throw err;}
+    console.log('d2-toCrawl written');
+});
+
 // fs.writeFile('data/prototypeData-d1-d2.json', JSON.stringify(prototypeData), function(err){
 //     if (err) {throw err;}
 //     console.log('prototypeData written');
