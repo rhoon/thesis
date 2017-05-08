@@ -62,6 +62,12 @@
 		"oO": 0,
 		"oS": 1
 		},
+	"\/example\/containerTest.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/example\/containerTest.html",
+		"oF": 0
+		},
 	"\/example\/flare.csv": {
 		"ft": 8192,
 		"oA": 2,
@@ -256,6 +262,15 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "\/js\/nouislider-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/route.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/route-min.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0

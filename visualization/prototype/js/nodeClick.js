@@ -3,6 +3,8 @@ function nodeClick() {
   // clear old path back, if any
   d3.selectAll('line.clicked').classed('clicked', false);
   d3.selectAll('line.pathBack').classed('pathBack', false);
+  d3.selectAll('div.article.pathBack').classed('pathBack', false);
+  // d3.selectAll('')
 
   // hide current viz
   // d3.select('#nav').styles({
@@ -12,7 +14,9 @@ function nodeClick() {
   // call pathBack
   pathBack(d);
 
-  // append stuff
+  // move routing in
+  d3.select('#route').transition().style('left', '0');
+  d3.select('#nav').transition().style('left', '-120%');
 
   // zoom in
 
@@ -33,12 +37,17 @@ function pathBack(d) {
     var webSelect = 'line.'+d.id;
     d3.selectAll(webSelect).classed('clicked', true);
 
+    // show the clicked node's article
+    var articleClicked = 'div#a_'+d.id;
+    d3.select(articleClicked).classed('pathBack', true);
+
+    // show general network for each highlighted node
     roots.forEach(function(root) {
       var rootWebSelect = 'line.'+root;
       d3.selectAll(rootWebSelect).classed('clicked', true);
     })
 
-    //select these things
+    // highlight direct path lines
     roots.forEach(function(root) {
 
       //show direct path back
@@ -47,19 +56,22 @@ function pathBack(d) {
         .classed('clicked', false)
         .classed('pathBack', true);
 
-      // show path to dada
+      // if not directly connected to Dada, complete path
       if (d.value.distance>1) {
         var selector2 = 'line.'+root+'.Dada';
         d3.selectAll(selector2)
           .classed('clicked', false)
           .classed('pathBack', true);
+
+        var articleRoot = 'div#a_'+root;
+        d3.select(articleRoot).classed('pathBack', true);
       }
 
       // append labels
-
-
       console.log(selector);
     });
+
+    //
 }
 
 function showLines(selector, opacity, stroke) {

@@ -36,11 +36,11 @@ function getDate(d) {
     }
 
     if (d.value.hasOwnProperty('bdate')) {
-      date = 'b'+d.value.bdate;
+      date = 'b. '+d.value.bdate;
     }
 
     if (d.value.hasOwnProperty('ddate')) {
-      date += 'd'+d.value.ddate;
+      date += ' d. '+d.value.ddate;
     }
     return date;
 }
@@ -175,26 +175,72 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
     })
     .on('mouseup', toggler());
 
-  var article = d3.select('#route')
-    .selectAll('div.article')
-    .data(graph.nodes)
-    .enter()
-    .append('div')
-    .attrs({
-      class: 'article',
-      id: function(d) {
-        console.log(d);
-        return 'a_'+d.id;
-      }
-    });
+  var row2 = d3.select('#route').append('div').attr('id','row_d2');
+  var row1 = d3.select('#route').append('div').attr('id','row_d1');
+  var dada = d3.select('#route').append('div').attr('id', 'dest_dada').html('Dada');
+  appendArticles(row1, 1);
+  appendArticles(row2, 2);
 
-  // append image
-  // append titles
-  // append ranks
-  // append instanceOf data
-  // append location
-  // append date information
-  // append wiki link
+  function appendArticles(selection, distance) {
+
+    // Article Body
+    var article = selection
+      .selectAll('div.article')
+      .data(graph.nodes.filter(
+        function(d) { return d.value.distance==distance; }
+      ))
+      .enter()
+      .append('div')
+      .attrs({
+        class: 'article card',
+        id: function(d) {
+          return 'a_'+d.id;
+        }
+      });
+
+
+
+      // append article Header
+      var articleTitle = article
+        .append('p')
+        .classed('articleTitle', true)
+        .text(function(d) { return d.value.title; })
+
+      articleTitle.append('span')
+        .classed('rank', true)
+        .text(function(d) { return d.value.rank;});
+
+      var articleBody = article
+        .append('p')
+        .html(function(d) {
+          var date = getDate(d);
+          var location = (d.value.hasOwnProperty('location')) ? d.value.location : '';
+          return date+'<br/>'+location;
+        });
+
+      // append article Images
+      var articleImg = article
+        .filter(function(d) {
+          return (d.value.hasOwnProperty('image') && d.value.image!=null)
+        })
+        .append('div')
+        .classed('imgBox', true)
+        .append('img')
+        .attrs({
+          src: function(d) {return d.value.image; },
+          class: 'svgHoverImg'
+        });
+
+      // append wiki link
+      var wiki = article
+        .append('a')
+        .attrs({
+          href: function(d) { return 'https://en.wikipedia.org/wiki/'+d.id; },
+          class: 'wiki'
+        })
+        .text('Wiki');
+  }
+
 
   // force diagram
   var links = graph.links,

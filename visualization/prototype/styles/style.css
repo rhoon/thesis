@@ -65,6 +65,7 @@ h1 {
   font-family: 'Playfair Display', serif;
   font-weight: normal;
   line-height: 100%;
+  letter-spacing: -1px;
 }
 
 /* SIDEBAR AND TOGGLES */
@@ -91,6 +92,13 @@ div#sidebar {
 
 #sliderLabel {
   margin-bottom: 1.5em;
+}
+
+/* NAV */
+div#nav {
+  position: relative;
+  left: 0;
+  top: 0;
 }
 
 /* TOGGLES */
@@ -246,7 +254,7 @@ svg#chartSVG {
 .links line.clicked {
   display: inline;
   stroke: #222;
-  stroke-opacity: .2;
+  stroke-opacity: .05;
   stroke-width: .5;
 }
 
@@ -262,6 +270,60 @@ svg#chartSVG {
   /*stroke-width: 1.5px;*/
   fill: black;
   opacity: .8;
+}
+
+/* ROUTING */
+
+div#route {
+  width: 100%;
+  position: absolute;
+  left: -100%;
+  bottom: 0px;
+}
+
+div.article {
+  display: none;
+}
+
+div.article.pathBack {
+  display: block;
+  width: 90%;
+  height: 8em;
+  margin: 0 auto;
+  font-size: .8em;
+}
+
+div.article a.wiki {
+  float: right;
+}
+
+#row_d2 {
+  height: 8em;
+  width: 100%;
+  position: relative;
+  bottom: 8em;
+  overflow: hidden;
+}
+
+#row_d1 {
+  height: 8em;
+  width: 100%;
+  position: relative;
+  bottom: 8em;
+  overflow: hidden;
+}
+
+#dest_dada {
+  height: 1.5em;
+  width: 100%;
+  background-color: #D4D0C7;
+  color: #252525;
+  text-transform: uppercase;
+  font-size: .75em;
+  text-align: center;
+  padding: 2em;
+  position: absolute;
+  bottom: 2em;
 }
 
 /* PAN AND ZOOM */
