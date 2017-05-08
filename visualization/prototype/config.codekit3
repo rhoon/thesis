@@ -86,6 +86,26 @@
 		"oAP": "\/example\/panner.html",
 		"oF": 0
 		},
+	"\/images\/backArrow.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/images\/backArrow.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/images\/dowArrow.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/images\/dowArrow.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
 	"\/images\/isolate.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -262,6 +282,15 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "\/js\/nouislider-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/route-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/route-min-min.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0

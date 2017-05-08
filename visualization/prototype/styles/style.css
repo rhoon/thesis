@@ -21,6 +21,11 @@
   fill: #107358;
 }
 
+.textLite {
+  color: #9C9484;
+  fill: #9C9484;
+}
+
 .card {
   background: #F5F4F0;
   box-shadow: 0 0 8px 0 rgba(199,199,199,0.50);
@@ -287,18 +292,49 @@ div.article {
 
 div.article.pathBack {
   display: block;
-  width: 90%;
+  width: 70%;
   height: 8em;
-  margin: 0 auto;
+  /*margin: 5% auto;*/
   font-size: .8em;
+  padding: 5% 5% 0 5%;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  /*overflow: hidden;*/
+}
+
+.rightSide {
+  left: 96% !important;
+}
+
+.back {
+  cursor: pointer;
+  position: relative;
+  bottom: 0em;
+  left: 10%;
+  z-index: 100;
+}
+
+div.article p {
+  margin: 0;
+  padding: 0;
+  line-height: 140%;
+}
+
+p.articleTitle {
+  /*border-bottom: 1px solid #E1DED8;*/
+  margin: 0 0 .25em 0 !important;
+  padding: 0 0 .25em 0 !important;
 }
 
 div.article a.wiki {
-  float: right;
+  position: absolute;
+  right: 5%;
+  bottom: 1em;
 }
 
 #row_d2 {
-  height: 8em;
+  height: 10em;
   width: 100%;
   position: relative;
   bottom: 8em;
@@ -306,7 +342,7 @@ div.article a.wiki {
 }
 
 #row_d1 {
-  height: 8em;
+  height: 10em;
   width: 100%;
   position: relative;
   bottom: 8em;
@@ -315,7 +351,7 @@ div.article a.wiki {
 
 #dest_dada {
   height: 1.5em;
-  width: 100%;
+  width: 90%;
   background-color: #D4D0C7;
   color: #252525;
   text-transform: uppercase;

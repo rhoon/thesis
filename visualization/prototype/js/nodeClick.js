@@ -1,24 +1,24 @@
-function nodeClick() {
-  return function(d) {
-  // clear old path back, if any
+function clearLastClick() {
   d3.selectAll('line.clicked').classed('clicked', false);
   d3.selectAll('line.pathBack').classed('pathBack', false);
   d3.selectAll('div.article.pathBack').classed('pathBack', false);
-  // d3.selectAll('')
+  d3.selectAll('div.article.rightSide').classed('rightSide', false);
+}
 
-  // hide current viz
-  // d3.select('#nav').styles({
-  //   display: 'none',
-  // });
+function nodeClick() {
+  return function(d) {
+    
+  // clear old path back, if any
+  clearLastClick();
 
   // call pathBack
   pathBack(d);
 
-  // move routing in
-  d3.select('#route').transition().style('left', '0');
+  // move routing in and nav out
+  d3.select('#route').transition().style('left', '0%');
   d3.select('#nav').transition().style('left', '-120%');
 
-  // zoom in
+  // programmatic zoom too (not functional)
 
   }
 }
@@ -65,6 +65,15 @@ function pathBack(d) {
 
         var articleRoot = 'div#a_'+root;
         d3.select(articleRoot).classed('pathBack', true);
+
+        if (roots.indexOf(root)>0) {
+          d3.select(articleRoot).classed('rightSide', true);
+        }
+
+        //adjust back button placement
+        d3.select('img.back').style('bottom', '10em');
+      } else {
+        d3.select('img.back').style('bottom', '0em');
       }
 
       // append labels
@@ -80,4 +89,12 @@ function showLines(selector, opacity, stroke) {
     'stroke-width': 1,
     diplay: 'inline',
   });
+}
+
+function clearNodeClick() {
+  console.log('clear node click');
+  clearLastClick();
+  // move nav back in
+  d3.select('#route').transition().style('left', '-120%');
+  d3.select('#nav').transition().style('left', '0%');
 }

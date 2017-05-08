@@ -45,6 +45,10 @@ function getDate(d) {
     return date;
 }
 
+function formatRank(d) {
+  return 'Rank: '+d.value.rank+'%';
+}
+
 function getLocation(d) {
   if (d.value.hasOwnProperty('location')) {
     return d.value.location;
@@ -60,7 +64,7 @@ function showDeets() {
     var title = d.value.title,
         location = getLocation(d),
         date = getDate(d),
-        group = 'Rank: '+d.value.rank+'%';
+        rank = formatRank(d);
 
     // need the other data!
     var boxHeight = 50;
@@ -96,7 +100,7 @@ function showDeets() {
       .text(title)
       .append('span')
       .classed('details', true)
-      .html(' <br/> '+group+' <br/> '+location+' <br/> '+date);
+      .html(' <br/> '+rank+' <br/> '+location+' <br/> '+date);
 
     //delay box fade-in to avoid jumpiness
     box.transition()
@@ -198,26 +202,6 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
         }
       });
 
-
-
-      // append article Header
-      var articleTitle = article
-        .append('p')
-        .classed('articleTitle', true)
-        .text(function(d) { return d.value.title; })
-
-      articleTitle.append('span')
-        .classed('rank', true)
-        .text(function(d) { return d.value.rank;});
-
-      var articleBody = article
-        .append('p')
-        .html(function(d) {
-          var date = getDate(d);
-          var location = (d.value.hasOwnProperty('location')) ? d.value.location : '';
-          return date+'<br/>'+location;
-        });
-
       // append article Images
       var articleImg = article
         .filter(function(d) {
@@ -231,16 +215,32 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
           class: 'svgHoverImg'
         });
 
+      // append article Header
+      var articleTitle = article
+        .append('p')
+        .classed('articleTitle', true)
+        .text(function(d) { return d.value.title; })
+
+      var articleBody = article
+        .append('p')
+        .classed('textLite', true)
+        .html(function(d) {
+          var date = getDate(d)+'<br/>';
+          var location = (d.value.hasOwnProperty('location')) ? d.value.location+'<br/>' : '';
+          var rank = formatRank(d)+'<br/>';
+          return rank+location+date;
+        });
+
       // append wiki link
       var wiki = article
         .append('a')
         .attrs({
           href: function(d) { return 'https://en.wikipedia.org/wiki/'+d.id; },
+          target: 'new',
           class: 'wiki'
         })
         .text('Wiki');
   }
-
 
   // force diagram
   var links = graph.links,
