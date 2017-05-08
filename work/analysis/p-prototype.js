@@ -154,8 +154,12 @@ function getURLs(data, pointsAtDada) {
         urls[earl].distance = data[i].distance;
 
         if (data[i].hasOwnProperty('roots')) {
-          urls[earl].roots = data[i].roots;
+          urls[earl].roots = [];
+          for (var r in data[i].roots) {
+            urls[earl].roots.push(cleanStr(data[i].roots[r]));
+          }
         }
+
 
       }
     }
@@ -230,17 +234,17 @@ formattedData.nodes = nodes;
 formattedData.links = links;
 formattedData.groupKey = key;
 //
-// var shortFormattedData = {}
-// shortFormattedData.nodes = nodes;
-// shortFormattedData.links = links.slice(0,5000);
-// shortFormattedData.groupKey = key;
+var shortFormattedData = {}
+shortFormattedData.nodes = nodes;
+shortFormattedData.links = links.slice(0,10000);
+shortFormattedData.groupKey = key;
 
 fs.writeFile('data/forceChart-d2fullSet.json', JSON.stringify(formattedData), function(err) {
     if (err) {throw err;}
     console.log('forceChart fullSet written');
 });
 
-// fs.writeFile('data/forceChart-sm.json', JSON.stringify(shortFormattedData), function(err) {
-//     if (err) {throw err;}
-//     console.log('sm written');
-// });
+fs.writeFile('data/forceChart-sm.json', JSON.stringify(shortFormattedData), function(err) {
+    if (err) {throw err;}
+    console.log('sm written');
+});

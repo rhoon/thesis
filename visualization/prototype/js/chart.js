@@ -45,15 +45,22 @@ function getDate(d) {
     return date;
 }
 
+function getLocation(d) {
+  if (d.value.hasOwnProperty('location')) {
+    return d.value.location;
+  } else {
+    return '';
+  }
+}
+
 function showDeets() {
   return function(d) {
 
     // console.log(d);
     var title = d.value.title,
-        location = (d.value.hasOwnProperty('location')) ? d.value.location : '',
+        location = getLocation(d),
         date = getDate(d),
         group = 'Rank: '+d.value.rank+'%';
-        console.log(date);
 
     // need the other data!
     var boxHeight = 50;
@@ -73,7 +80,7 @@ function showDeets() {
         left: d.x+25+'px',
         top: d.y-boxHeight+'px',
         opacity: 0
-      })
+      });
 
     if (d.value.hasOwnProperty('image') && d.value.image!=null) {
       box.append('div')
@@ -103,7 +110,7 @@ function circleSize(hover) {
     if (d.id=='Dada') {
       return 5+hover;
     } else {
-      return Math.ceil(+d.value.rank*100)*2+hover;
+      return Math.ceil(+d.value.rank*100)*1.5+hover;
     }
   }
 }
@@ -123,69 +130,6 @@ function hideDeets() {
   }
 }
 
-function nodeClick() {
-  return function(d) {
-  // hide stuff
-  console.log('CLICK');
-
-  d3.select('#nav').styles({
-    display: 'none',
-  });
-
-  // call pathBack
-  pathBack(d);
-
-  // append stuff
-
-  // zoom in
-
-  }
-}
-
-function pathBack(d) {
-
-    var roots,
-        isMany = false;
-
-    console.log(d);
-    if (d.value.distance==1 || !d.value.hasOwnProperty('distance')) {
-      roots = ['Dada'];
-      console.log(roots);
-    } else {
-      // doesn't scale past d2
-      isMany = true;
-      roots = d.value.roots;
-    }
-
-    //select these things
-    // for (var i in roots) {
-      //construct selector
-    var selector = 'line.'+d.id; //'.'+roots[i]+' .'+d.id
-    d3.selectAll(selector).styles({
-      'stroke-opacity': .2,
-      display:'inline',
-    })
-    console.log(selector);
-    // }
-
-
-    // return [id, isMany];
-
-    // perhaps links have clases with source and root names for easy selection
-    // e.g. var path = d3.select('line.'+source+'.'+root)
-    // if distance = 1, highlight link going to dada
-    // if distance = 2, loop through roots array
-    //    for each id, select that node, highlight (use id)
-    //        highlight link to root node
-    //        link : source this target root OR
-    //        link : source root target dada
-
-    //    for each node, highlight it's path to dada
-    //        link : target Dada source this OR
-    //        link : target this source Dada
-
-}
-
 function toggler() {
   return function(d) {
     var thisToggle = d3.select('div.toggle.g'+d.value.id);
@@ -201,7 +145,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -231,7 +175,26 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
     })
     .on('mouseup', toggler());
 
-  //buttons coming soon...
+  var article = d3.select('#route')
+    .selectAll('div.article')
+    .data(graph.nodes)
+    .enter()
+    .append('div')
+    .attrs({
+      class: 'article',
+      id: function(d) {
+        console.log(d);
+        return 'a_'+d.id;
+      }
+    });
+
+  // append image
+  // append titles
+  // append ranks
+  // append instanceOf data
+  // append location
+  // append date information
+  // append wiki link
 
   // force diagram
   var links = graph.links,

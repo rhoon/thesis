@@ -204,6 +204,18 @@ svg#chartSVG {
   stroke-opacity: 0;
   stroke-width: 1; }
 
+.links line.clicked {
+  display: inline;
+  stroke: #222;
+  stroke-opacity: .2;
+  stroke-width: .5; }
+
+.links line.pathBack {
+  display: inline;
+  stroke: #222;
+  stroke-opacity: 1;
+  stroke-width: 1; }
+
 .nodes circle {
   /*stroke: #fff;*/
   /*stroke-width: 1.5px;*/
