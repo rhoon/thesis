@@ -143,8 +143,7 @@ span#s1 {
   right: 3%;
   top: 55%;
   width: 6%;
-  cursor: pointer;
-  /*height: 15%;*/ }
+  cursor: pointer; }
 
 .searchBox {
   position: relative; }
@@ -176,8 +175,7 @@ span#s1 {
 .nodeDeets p {
   position: relative;
   top: -1.2em;
-  line-height: 150%;
-  /*margin-left: 1em;*/ }
+  line-height: 150%; }
 
 .nodeDeets span {
   color: #C2BEB4; }
@@ -244,8 +242,6 @@ svg#chartSVG {
   stroke-width: 1; }
 
 .nodes circle {
-  /*stroke: #fff;*/
-  /*stroke-width: 1.5px;*/
   fill: black;
   opacity: .8; }
 
@@ -275,24 +271,32 @@ div#route {
 div.article {
   display: none; }
 
+img.articleImg {
+  max-height: 6.5em;
+  max-width: 5em; }
+
 div.article.pathBack {
   display: block;
   width: 70%;
   height: 8em;
-  /*margin: 5% auto;*/
   font-size: .8em;
   padding: 5% 5% 0 5%;
   position: absolute;
   top: 10%;
   left: 10%;
-  z-index: 950;
-  /*overflow: hidden;*/ }
+  z-index: 950; }
+
+div.article.selected {
+  border-left: 3px solid #CE8A00 !important; }
 
 .rightSide {
   /*left: 96% !important;*/ }
 
 .leftSide {
   /*left: -76% !important;*/ }
+
+.current {
+  z-index: 999; }
 
 .back {
   cursor: pointer;

@@ -1,14 +1,21 @@
 var lastClicked = null;
 
 function clearLastClick() {
+
+  // Reset network graph
   if (lastClicked!=null) { lastClicked.classed('gold opac_9', false); }
-  d3.select('#downArrow').style('height', '10em');
   d3.selectAll('circle.off').classed('off', false);
   d3.selectAll('line.clicked').classed('clicked', false);
   d3.selectAll('line.pathBack').classed('pathBack', false);
+  d3.selectAll('div.smallLabel').remove();
+
+  // Reset Article Styles
+  d3.select('#downArrow').style('height', '10em');
+  d3.selectAll('div.article.pathBack').attr('style', null);
+  d3.select('div.article.selected').classed('selected', false);
   d3.selectAll('div.article.pathBack').classed('pathBack', false);
   d3.selectAll('div.article.rightSide').classed('rightSide', false);
-  d3.selectAll('div.smallLabel').remove();
+  d3.selectAll('div.article.leftSide').classed('leftSide', false);
 }
 
 function rClick() {
@@ -119,7 +126,8 @@ function pathBack(d) {
 
     // show the clicked node's article
     var articleClicked = 'div#a_'+d.id;
-    d3.select(articleClicked).classed('pathBack', true);
+    d3.select(articleClicked)
+      .classed('pathBack selected', true);
 
     // show general network for each highlighted node
     roots.forEach(function(root) {

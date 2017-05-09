@@ -212,7 +212,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
         .append('img')
         .attrs({
           src: function(d) {return d.value.image; },
-          class: 'svgHoverImg'
+          class: 'articleImg'
         });
 
       // append article Header
