@@ -1,9 +1,11 @@
 # Mapping Dada
-### A Visualization Charting the Relative Influence Exerted by and on the Art Movement, Dada
+### A Visualization Charting the Influence exerted by and on a moment in history
 
 ![preview](preview.png)
 
-How do we measure influence? If you allow that a link from one page to another allows us to measure relevance, ala the PageRank algorithm, and that proximity (e.g. the number of links from one page to another) gives us a sense of how that relevance diminishes with distance, ‘influence’ is only a function of chronological order. This project is a case study in applying this methodology to the art movement, Dada, using the closed network of wikipedia to provide a consistent dataset. From this dataset (the scraped URLs and basic metadata of pages linking to and from Dada) a map of the conceptual framework, players and geography of Dada is established, contextualizing the art movement within it’s moment in history.
+[MappingDada.info](http://www.mappingdada.info)
+
+How do we measure influence? If you allow that a link from one page to another allows us to measure relevance, ala the PageRankU+2122 algorithm, and that proximity (e.g. the number of links from one page to another) gives us a sense of how that relevance diminishes with distance, ‘influence’ is only a function of chronological order. This project is a case study in applying this methodology to the art movement, Dada, using the closed network of wikipedia to provide a consistent dataset. From this dataset (the scraped URLs and basic metadata of pages linking to and from Dada) a map of the conceptual framework, players and geography of Dada is established, contextualizing the art movement within it’s moment in history.
 
 ### Features:
 1. Visualized conceptual and historical ties from contemporary figures and movements to Dada.
