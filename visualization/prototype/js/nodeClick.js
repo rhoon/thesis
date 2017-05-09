@@ -13,6 +13,7 @@ function clearLastClick() {
   d3.select('#downArrow').style('height', '10em');
   d3.selectAll('div.article.pathBack').attr('style', null);
   d3.select('div.article.selected').classed('selected', false);
+  d3.select('div.article.current').classed('current', false);
   d3.selectAll('div.article.pathBack').classed('pathBack', false);
   d3.selectAll('div.article.rightSide').classed('rightSide', false);
   d3.selectAll('div.article.leftSide').classed('leftSide', false);
@@ -102,8 +103,19 @@ function nodeClick() {
   pathBack(d);
 
   // move routing in and nav out
-  d3.select('#route').transition().style('left', '0%');
-  d3.select('#nav').transition().style('left', '-120%');
+  d3.select('#route')
+    .transition()
+    .styles({
+      left: '0%',
+      opacity: 1
+    });
+
+  d3.select('#nav')
+    .transition()
+    .styles({
+      left: '-120%',
+      opacity: 0
+    });
 
   // programmatic zoom (not functional)
 
@@ -178,7 +190,6 @@ function pathBack(d) {
       // append labels
       console.log(selector);
     });
-
     //
 }
 
@@ -193,7 +204,19 @@ function showLines(selector, opacity, stroke) {
 function clearNodeClick() {
   console.log('clear node click');
   clearLastClick();
+
   // move nav back in
-  d3.select('#route').transition().style('left', '-120%');
-  d3.select('#nav').transition().style('left', '0%');
+  d3.select('#route')
+    .transition()
+    .styles({
+      left: '-120%',
+      opacity: 0
+    });
+
+  d3.select('#nav')
+    .transition()
+    .styles({
+      left: '0%',
+      opacity: 1
+    });
 }

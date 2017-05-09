@@ -96,10 +96,11 @@ div#sidebar {
   position: fixed;
   z-index: 400;
   height: 100%;
-  left: 0;
+  left: -100%;
   top: 0;
   box-shadow: 0 0 8px 0 rgba(163,163,163,0.50);
   overflow: hidden; /* CHANGE LATER */
+  display: none;
 }
 
 .label {
@@ -381,6 +382,11 @@ div.article a.wiki {
   position: absolute;
   right: 5%;
   bottom: 1em;
+  color: #2F67A8;
+}
+
+div.article a.wiki:hover, a.wiki:visited {
+  color: #4E97BA;
 }
 
 #row_d2 {
@@ -439,7 +445,7 @@ div.article a.wiki {
   width: 8%;
   top: 4%;
   right: 2%;
-
+  display: none;
 }
 
 div#pan {
@@ -532,4 +538,53 @@ div#zOut {
   overflow: hidden;
   white-space: nowrap;
   max-width: 10em;
+}
+
+/* INTRO */
+
+div#intro {
+  width: 25%;
+  position: relative;
+  /*left: 15%;*/
+  margin: 10%;
+}
+
+div#intro h1 {
+  font-size: 4.5em;
+  line-height: 106%;
+  letter-spacing: -.04em;
+}
+
+div#intro p {
+  font-size: 1.25em;
+  line-height: 135%;
+  margin: 2em 0 2em 0;
+}
+
+div#intro span#nodeTitle {
+  text-transform: capitalize;
+}
+
+div.button {
+  height: 1.2em;
+  padding: 1em 1.2em;
+  font-size: .8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 8px 0 rgba(199,199,199,0.50);
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 1em;
+  position: relative;
+  z-index: 950;
+  cursor: pointer;
+}
+
+#explore {
+  background: #282828;
+  color: #E8E5E0;
+}
+
+#method {
+  background-color: #F5F4F0;
 }

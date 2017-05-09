@@ -24,7 +24,17 @@ slider.noUiSlider.on('update', function() {
   d3.select('span#s1').text(Math.ceil(sVals[1]));
 })
 
+function explore() {
+  // hide intro
+  var intro = d3.select('#intro');
+  intro.transition().style('opacity', 0);
+  // intro.style('display', 'none');
+  // show sidebar
+  var sidebar = d3.select('div#sidebar');
+  d3.select('div#sidebar').style('display', 'block');
+  d3.select('div#sidebar').transition().style('left', '0%');
 
+}
 
 // var silderVals = slider.noUiSlider.get();
 // console.log(sliderVals);
@@ -50,11 +60,7 @@ function formatRank(d) {
 }
 
 function getLocation(d) {
-  if (d.value.hasOwnProperty('location')) {
-    return d.value.location;
-  } else {
-    return '';
-  }
+  return (d.value.hasOwnProperty('location')) ? d.value.location : '';
 }
 
 function showDeets() {
