@@ -28,6 +28,9 @@
   color: #9C9484;
   fill: #9C9484; }
 
+.opac_9 {
+  opacity: .9 !important; }
+
 .card {
   background: #F5F4F0;
   box-shadow: 0 0 8px 0 rgba(199, 199, 199, 0.5); }
@@ -256,6 +259,19 @@ div#route {
   left: -100%;
   bottom: 0px; }
 
+#downArrow {
+  position: absolute;
+  left: 50%;
+  bottom: 6em;
+  z-index: 901;
+  background-image: url("../images/dowArrow.svg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  width: 5%;
+  height: 10em;
+  /* 20 em when there's two rows */ }
+
 div.article {
   display: none; }
 
@@ -272,21 +288,11 @@ div.article.pathBack {
   z-index: 950;
   /*overflow: hidden;*/ }
 
-#downArrow {
-  position: absolute;
-  left: 50%;
-  bottom: 6em;
-  z-index: 901;
-  background-image: url("../images/dowArrow.svg");
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  width: 5%;
-  height: 10em;
-  /* 20 em when there's two rows */ }
-
 .rightSide {
-  left: 96% !important; }
+  /*left: 96% !important;*/ }
+
+.leftSide {
+  /*left: -76% !important;*/ }
 
 .back {
   cursor: pointer;
@@ -335,6 +341,21 @@ div.article a.wiki {
   padding: 2em;
   position: absolute;
   bottom: 2em; }
+
+/* ROUTING NAVIGATION */
+.clicker {
+  position: absolute;
+  width: 5%;
+  height: 100%;
+  top: 0%;
+  cursor: pointer;
+  z-index: 999; }
+
+.r {
+  right: 0%; }
+
+.l {
+  left: 0%; }
 
 /* PAN AND ZOOM */
 #panZoomBox {

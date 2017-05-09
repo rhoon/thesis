@@ -179,9 +179,9 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
     })
     .on('mouseup', toggler());
 
-  var row2 = d3.select('#route').append('div').attr('id','row_d2');
-  var row1 = d3.select('#route').append('div').attr('id','row_d1');
-  var dada = d3.select('#route').append('div').attr('id', 'dest_dada').html('Dada');
+  var row2 = d3.select('#row_d2'),
+      row1 = d3.select('#row_d1');
+
   appendArticles(row1, 1);
   appendArticles(row2, 2);
 

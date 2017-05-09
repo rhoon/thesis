@@ -1,7 +1,7 @@
 var lastClicked = null;
 
 function clearLastClick() {
-  if (lastClicked!=null) { lastClicked.classed('gold', false); }
+  if (lastClicked!=null) { lastClicked.classed('gold opac_9', false); }
   d3.select('#downArrow').style('height', '10em');
   d3.selectAll('circle.off').classed('off', false);
   d3.selectAll('line.clicked').classed('clicked', false);
@@ -9,6 +9,49 @@ function clearLastClick() {
   d3.selectAll('div.article.pathBack').classed('pathBack', false);
   d3.selectAll('div.article.rightSide').classed('rightSide', false);
   d3.selectAll('div.smallLabel').remove();
+}
+
+function rClick() {
+  var rightSide1 = d3.select('div.article.rightSide');
+  var current = d3.select('div.article.current');
+
+  if (rightSide1._groups[0][0]!=null) {
+    current.classed('current', false)
+      .transition()
+      .ease(d3.easeCubic)
+      .style('left', '-76%');
+
+    current.classed('leftSide', true);
+
+    rightSide1.classed('rightSide', false)
+      .transition()
+      .ease(d3.easeCubic)
+      .style('left', '10%');
+
+    rightSide1.classed('current', true);
+  }
+
+}
+
+function lClick() {
+    var leftSide1 = d3.select('div.article.leftSide');
+    var current = d3.select('div.article.current');
+
+    if (leftSide1._groups[0][0]!=null) {
+      current.classed('current', false)
+        .transition()
+        .ease(d3.easeCubic)
+        .style('left', '96%');
+
+      current.classed('rightSide', true);
+
+      leftSide1.classed('leftSide', false)
+        .transition()
+        .ease(d3.easeCubic)
+        .style('left', '10%');
+
+      leftSide1.classed('current', true);
+    }
 }
 
 function smallLabel(d) {
@@ -41,7 +84,7 @@ function nodeClick() {
 
   // highlightNode
   d3.select(this).classed('off', false);
-  d3.select(this).classed('gold', true);
+  d3.select(this).classed('gold opac_9', true);
   lastClicked = d3.select(this);
   smallLabel(d);
 
@@ -109,11 +152,13 @@ function pathBack(d) {
 
         // show current article
         var articleRoot = 'div#a_'+root;
-        d3.select(articleRoot).classed('pathBack', true);
+        d3.select(articleRoot).classed('pathBack current', true);
 
         // if more than one root, move to the side
         if (roots.indexOf(root)>0) {
-          d3.select(articleRoot).classed('rightSide', true);
+          d3.select(articleRoot)
+            .classed('rightSide', true)
+            .style('left', '96%');
         }
 
         //adjust back button placement
