@@ -21,6 +21,11 @@
   fill: #107358;
 }
 
+.teal {
+  color: #089576;
+  fill: #089576 !important;
+}
+
 .textLite {
   color: #9C9484;
   fill: #9C9484;
@@ -71,6 +76,7 @@ h1 {
   font-weight: normal;
   line-height: 100%;
   letter-spacing: -1px;
+  margin: 0;
 }
 
 /* SIDEBAR AND TOGGLES */
@@ -116,7 +122,7 @@ div.toggle {
 }
 
 .toggled {
-  fill: orange !important;
+  fill: #CE8A00 !important;
 }
 
 /* SLIDER */
@@ -142,6 +148,7 @@ span#s1 {
 }
 
 /* SEARCH */
+
 #search {
   width: 92%;
   height: 1em;
@@ -161,6 +168,11 @@ span#s1 {
 .searchBox {
   position: relative;
 }
+
+/*ul li.ui-menu-item {
+  drop down styling is confusing UX, seems heavy on memory. possible solution here:
+  http://stackoverflow.com/questions/5073612/jquery-ui-autocomplete-combobox-very-slow-with-large-select-lists
+}*/
 
 /* HOVERS */
 
@@ -449,4 +461,17 @@ div#zOut {
 
 #zoomRect {
   display: none;
+}
+
+/* SMALL LABELS */
+
+.smallLabel {
+  position: absolute;
+  z-index: 900;
+  font-size: .8em;
+  padding: .5em;
+  height: auto;
+  /*width: 10em;*/
+  overflow: hidden;
+  white-space: nowrap;
 }

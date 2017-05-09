@@ -56,5 +56,5 @@
   transition: all .2s ease;
 }
 .tgl-light:checked + .tgl-btn {
-  background: #107358;
+  background: #CE8A00;
 }

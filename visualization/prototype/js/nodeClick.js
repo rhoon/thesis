@@ -1,15 +1,43 @@
+var lastClicked = null;
+
 function clearLastClick() {
+  if (lastClicked!=null) { lastClicked.classed('teal', false); }
   d3.selectAll('line.clicked').classed('clicked', false);
   d3.selectAll('line.pathBack').classed('pathBack', false);
   d3.selectAll('div.article.pathBack').classed('pathBack', false);
   d3.selectAll('div.article.rightSide').classed('rightSide', false);
+  d3.selectAll('div.smallLabel').remove();
 }
+
+function smallLabel(d) {
+
+  var title = d.value.title,
+      boxHeight = 25;
+  var box = d3.select('div#chart')
+    .append('div')
+    .classed('smallLabel card', true)
+    .styles({
+      left: d.x+25+'px',
+      top: d.y-boxHeight+'px',
+      opacity: 0
+    })
+    .text(title);
+
+  box.transition().delay(500).style('opacity', 1);
+
+}
+
 
 function nodeClick() {
   return function(d) {
-    
+
   // clear old path back, if any
   clearLastClick();
+
+  // highlightNode
+  d3.select(this).classed('teal', true);
+  lastClicked = d3.select(this);
+  smallLabel(d);
 
   // call pathBack
   pathBack(d);
@@ -18,22 +46,22 @@ function nodeClick() {
   d3.select('#route').transition().style('left', '0%');
   d3.select('#nav').transition().style('left', '-120%');
 
-  // programmatic zoom too (not functional)
+  // programmatic zoom (not functional)
 
   }
 }
 
 function pathBack(d) {
 
+    // est roots array
     var roots;
-    console.log(d);
     if (d.value.distance==1 || !d.value.hasOwnProperty('distance')) {
       roots = ['Dada'];
-      console.log(roots);
     } else {
       roots = d.value.roots;
     }
 
+    // show all connected lines
     var webSelect = 'line.'+d.id;
     d3.selectAll(webSelect).classed('clicked', true);
 
@@ -63,9 +91,11 @@ function pathBack(d) {
           .classed('clicked', false)
           .classed('pathBack', true);
 
+        // show current article
         var articleRoot = 'div#a_'+root;
         d3.select(articleRoot).classed('pathBack', true);
 
+        // if more than one root, move to the side
         if (roots.indexOf(root)>0) {
           d3.select(articleRoot).classed('rightSide', true);
         }
