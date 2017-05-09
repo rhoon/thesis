@@ -202,7 +202,7 @@ function showLines(selector, opacity, stroke) {
 }
 
 function clearNodeClick() {
-  console.log('clear node click');
+
   clearLastClick();
 
   // move nav back in

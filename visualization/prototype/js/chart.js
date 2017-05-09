@@ -25,10 +25,15 @@ slider.noUiSlider.on('update', function() {
 })
 
 function explore() {
+
+  // unselect links (disorienting)
+  clearNodeClick()
+
   // hide intro
   var intro = d3.select('#intro');
   intro.transition().style('opacity', 0);
   // intro.style('display', 'none');
+
   // show sidebar
   var sidebar = d3.select('div#sidebar');
   d3.select('div#sidebar').style('display', 'block');
@@ -155,7 +160,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
