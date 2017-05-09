@@ -1,7 +1,9 @@
 var lastClicked = null;
 
 function clearLastClick() {
-  if (lastClicked!=null) { lastClicked.classed('teal', false); }
+  if (lastClicked!=null) { lastClicked.classed('gold', false); }
+  d3.select('#downArrow').style('height', '10em');
+  d3.selectAll('circle.off').classed('off', false);
   d3.selectAll('line.clicked').classed('clicked', false);
   d3.selectAll('line.pathBack').classed('pathBack', false);
   d3.selectAll('div.article.pathBack').classed('pathBack', false);
@@ -11,13 +13,14 @@ function clearLastClick() {
 
 function smallLabel(d) {
 
-  var title = d.value.title,
-      boxHeight = 25;
+  var title = (d.value.title.length>20) ? d.value.title.slice(0, 15)+'...' : d.value.title,
+      boxHeight = 25,
+      xMod = (d.x>width/2) ? 15 : -120;
   var box = d3.select('div#chart')
     .append('div')
     .classed('smallLabel card', true)
     .styles({
-      left: d.x+25+'px',
+      left: d.x+xMod+'px',
       top: d.y-boxHeight+'px',
       opacity: 0
     })
@@ -34,10 +37,16 @@ function nodeClick() {
   // clear old path back, if any
   clearLastClick();
 
+  d3.selectAll('circle').classed('off', true);
+
   // highlightNode
-  d3.select(this).classed('teal', true);
+  d3.select(this).classed('off', false);
+  d3.select(this).classed('gold', true);
   lastClicked = d3.select(this);
   smallLabel(d);
+
+  // highlight Dada
+  d3.select('circle#Dada').classed('off', false);
 
   // call pathBack
   pathBack(d);
@@ -78,6 +87,10 @@ function pathBack(d) {
     // highlight direct path lines
     roots.forEach(function(root) {
 
+      // turn circles back on
+      var circle = 'circle#'+root;
+      d3.select(circle).classed('off', false);
+
       //show direct path back
       var selector = 'line.'+d.id+'.'+root;
       d3.selectAll(selector)
@@ -90,6 +103,9 @@ function pathBack(d) {
         d3.selectAll(selector2)
           .classed('clicked', false)
           .classed('pathBack', true);
+
+        // make downArrow longer
+        d3.select('#downArrow').style('height', '20em');
 
         // show current article
         var articleRoot = 'div#a_'+root;
