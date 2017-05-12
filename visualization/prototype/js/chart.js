@@ -1,3 +1,4 @@
+var colors = ['#089576', '#E84E00', '#089576', '#E84E00', '#2F67A8', '#CE8A00', '#2F67A8', '#CE8A00']
 
 var svg = d3.select('svg')
     width = +svg.attr('width'),
@@ -6,23 +7,6 @@ var svg = d3.select('svg')
 var zg = svg.append('g');
 
 var slider = document.getElementById('slider-connect');
-
-noUiSlider.create(slider, {
-  start: [1500,2018],
-  connect: [false, true, false],
-  range: {
-    'min': 1500,
-    'max': 2018
-  },
-});
-
-var sVals;
-
-slider.noUiSlider.on('update', function() {
-  sVals = slider.noUiSlider.get();
-  d3.select('span#s0').text(Math.floor(sVals[0]));
-  d3.select('span#s1').text(Math.ceil(sVals[1]));
-})
 
 function explore() {
 

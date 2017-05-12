@@ -41,6 +41,8 @@ function parameters(data) {
 
       //initialize rankings
       args[data[i].url].rank = initRank;
+      //add distance
+      args[data[i].url].distance = data[i].distance;
 
   }
 }
@@ -60,8 +62,7 @@ function rankings(iteration) {
 
         if (iteration==0) {
           // initial values
-          // ---------------------------------> need to add distance penalty to calculation
-          fullSet[iteration][url] += args[mfurl].rank/args[mfurl].mapsToLen;
+          fullSet[iteration][url] += (1/args[mfurl].distance)*(args[mfurl].rank/args[mfurl].mapsToLen);
         } else {
           // using previous
           fullSet[iteration][url] += (fullSet[iteration-1][url]/args[mfurl].mapsToLen);
