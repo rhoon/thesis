@@ -66,19 +66,26 @@ getGroups(in_d1d2);
 // getGroups(dada);
 
 var groupsTrimmed = {};
-
+var trimID = 0;
 function curateGroups() {
 
-  for (var g in groups) {
-    if (groups[g].count > 9) {
-      groupsTrimmed[g] = groups[g];
-    }
+  var groupsArr = d3.entries(groups);
+  // sort groups before assigning trimID
+  groupsArr.sort(function(a, b) {
+      return parseFloat(b.value.count) - parseFloat(a.value.count);
+  });
+
+  // take the top 15 groups
+  for (var i = 0; i<15; i++) {
+      var strID = groupsArr[i].key;
+      groupsTrimmed[strID] = trimID;
+      trimID++;
   }
 
 }
 
 curateGroups();
-// console.log(groupsTrimmed);
+console.log(groupsTrimmed);
 
 // hash of urls with group as value
 var urls = {};
@@ -107,13 +114,19 @@ function getURLs(data, pointsAtDada) {
           urls[earl].group = [];
           var human = false;
 
+          //assign group
           if (mD.hasOwnProperty('instance of')) {
             for (var g in mD['instance of']) {
               var thisGroup = mD['instance of'][g].split('\n')[0];
               // test for human
               if (thisGroup=='human') { human = true; }
-              // push to array
-              urls[earl].group.push(groups[thisGroup].id);
+
+              // check to see if in groupsTrimmed
+              if (groupsTrimmed.hasOwnProperty(thisGroup)) {
+                // push to array
+                urls[earl].group.push(groupsTrimmed[thisGroup]);
+              }
+
             }
 
           } else {
@@ -186,9 +199,6 @@ function makeNodes(data) {
 makeNodes(urls);
 
 var key = d3.entries(groupsTrimmed);
-key.sort(function(a, b) {
-    return parseFloat(b.value.count) - parseFloat(a.value.count);
-});
 console.log(key);
 
 // console.log(key);

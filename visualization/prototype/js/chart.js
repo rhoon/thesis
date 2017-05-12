@@ -1,4 +1,4 @@
-var colors = ['#089576', '#E84E00', '#089576', '#E84E00', '#2F67A8', '#CE8A00', '#2F67A8', '#CE8A00']
+var colorStrArr = ['purp', 'oran', 'gold', 'brow', 'blue', 'lblu', 'teal', 'gree'];
 
 var svg = d3.select('svg')
     width = +svg.attr('width'),
@@ -144,7 +144,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -169,7 +169,7 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
 
   toggle.append('label')
     .attrs({
-      class: 'tgl-btn',
+      class: function(d, i) { return 'tgl-btn tgl-'+colorStrArr[i%8]; },
       for: function(d) { return 'g'+d.value.id; }
     })
     .on('mouseup', toggler());

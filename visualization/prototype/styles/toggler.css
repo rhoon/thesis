@@ -55,6 +55,36 @@
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
 }
-.tgl-light:checked + .tgl-btn {
+
+
+div.toggle.clicked label.tgl-purp {
+  background: #8C2E60;
+}
+
+div.toggle.clicked label.tgl-oran {
+  background: #E84E00;
+}
+
+div.toggle.clicked label.tgl-gold {
   background: #CE8A00;
+}
+
+div.toggle.clicked label.tgl-brow {
+  background: #955008;
+}
+
+div.toggle.clicked label.tgl-blue {
+  background: #2F67A8;
+}
+
+div.toggle.clicked label.tgl-lblu {
+  background: #4E97BA;
+}
+
+div.toggle.clicked label.tgl-teal {
+  background: #129D97;
+}
+
+div.toggle.clicked label.tgl-gree {
+  background: #089576;
 }
