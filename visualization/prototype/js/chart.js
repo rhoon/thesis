@@ -146,7 +146,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -232,7 +232,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
       var wiki = article
         .append('a')
         .attrs({
-          href: function(d) { return 'https://en.wikipedia.org/wiki/'+d.id; },
+          href: function(d) { return 'https://en.wikipedia.org/wiki/'+d.url; },
           target: 'new',
           class: 'wiki'
         })

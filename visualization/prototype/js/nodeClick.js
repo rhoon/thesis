@@ -81,9 +81,24 @@ function smallLabel(d) {
 
 }
 
+function zoom() { // add parameter d
+
+  // d has properties:
+  // vx, vy (velocity?) and pos x and y
+  // dada has these properties as well...
+  // passing a global dada object var information would work...
+  // alt can you select the node and send it to yourself?
+  dadaX = d3.select('circle#Dada').attr('cx');
+  dadaY = d3.select('circle#Dada').attr('cy');
+
+
+}
+
 
 function nodeClick() {
   return function(d) {
+
+  console.log(d);
 
   // clear old path back, if any
   clearLastClick();

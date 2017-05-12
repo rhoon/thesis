@@ -54,6 +54,14 @@
 		"oO": 0,
 		"oS": 1
 		},
+	"\/data\/forceChart-sm.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/data\/forceChart-sm-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/data\/miserables.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -84,6 +92,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/example\/panner.html",
+		"oF": 0
+		},
+	"\/example\/zoom.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/example\/zoom.html",
 		"oF": 0
 		},
 	"\/images\/backArrow.svg": {

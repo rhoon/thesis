@@ -75,8 +75,8 @@ function curateGroups() {
       return parseFloat(b.value.count) - parseFloat(a.value.count);
   });
 
-  // take the top 15 groups
-  for (var i = 0; i<15; i++) {
+  // take the top 10 most common categories for the UI
+  for (var i = 0; i<10; i++) {
       var strID = groupsArr[i].key;
       groupsTrimmed[strID] = trimID;
       trimID++;
@@ -191,9 +191,10 @@ function makeNodes(data) {
 
   for (var i in nodes) {
     nodes[i].id = cleanStr(nodes[i].key);
+    nodes[i].url = nodes[i].key;
+    console.log(nodes[i].url);
     delete nodes[i].key;
   }
-
 }
 
 makeNodes(urls);
