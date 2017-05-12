@@ -1,4 +1,4 @@
-var colorStrArr = ['purp', 'oran', 'gold', 'brow', 'blue', 'lblu', 'teal', 'gree'];
+var colorStrArr = ['purp', 'oran', 'tgol', 'brow', 'blue', 'lblu', 'teal', 'gree'];
 
 var svg = d3.select('svg')
     width = +svg.attr('width'),
@@ -131,12 +131,14 @@ function hideDeets() {
 
 function toggler() {
   return function(d) {
-    var thisToggle = d3.select('div.toggle.g'+d.value.id);
-    var theseCircles = d3.select('svg').selectAll('circle.g'+d.value.id);
+
+    // new toggle
+    var thisToggle = d3.select('div.toggle.g'+d.value);
+    var theseCircles = d3.select('svg').selectAll('circle.g'+d.value);
 
     if (!thisToggle.classed('clicked')) {
       thisToggle.classed('clicked', true);
-      theseCircles.classed('toggled', true);
+      theseCircles.classed('toggled '+colorStrArr[d.value%8], true);
     } else {
       thisToggle.classed('clicked', false);
       theseCircles.classed('toggled', false);
@@ -154,7 +156,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
     .enter()
     .append('div')
     .attr('class', function(d) {
-      return 'toggle g'+d.value.id;
+      return 'toggle g'+d.value;
     })
     .text( function(d) { return d.key });
 
@@ -162,15 +164,15 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
   toggle.append('input')
     .attrs({
       class: 'tgl tgl-light',
-      id: function(d) { return 'g'+d.value.id; },
+      id: function(d) { return 'g'+d.value; },
       type: 'checkbox'
     })
     .on('mouseup', toggler());
 
   toggle.append('label')
     .attrs({
-      class: function(d, i) { return 'tgl-btn tgl-'+colorStrArr[i%8]; },
-      for: function(d) { return 'g'+d.value.id; }
+      class: function(d) { return 'tgl-btn tgl-'+colorStrArr[d.value%8]; },
+      for: function(d) { return 'g'+d.value; }
     })
     .on('mouseup', toggler());
 

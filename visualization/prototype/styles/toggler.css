@@ -57,6 +57,15 @@
 }
 
 
+/* CUSTOM TOGGLES */
+
+div.toggle {
+  width: 100%;
+  padding: .75em 0 .75em 0;
+  border-top: 1px solid #D4D0C7;
+  text-transform: capitalize;
+}
+
 div.toggle.clicked label.tgl-purp {
   background: #8C2E60;
 }
@@ -65,7 +74,7 @@ div.toggle.clicked label.tgl-oran {
   background: #E84E00;
 }
 
-div.toggle.clicked label.tgl-gold {
+div.toggle.clicked label.tgl-tgol {
   background: #CE8A00;
 }
 
@@ -87,4 +96,40 @@ div.toggle.clicked label.tgl-teal {
 
 div.toggle.clicked label.tgl-gree {
   background: #089576;
+}
+
+.toggled {
+  opacity: 1;
+}
+
+circle.toggled.purp {
+  fill: #8C2E60 !important;
+}
+
+circle.toggled.oran {
+  fill: #E84E00 !important;
+}
+
+circle.toggled.tgol {
+  fill: #CE8A00 !important;
+}
+
+circle.toggled.brow {
+  fill: #955008 !important;
+}
+
+circle.toggled.blue {
+  fill: #2F67A8 !important;
+}
+
+circle.toggled.lblu {
+  fill: #4E97BA !important;
+}
+
+circle.toggled.gree {
+  fill: #089576 !important;
+}
+
+circle.toggled.teal {
+  fill: #129D97 !important;
 }

@@ -104,16 +104,6 @@ div#nav {
   left: 0;
   top: 0; }
 
-/* TOGGLES */
-div.toggle {
-  width: 100%;
-  padding: .75em 0 .75em 0;
-  border-top: 1px solid #D4D0C7;
-  text-transform: capitalize; }
-
-.toggled {
-  fill: #CE8A00 !important; }
-
 /* SLIDER */
 #sliderBox {
   position: relative;
