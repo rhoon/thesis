@@ -81,10 +81,55 @@ function smallLabel(d) {
 
 }
 
+function zoom(d) { // add parameter d
+
+  // d has properties:
+  // vx, vy (velocity?) and pos x and y
+  // dada has these properties as well...
+  // passing a global dada object var information would work...
+  // alt can you select the node and send it to yourself?
+  var dadaX = parseFloat(d3.select('circle#Dada').attr('cx')),
+      dadaY = parseFloat(d3.select('circle#Dada').attr('cy')),
+      dims = [Math.abs(dadaX-d.x), Math.abs(dadaY-d.y)],
+      centerX = (dadaX + d.x)/2; // looks correct
+      centerY = (dadaY + d.y)/2; // looks correct
+
+      d3.select('svg')
+        .append('circle')
+        .attr('fill', 'blue')
+        .attr('r', 4)
+        .attr('cx', centerX)
+        .attr('cy', centerY);
+
+      console.log(dadaX, dadaY);
+      console.log(d.x, d.y);
+      console.log(dims);
+      console.log('CENTER');
+      console.log(centerX, centerY);
+      console.log(height, width);
+
+  var scale = .3 / Math.max(dims[0] / width, dims[1] / height);
+  translate = [width / 2 - scale * centerX, height / 2 - scale * centerY];
+  console.log('SCALE, TRANSLATE');
+  console.log(scale);
+  console.log(translate);
+
+  g = d3.select('g');
+
+  g.transition()
+      .duration(2000)
+      .style("stroke-width", 1.5 / scale + "px")
+      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+
+}
+
+
 function nodeClick() {
   return function(d) {
 
   console.log(d);
+
+  zoom(d);
 
   // clear old path back, if any
   clearLastClick();
