@@ -94,6 +94,14 @@
 		"oAP": "\/example\/panner.html",
 		"oF": 0
 		},
+	"\/example\/us.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/example\/us-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/example\/zoom.html": {
 		"ft": 8192,
 		"oA": 2,
