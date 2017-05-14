@@ -98,7 +98,7 @@ curator(prototypeData, urlSet_2);
 
 fs.writeFile('data/prototypeData-sample.json', JSON.stringify(prototypeData), function(err) {
     if (err) {throw err;}
-    console.log('d2-toCrawl written');
+    console.log('prototype sample written');
 });
 
 // fs.writeFile('data/prototypeData-d1-d2.json', JSON.stringify(prototypeData), function(err){
