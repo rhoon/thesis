@@ -1,4 +1,4 @@
-var colorStrArr = ['purp', 'oran', 'tgol', 'brow', 'blue', 'lblu', 'teal', 'gree'];
+var colorStrArr = ['lblu', 'oran', 'tgol', 'brow', 'blue', 'purp', 'ttea', 'gree'];
 
 var svg = d3.select('svg')
     width = +svg.attr('width'),

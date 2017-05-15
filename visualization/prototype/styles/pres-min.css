@@ -1,0 +1,37 @@
+.presImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+#pres1 {
+  background-image: url("../presentation-pngs/thesis-1.png"); }
+
+#pres2 {
+  background-image: url("../presentation-pngs/thesis-2.png"); }
+
+#pres3 {
+  background-image: url("../presentation-pngs/thesis-3.png"); }
+
+#pres4 {
+  background-image: url("../presentation-pngs/thesis-4.png"); }
+
+#pres5 {
+  background-image: url("../presentation-pngs/thesis-5.png"); }
+
+#pres6 {
+  background-image: url("../presentation-pngs/thesis-6.png"); }
+
+#pres7 {
+  background-image: url("../presentation-pngs/thesis-7.png"); }
+
+#pres8 {
+  background-image: url("../presentation-pngs/thesis-8.png"); }
+
+.pres-hide {
+  display: none; }

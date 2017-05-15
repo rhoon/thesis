@@ -129,7 +129,7 @@ function nodeClick() {
 
   console.log(d);
 
-  zoom(d);
+  // zoom(d);
 
   // clear old path back, if any
   clearLastClick();

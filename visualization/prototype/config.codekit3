@@ -335,6 +335,147 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"\/presentation-pngs\/thesis-1.png": {
+		"ft": 32768,
+		"iS": 38932,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-1.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-2.png": {
+		"ft": 32768,
+		"iS": 48220,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-2.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-3.png": {
+		"ft": 32768,
+		"iS": 2804794,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-3.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-4.png": {
+		"ft": 32768,
+		"iS": 164747,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-4.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-5.png": {
+		"ft": 32768,
+		"iS": 29706,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-5.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-6.png": {
+		"ft": 32768,
+		"iS": 39447,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-6.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-7.png": {
+		"ft": 32768,
+		"iS": 75954,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-7.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-8.png": {
+		"ft": 32768,
+		"iS": 4353543,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-8.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-?.png": {
+		"ft": 32768,
+		"iS": 677358,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-?.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-blank.png": {
+		"ft": 32768,
+		"iS": 16064,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-blank.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/presentation-pngs\/thesis-Last.png": {
+		"ft": 32768,
+		"iS": 33004,
+		"oA": 0,
+		"oAP": "\/presentation-pngs\/thesis-Last.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/styles\/pres-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/styles\/pres-min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/styles\/pres.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/styles\/pres-min.css",
+		"oF": 0,
+		"oS": 0
+		},
 	"\/styles\/style-min.css": {
 		"aP": 1,
 		"bl": 0,
