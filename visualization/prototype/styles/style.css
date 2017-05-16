@@ -190,7 +190,7 @@ span#s1 {
   width: auto;
   height: 6em;
   position: absolute;
-  z-index: 100;
+  z-index: 550;
   font-size: .8em;
 }
 
@@ -517,7 +517,7 @@ div#zOut {
 
 .smallLabel {
   position: absolute;
-  z-index: 900;
+  z-index: 500;
   font-size: .8em;
   padding: .5em;
   height: auto;

@@ -62,26 +62,42 @@ function lClick() {
     }
 }
 
-function smallLabel(d) {
+function smallLabel(d, showDada) {
 
   var title = (d.value.title.length>20) ? d.value.title.slice(0, 15)+'...' : d.value.title,
       boxHeight = 25,
       dadaY = parseFloat(d3.select('circle#Dada').attr('cy')),
-      xMod = 10;
+      dadaX = parseFloat(d3.select('circle#Dada').attr('cx'));
 
   var box = d3.select('div#chart')
     .append('div')
     .classed('smallLabel card', true)
+    .attr('id', title+'Label')
     .text(title);
 
+  // gets width of just appended box for positioning
+  var offsetWidth = document.getElementById(title+'Label').offsetWidth;
+
   box.styles({
-        left: d.x+10+'px',
+        left: function() {
+            var xMod = (d.x < dadaX) ? -offsetWidth-10 : 10;
+          }
+          return d.x+xMod+'px';
+        },
         top: function() {
-          var yMod = (d.y < dadaY) ? -boxHeight-10 : 10;
+            var yMod = (d.y < dadaY) ? -boxHeight-10 : 10;
+          }
           return d.y+yMod+'px';
         },
         opacity: 0
-      })
+      });
+
+  // show dada box, position accordingly, if condition is met
+  // show Dada smallLabel
+  if (showDada) {
+    var dadaData = d3.select('circle#Dada').data();
+    //////// MOAR here
+  }
 
   box.transition().delay(500).style('opacity', 1);
 
@@ -131,7 +147,7 @@ function nodeClick() {
   d3.select(this).classed('off', false);
   d3.select(this).classed('gold opac_9', true);
   lastClicked = d3.select(this);
-  smallLabel(d);
+  smallLabel(d, true);
 
   // highlight Dada
   d3.select('circle#Dada').classed('off', false);
@@ -154,7 +170,6 @@ function nodeClick() {
       opacity: 0
     });
 
-  // programmatic zoom (not functional)
 
   }
 }
