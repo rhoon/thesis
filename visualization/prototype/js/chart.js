@@ -319,7 +319,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
       .on('click', nodeClick());
 
 
-    // titleList
+    // Search - instantiated after data is loaded
     var dataList = d3.select("#titleList");
 
     var input = document.getElementById("search");
@@ -332,14 +332,24 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
         return d;
       });
 
-    // instantiate Awesomplete
-
+    // instantiate 'Awesomplete'
     new Awesomplete(input, {
       list: "#titleList",
       minChars: 3,
       maxItems: 10
     });
 
+    document.getElementById('search')
+      .addEventListener('awesomplete-selectcomplete',function(){
+
+        // get selector from friendly text
+        var id = titleList.indexOf(this.value);
+        // create Event
+        var event = document.createEvent("HTMLEvents");
+        event.initEvent("click",true,false);
+        document.getElementById(urlList[id]).dispatchEvent(event);
+
+      });
   }
 
 });
