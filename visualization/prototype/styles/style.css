@@ -158,6 +158,10 @@ span#s1 {
   border: none;
 }
 
+span.visually-hidden {
+  display: none;
+}
+
 #searchIcon {
   position: absolute;
   right: 3%;

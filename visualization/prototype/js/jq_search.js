@@ -1,5 +1,3 @@
-// var a = fruits.indexOf("Apple");
-// returns index of the thing - use this to compare arrays
 
 
 function search(ele) {

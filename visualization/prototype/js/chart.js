@@ -146,7 +146,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -318,17 +318,28 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
       .on('mouseout', hideDeets())
       .on('click', nodeClick());
 
-    // node.append("title")
-    //     .text(function(d) { return d.id; });
 
+    // titleList
+    var dataList = d3.select("#titleList");
 
-    $( function() {
-        // var availableTags = ;
+    console.log(dataList);
+    // new Awesomplete(search, {
+	  //    list: ['two', 'things', 'kinda'],
+    //    minChars: 3,
+    //    maxItems: 10
+    // });
 
-        $( "#search" ).autocomplete({
-          source: titleList,
-        });
-      } );
+    dataList.selectAll('option')
+      .data(titleList)
+      .enter()
+      .append('option')
+      .attr('value', function(d) {
+        return d;
+      });
+
+    // instantiate Awesomplete
+    var input = document.getElementById("search");
+    new Awesomplete(input, {list: "#titleList"});
 
   }
 

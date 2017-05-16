@@ -134,6 +134,9 @@ span#s1 {
   padding: 1em 4% 1em 4%;
   border: none; }
 
+span.visually-hidden {
+  display: none; }
+
 #searchIcon {
   position: absolute;
   right: 3%;
