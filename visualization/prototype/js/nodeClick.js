@@ -66,16 +66,22 @@ function smallLabel(d) {
 
   var title = (d.value.title.length>20) ? d.value.title.slice(0, 15)+'...' : d.value.title,
       boxHeight = 25,
-      xMod = (d.x>width/2) ? 15 : -120;
+      dadaY = parseFloat(d3.select('circle#Dada').attr('cy')),
+      xMod = 10;
+
   var box = d3.select('div#chart')
     .append('div')
     .classed('smallLabel card', true)
-    .styles({
-      left: d.x+xMod+'px',
-      top: d.y-boxHeight+'px',
-      opacity: 0
-    })
     .text(title);
+
+  box.styles({
+        left: d.x+10+'px',
+        top: function() {
+          var yMod = (d.y < dadaY) ? -boxHeight-10 : 10;
+          return d.y+yMod+'px';
+        },
+        opacity: 0
+      })
 
   box.transition().delay(500).style('opacity', 1);
 
@@ -83,16 +89,12 @@ function smallLabel(d) {
 
 function zoom(d) { // add parameter d
 
-  // d has properties:
-  // vx, vy (velocity?) and pos x and y
-  // dada has these properties as well...
-  // passing a global dada object var information would work...
-  // alt can you select the node and send it to yourself?
+  // zoom is functional but too slow due to number of objects
   var dadaX = parseFloat(d3.select('circle#Dada').attr('cx')),
       dadaY = parseFloat(d3.select('circle#Dada').attr('cy')),
       dims = [Math.abs(dadaX-d.x), Math.abs(dadaY-d.y)],
-      centerX = (dadaX + d.x)/2; // looks correct
-      centerY = (dadaY + d.y)/2; // looks correct
+      centerX = (dadaX + d.x)/2;
+      centerY = (dadaY + d.y)/2;
 
       d3.select('svg')
         .append('circle')
@@ -101,18 +103,8 @@ function zoom(d) { // add parameter d
         .attr('cx', centerX)
         .attr('cy', centerY);
 
-      console.log(dadaX, dadaY);
-      console.log(d.x, d.y);
-      console.log(dims);
-      console.log('CENTER');
-      console.log(centerX, centerY);
-      console.log(height, width);
-
   var scale = .3 / Math.max(dims[0] / width, dims[1] / height);
   translate = [width / 2 - scale * centerX, height / 2 - scale * centerY];
-  console.log('SCALE, TRANSLATE');
-  console.log(scale);
-  console.log(translate);
 
   g = d3.select('g');
 
@@ -129,11 +121,10 @@ function nodeClick() {
 
   console.log(d);
 
-  // zoom(d);
+  // zoom(d); - commented out, poor performance
 
   // clear old path back, if any
   clearLastClick();
-
   d3.selectAll('circle').classed('off', true);
 
   // highlightNode
@@ -234,7 +225,7 @@ function pathBack(d) {
       }
 
       // append labels
-      console.log(selector);
+      // console.log(selector);
     });
     //
 }

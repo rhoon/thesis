@@ -521,10 +521,10 @@ div#zOut {
   font-size: .8em;
   padding: .5em;
   height: auto;
-  /*width: 10em;*/
   overflow: hidden;
   white-space: nowrap;
-  max-width: 10em;
+  text-align: left;
+  display: inline-block;
 }
 
 /* INTRO */
