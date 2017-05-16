@@ -76,7 +76,7 @@ function curateGroups() {
   });
 
   // take the top 10 most common categories for the UI
-  for (var i = 0; i<10; i++) {
+  for (var i = 0; i<12; i++) {
       var strID = groupsArr[i].key;
       groupsTrimmed[strID] = trimID;
       trimID++;
@@ -85,7 +85,6 @@ function curateGroups() {
 }
 
 curateGroups();
-console.log(groupsTrimmed);
 
 // hash of urls with group as value
 var urls = {};
@@ -192,7 +191,6 @@ function makeNodes(data) {
   for (var i in nodes) {
     nodes[i].id = cleanStr(nodes[i].key);
     nodes[i].url = nodes[i].key;
-    console.log(nodes[i].url);
     delete nodes[i].key;
   }
 }
@@ -201,6 +199,12 @@ makeNodes(urls);
 
 var key = d3.entries(groupsTrimmed);
 console.log(key);
+
+// get min and max
+var max = nodes.sort(function(a, b) { return d3.descending(a.value.rank, b.value.rank); })[0];
+var min = nodes.sort(function(a, b) { return d3.descending(a.value.rank, b.value.rank); })[nodes.length-1];
+console.log('MAX: '+max.value.rank);
+console.log('MIN:'+min.value.rank);
 
 // console.log(key);
 console.log(nodes.length);

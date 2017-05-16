@@ -8,6 +8,10 @@ var zg = svg.append('g');
 
 var slider = document.getElementById('slider-connect');
 
+var percentileRank = d3.scaleLinear()
+  .range([75, 100]) // we only show the top quartile
+  .domain([0.001468, 0.114607]);
+
 function explore() {
 
   // unselect links (disorienting)
@@ -45,7 +49,7 @@ function getDate(d) {
 }
 
 function formatRank(d) {
-  return 'Rank: '+d.value.rank+'%';
+  return 'Rank: '+Math.round(percentileRank(d.value.rank)*100)/100+'/100';
 }
 
 function getLocation(d) {

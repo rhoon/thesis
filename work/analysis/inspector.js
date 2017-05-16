@@ -2,6 +2,14 @@ var request = require('request');
 var fs = require('fs');
 var d3 = require('d3');
 
+
+// un-ranked / full data including out-of-network URLs
+var dataIn_unranked = JSON.parse(fs.readFileSync('data/d2-sample-combined-roots.json'));
+var dataIn_quartile = JSON.parse(fs.readFileSync('data/quantile-toCrawl.json'));
+var dada = JSON.parse(fs.readFileSync('data/Dada-update0.json'));
+var data_raw = dataIn_unranked.concat(dada, dataIn_quartile);
+
+// processed & ranked in-network quartile
 var data = JSON.parse(fs.readFileSync('data/prototypeData-sample.json'));
 
 // console.log(data[0]);
@@ -132,16 +140,43 @@ for (var i in data) {
     noMetaData++;
   }
 
+}
 
+for (var i in data_raw) {
 
+  // collect distribution of mapsTo lengths in buckets
+  if (data_raw[i].hasOwnProperty('mapsTo')) {
+    var mapsToLen = data_raw[i].mapsTo.length;
+    mapsToLen = (Math.floor(mapsToLen/10))*10;
+    if (mapsToDist.hasOwnProperty(mapsToLen)) {
+      mapsToDist[mapsToLen]++;
+    } else {
+      mapsToDist[mapsToLen]=1;
+    }
+  }
+
+  // collect distribution of mapsFrom lengths in buckets
+  if (data_raw[i].hasOwnProperty('mapsFrom')) {
+    var mapsFromLen = data_raw[i].mapsFrom.length;
+    mapsFromLen = (Math.floor(mapsFromLen/10))*10;
+    if (mapsFromDist.hasOwnProperty(mapsFromLen)) {
+      mapsFromDist[mapsFromLen]++;
+    } else {
+      mapsFromDist[mapsFromLen]=1;
+    }
+  }
 
 }
+
 
 occupationDist = d3.entries(occupationDist);
 catDist = d3.entries(catDist);
 locationDist = d3.entries(locationDist);
 deathYearDist = d3.entries(deathYearDist);
 birthYearDist = d3.entries(birthYearDist);
+
+mapsToDist = d3.entries(mapsToDist);
+mapsFromDist = d3.entries(mapsFromDist);
 
 occupationDist.sort(function(a, b) {
     return parseFloat(b.value) - parseFloat(a.value);
@@ -191,3 +226,12 @@ console.log(gender);
 console.log('LIST LENGTH: '+data.length);
 console.log('NO INSTANCE OF: '+noInstanceOf);
 console.log('NO METADATA: '+noMetaData);
+
+console.log('MAPS TO LENGTHS ');
+console.log('MEAN: '+d3.mean(mapsToDist, function(d) { return d.value; }));
+console.log('STD: '+d3.deviation(mapsToDist, function(d) { return d.value; }));
+console.log('RANGE: '+d3.extent(mapsToDist, function(d) { return d.value; }));
+console.log('MAPS FROM LENGTHS ');
+console.log('MEAN: '+d3.mean(mapsFromDist, function(d) { return d.value; }));
+console.log('STD: '+d3.deviation(mapsFromDist, function(d) { return d.value; }));
+console.log('RANGE: '+d3.extent(mapsFromDist, function(d) { return d.value; }));
