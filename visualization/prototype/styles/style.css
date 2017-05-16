@@ -158,10 +158,6 @@ span#s1 {
   border: none;
 }
 
-span.visually-hidden {
-  display: none;
-}
-
 #searchIcon {
   position: absolute;
   right: 3%;
@@ -173,11 +169,6 @@ span.visually-hidden {
 .searchBox {
   position: relative;
 }
-
-/*ul li.ui-menu-item {
-  drop down styling is confusing UX, seems heavy on memory. possible solution here:
-  http://stackoverflow.com/questions/5073612/jquery-ui-autocomplete-combobox-very-slow-with-large-select-lists
-}*/
 
 /* HOVERS */
 

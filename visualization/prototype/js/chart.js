@@ -322,12 +322,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
     // titleList
     var dataList = d3.select("#titleList");
 
-    console.log(dataList);
-    // new Awesomplete(search, {
-	  //    list: ['two', 'things', 'kinda'],
-    //    minChars: 3,
-    //    maxItems: 10
-    // });
+    var input = document.getElementById("search");
 
     dataList.selectAll('option')
       .data(titleList)
@@ -338,8 +333,12 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
       });
 
     // instantiate Awesomplete
-    var input = document.getElementById("search");
-    new Awesomplete(input, {list: "#titleList"});
+
+    new Awesomplete(input, {
+      list: "#titleList",
+      minChars: 3,
+      maxItems: 10
+    });
 
   }
 
