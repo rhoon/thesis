@@ -465,6 +465,16 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/styles\/awesomplete-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/styles\/awesomplete-min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
 	"\/styles\/awesomplete.css": {
 		"aP": 1,
 		"bl": 0,
