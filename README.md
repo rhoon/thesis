@@ -18,6 +18,6 @@ How do we measure influence? If you allow that a link from one page to another a
 
 [Written Thesis](writing/MappingDada_MSDV_Thesis_SPR2017.pdf)
 
-[Data Collection Codeset](work/crawler/README.md)
+[Data Collection Codeset](work/crawler/)
 
-[Data Structure & Analysis Codeset](work/analysis/README.md)
+[Data Structure & Analysis Codeset](work/analysis/)
