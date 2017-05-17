@@ -204,7 +204,7 @@ span#s1 {
 
 .nodeDeets {
   padding: 1em 1em -1em 1em;
-  min-width: 20em;
+  width: 240px;
   position: absolute;
   z-index: 550;
   font-size: .8em;

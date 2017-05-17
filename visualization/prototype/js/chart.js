@@ -83,7 +83,9 @@ function showDeets() {
         class: 'nodeDeets card',
       })
       .styles({
-        left: d.x+25+'px',
+        left: function() {
+          return (d.x>width/2) ? d.x-25-240+'px' : d.x+25+'px'
+        },
         top: d.y-boxHeight+'px',
         opacity: 0
       });
@@ -124,7 +126,7 @@ function circleSize(hover) {
 function hideDeets() {
   return function(d) {
 
-    // d3.select('div.nodeDeets').remove();
+    d3.select('div.nodeDeets').remove(); 
 
     var circle = d3.select(this);
 
