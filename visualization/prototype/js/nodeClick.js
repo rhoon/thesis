@@ -120,49 +120,10 @@ function smallLabel(d, showDada) {
 
 }
 
-function zoom(d) { // add parameter d
-
-  // zoom is functional but too slow due to number of objects
-  var dadaX = parseFloat(d3.select('circle#Dada').attr('cx')),
-      dadaY = parseFloat(d3.select('circle#Dada').attr('cy')),
-      dims = [Math.abs(dadaX-d.x), Math.abs(dadaY-d.y)],
-      centerX = (dadaX + d.x)/2;
-      centerY = (dadaY + d.y)/2;
-
-      d3.select('svg')
-        .append('circle')
-        .attr('fill', 'blue')
-        .attr('r', 4)
-        .attr('cx', centerX)
-        .attr('cy', centerY);
-
-  var scale = .3 / Math.max(dims[0] / width, dims[1] / height);
-  translate = [width / 2 - scale * centerX, height / 2 - scale * centerY];
-
-  g = d3.select('g');
-
-  g.transition()
-      .duration(2000)
-      .style("stroke-width", 1.5 / scale + "px")
-      .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
-
-}
-
-
 function nodeClick() {
   return function(d) {
 
   console.log(d);
-
-  // zoom(d); - commented out, poor performance
-
-  // title swapping - works but is overwhelmed (poor performance)
-  // var o = d3.select('div#intro').style('opacity');
-  // console.log(o);
-  // if (o==1) {
-  //   // this should actually just trigger a function
-  //   replaceTitle(d);
-  // }
 
   // clear old path back, if any
   clearLastClick();

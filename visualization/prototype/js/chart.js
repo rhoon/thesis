@@ -46,6 +46,8 @@ function getDate(d) {
     if (d.value.hasOwnProperty('ddate')) {
       date += ' d. '+d.value.ddate;
     }
+
+    date = (date=='') ? '' : date+'<br/>';
     return date;
 }
 
@@ -54,7 +56,7 @@ function formatRank(d) {
 }
 
 function getLocation(d) {
-  return (d.value.hasOwnProperty('location')) ? d.value.location : '';
+  return (d.value.hasOwnProperty('location')) ? d.value.location+'<br/>' : '';
 }
 
 function showDeets() {
@@ -100,7 +102,7 @@ function showDeets() {
       .text(title)
       .append('span')
       .classed('details', true)
-      .html(' <br/> '+rank+' <br/> '+location+' <br/> '+date);
+      .html(' <br/> '+rank+' <br/> '+location+date);
 
     //delay box fade-in to avoid jumpiness
     box.transition()
@@ -122,7 +124,7 @@ function circleSize(hover) {
 function hideDeets() {
   return function(d) {
 
-    d3.select('div.nodeDeets').remove();
+    // d3.select('div.nodeDeets').remove();
 
     var circle = d3.select(this);
 
@@ -151,7 +153,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -227,8 +229,9 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
         .append('p')
         .classed('textLite', true)
         .html(function(d) {
-          var date = getDate(d)+'<br/>';
+          var date = getDate(d);
           var location = (d.value.hasOwnProperty('location')) ? d.value.location+'<br/>' : '';
+          if (location=='United States of America') {location='USA';}
           var rank = formatRank(d)+'<br/>';
           return rank+location+date;
         });

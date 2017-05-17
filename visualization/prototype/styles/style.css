@@ -71,10 +71,12 @@ box-shadow: 0 0 8px 0 rgba(199,199,199,0.50);
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
     border-radius: 50%;
-    width: 4em;
-    height: 4em;
+    width: 3em;
+    height: 3em;
     animation: spin 1.2s linear infinite;
     margin: 0 auto;
+    position: relative;
+    top: 45%;
 }
 
 @keyframes spin {
@@ -195,25 +197,26 @@ span#s1 {
 
 .imgBox {
   float: left;
-  margin: 0 1em 0 0;
-  padding: 0;
-  height: 100%;
+  padding: 1em 0 1em 1em;
+  display: inline-block;
+  position: relative;
 }
 
 .nodeDeets {
-  padding: 1em 1em 0em 1em;
-  min-width: 14em;
-  width: auto;
-  height: 6em;
+  padding: 1em 1em -1em 1em;
+  min-width: 20em;
   position: absolute;
   z-index: 550;
   font-size: .8em;
 }
 
 .nodeDeets p {
+  display: inline-block;
   position: relative;
-  top: -1.2em;
+  margin: 1em 0 1em 1em;
+  top: -.1em;
   line-height: 150%;
+  width: 70%;
 }
 
 .nodeDeets span {
@@ -547,18 +550,13 @@ div#zOut {
 
 div#intro {
   width: 25%;
-  position: absolute;
-  top: 45%;
-  left: 10%;
+  position: relative;
+  margin: 10%;
 }
 
-h1#dynamic {
-  position: absolute;
-  top: 20%;
-  left: 10%;
+div#intro h1 {
   display: block;
-  width: 20%;
-  font-size: 3.5em;
+  font-size: 4.5em;
   line-height: 106%;
   letter-spacing: -.04em;
 }
@@ -567,10 +565,6 @@ div#intro p {
   font-size: 1.25em;
   line-height: 135%;
   margin: 2em 0 2em 0;
-}
-
-h1#dynamic span#nodeTitle {
-  text-transform: capitalize;
 }
 
 div.button {
