@@ -13,3 +13,11 @@ How do we measure influence? If you allow that a link from one page to another a
 3. Quantified strength of network nodes to gauge the most power points of influence.
 4. Visually clustered offshoots based on common influences.
 5. Search available article titles for specific uses.
+
+### Details:
+
+[Written Thesis](writing/MappingDada_MSDV_Thesis_SPR2017.pdf)
+
+[Data Collection Codeset](work/crawler/README.md)
+
+[Data Structure & Analysis Codeset](work/analysis/README.md)
