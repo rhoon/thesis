@@ -90,12 +90,20 @@ div.toggle.clicked label.tgl-lblu {
   background: #4E97BA;
 }
 
-div.toggle.clicked label.tgl-teal {
-  background: #129D97;
+div.toggle.clicked label.tgl-ttea {
+  background: #089576;
 }
 
 div.toggle.clicked label.tgl-gree {
-  background: #089576;
+  background: #129D97;
+}
+
+div.toggle.clicked label.tgl-dbro {
+  background: #AE5E0C;
+}
+
+div.toggle.clicked label.tgl-dblu {
+  background: #4C59B6;
 }
 
 .toggled {
@@ -130,6 +138,14 @@ circle.toggled.gree {
   fill: #089576 !important;
 }
 
-circle.toggled.tteal {
+circle.toggled.ttea {
   fill: #129D97 !important;
+}
+
+circle.toggled.dbro {
+  fill: #AE5E0C !important;
+}
+
+circle.toggled.dblu {
+  fill: #4C59B6 !important;
 }

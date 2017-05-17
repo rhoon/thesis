@@ -1,4 +1,4 @@
-var colorStrArr = ['lblu', 'oran', 'tgol', 'brow', 'blue', 'purp', 'ttea', 'gree'];
+var colorStrArr = ['lblu', 'oran', 'tgol', 'brow', 'blue', 'purp', 'ttea', 'gree', 'dbro', 'dblu'];
 
 var svg = d3.select('svg')
     width = +svg.attr('width'),
@@ -12,6 +12,7 @@ var percentileRank = d3.scaleLinear()
   .range([75, 100]) // we only show the top quartile
   .domain([0.001468, 0.114607]);
 
+// explore button click event
 function explore() {
 
   // unselect links (disorienting)
@@ -22,7 +23,6 @@ function explore() {
     intro.transition().style('opacity', 0);
     intro.transition().delay(500).style('display', 'none');
 
-
   // show sidebar
   var sidebar = d3.select('div#sidebar');
     sidebar.style('display', 'block');
@@ -30,9 +30,7 @@ function explore() {
 
 }
 
-// var silderVals = slider.noUiSlider.get();
-// console.log(sliderVals);
-
+// date formatting
 function getDate(d) {
     var date = '';
     if (d.value.hasOwnProperty('date')) {
@@ -55,10 +53,14 @@ function formatRank(d) {
   return 'Rank: '+Math.round(percentileRank(d.value.rank)*100)/100+'/100';
 }
 
+// location formatting
 function getLocation(d) {
   return (d.value.hasOwnProperty('location')) ? d.value.location+'<br/>' : '';
 }
 
+// hover event for items
+// divs are appended due to alreay large amount of nodes
+// visible in the network
 function showDeets() {
   return function(d) {
 
@@ -90,6 +92,7 @@ function showDeets() {
         opacity: 0
       });
 
+    // show image
     if (d.value.hasOwnProperty('image') && d.value.image!=null) {
       box.append('div')
         .classed('imgBox', true)
@@ -100,6 +103,7 @@ function showDeets() {
         });
     }
 
+    // show details
     box.append('p')
       .text(title)
       .append('span')
@@ -113,6 +117,7 @@ function showDeets() {
   }
 }
 
+// central function to control node sizes
 function circleSize(hover) {
   return function(d) {
     if (d.id=='Dada') {
@@ -123,10 +128,11 @@ function circleSize(hover) {
   }
 }
 
+// clear hover event
 function hideDeets() {
   return function(d) {
 
-    d3.select('div.nodeDeets').remove(); 
+    d3.select('div.nodeDeets').remove();
 
     var circle = d3.select(this);
 
@@ -138,6 +144,7 @@ function hideDeets() {
   }
 }
 
+// for toggles in the sidebar
 function toggler() {
   return function(d) {
 
@@ -155,7 +162,9 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
+// suffix for testing: replace 'd2fullSet' with 'sm'
+// 'sm' does not have all connections
+d3.json("data/forceChart-d2fullset.json", function(error, graph) {
   if (error) throw error;
 
   //filters
@@ -275,24 +284,31 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
     }
   };
 
+  function changeMsg(message) {
+    loadMessage = d3.select('div.loadMessage');
+    loadMessage.transition(300).style('opacity',0);
+    loadMessage.text(message);
+    loadMessage.transition(300).style('opacity',1);
+  }
+
   function ticked(data) {
     var progress = data.progress;
-    // meter.style.width = 100 * progress + "%";
 
-    // would be nice to communicate a little here
-    // 'loading dataset...'
-    // 'drawing chart...'
+    // communicate witih user
+    if (progress==.50) {
+      changeMsg('drawing chart...');
+    } else if (progress==.75) {
+      changeMsg('gadji beri bimba-ing...')
+    }
+
   }
 
   function ended(data) {
     var nodes = data.nodes,
         links = data.links;
-    console.log('done');
-    d3.select('div.loader').style('display', 'none');
-    // meter.style.display = "none";
 
-    console.log(nodes);
-    console.log(links);
+    d3.select('div.loader').style('display', 'none');
+    d3.select('div.loadMessage').style('display', 'none');
 
     var link = zg.append('g')
       .attr('class', 'links')
@@ -366,7 +382,7 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
 
     });
 
-    // call the animation loop
+    // call the animation loop - commented out - did not feel good UX-wise
     // starterAnimation();
 
     // fade in the intro

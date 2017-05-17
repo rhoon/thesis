@@ -19,6 +19,7 @@ function clearLastClick() {
   d3.selectAll('div.article.leftSide').classed('leftSide', false);
 }
 
+// card on the right side is clicked
 function rClick() {
   var rightSide1 = d3.select('div.article.rightSide');
   var current = d3.select('div.article.current');
@@ -41,6 +42,7 @@ function rClick() {
 
 }
 
+// card on the left side is clicked
 function lClick() {
     var leftSide1 = d3.select('div.article.leftSide');
     var current = d3.select('div.article.current');
@@ -62,6 +64,7 @@ function lClick() {
     }
 }
 
+// small labels appear after click, 'showDada' is boolean to show / not show Dada label
 function smallLabel(d, showDada) {
 
   var title = (d.value.title.length>20) ? d.value.title.slice(0, 15)+'...' : d.value.title,
@@ -120,10 +123,9 @@ function smallLabel(d, showDada) {
 
 }
 
+// hub of 'hub-and-spokes'
 function nodeClick() {
   return function(d) {
-
-  console.log(d);
 
   // clear old path back, if any
   clearLastClick();
@@ -160,6 +162,7 @@ function nodeClick() {
   }
 }
 
+// uses roots array to highlight pertinant lines and nodes
 function pathBack(d) {
 
     // est roots array
@@ -225,8 +228,6 @@ function pathBack(d) {
         d3.select('img.back').style('bottom', '0em');
       }
 
-      // append labels
-      // console.log(selector);
     });
     //
 }
@@ -239,6 +240,7 @@ function showLines(selector, opacity, stroke) {
   });
 }
 
+// back button
 function clearNodeClick() {
 
   clearLastClick();
