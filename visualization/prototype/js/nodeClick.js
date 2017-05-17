@@ -156,13 +156,13 @@ function nodeClick() {
 
   // zoom(d); - commented out, poor performance
 
-  // if on title page, change title
-  var o = d3.select('div#intro').style('opacity');
-  console.log(o);
-  if (o==1) {
-    // this should actually just trigger a function
-    replaceTitle(d);
-  }
+  // title swapping - works but is overwhelmed (poor performance)
+  // var o = d3.select('div#intro').style('opacity');
+  // console.log(o);
+  // if (o==1) {
+  //   // this should actually just trigger a function
+  //   replaceTitle(d);
+  // }
 
   // clear old path back, if any
   clearLastClick();

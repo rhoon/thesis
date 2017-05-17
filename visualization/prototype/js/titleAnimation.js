@@ -37,7 +37,7 @@ function replaceTitle(d) {
   d3.select('h1#dynamic')
     .style('width', function() {
       var mod=Math.floor(newText.length/2);
-      return 27+mod+'%';
+      return 20+mod+'%';
     });
 
   currentText = currentText.split('(')[0];

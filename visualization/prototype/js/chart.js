@@ -18,14 +18,15 @@ function explore() {
   clearNodeClick()
 
   // hide intro
-  var intro = d3.select('#intro');
-  intro.transition().style('opacity', 0);
-  // intro.style('display', 'none');
+  var intro = d3.selectAll('div#intro, h1#dynamic');
+    intro.transition().style('opacity', 0);
+    intro.transition().delay(500).style('display', 'none');
+
 
   // show sidebar
   var sidebar = d3.select('div#sidebar');
-  d3.select('div#sidebar').style('display', 'block');
-  d3.select('div#sidebar').transition().style('left', '0%');
+    sidebar.style('display', 'block');
+    sidebar.transition().style('left', '0%');
 
 }
 
@@ -245,10 +246,10 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
 
   // force diagram
   var links = graph.links,
-      nodes = graph.nodes
-      meter = document.querySelector("#progress"),
-      worker = new Worker("js/worker.js");
-      urlList = [];
+      nodes = graph.nodes,
+      // meter = document.querySelector("#progress"),
+      worker = new Worker("js/worker.js"),
+      urlList = [],
       titleList = [];
 
   // make the URL list for the jquery search
@@ -271,14 +272,19 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
 
   function ticked(data) {
     var progress = data.progress;
-    meter.style.width = 100 * progress + "%";
+    // meter.style.width = 100 * progress + "%";
+
+    // would be nice to communicate a little here
+    // 'loading dataset...'
+    // 'drawing chart...'
   }
 
   function ended(data) {
     var nodes = data.nodes,
         links = data.links;
-
-    meter.style.display = "none";
+    console.log('done');
+    d3.select('div.loader').style('display', 'none');
+    // meter.style.display = "none";
 
     console.log(nodes);
     console.log(links);
@@ -359,7 +365,7 @@ d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2
     // starterAnimation();
 
     // fade in the intro
-    d3.select('#intro').transition().style('opacity',1);
+    d3.selectAll('#intro, h1#dynamic').transition().style('opacity',1);
 
   }
 
