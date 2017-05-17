@@ -80,26 +80,43 @@ function smallLabel(d, showDada) {
 
   box.styles({
         left: function() {
-            var xMod = (d.x < dadaX) ? -offsetWidth-10 : 10;
-          }
+          var xMod = (d.x < dadaX) ? -offsetWidth-10 : 10;
           return d.x+xMod+'px';
         },
         top: function() {
-            var yMod = (d.y < dadaY) ? -boxHeight-10 : 10;
-          }
+          var yMod = (d.y < dadaY) ? -boxHeight-10 : 10;
           return d.y+yMod+'px';
         },
         opacity: 0
       });
 
   // show dada box, position accordingly, if condition is met
-  // show Dada smallLabel
   if (showDada) {
-    var dadaData = d3.select('circle#Dada').data();
-    //////// MOAR here
+
+    var dadaBox = d3.select('div#chart')
+      .append('div')
+      .classed('smallLabel card', true)
+      .attr('id', 'dadaLabel')
+      .text('Dada');
+
+    var dadaOffset = document.getElementById('dadaLabel').offsetWidth;
+
+    dadaBox.styles({
+      left: function() {
+        var xMod = (d.x < dadaX) ? 10 : -dadaOffset-10;
+        return dadaX+xMod+'px';
+      },
+      top: function() {
+        var yMod = (d.y < dadaY) ? 10 : -boxHeight-10;
+        return dadaY+yMod+'px';
+      },
+      opacity: 0
+    });
+
   }
 
   box.transition().delay(500).style('opacity', 1);
+  dadaBox.transition().delay(500).style('opacity', 1);
 
 }
 
@@ -138,6 +155,14 @@ function nodeClick() {
   console.log(d);
 
   // zoom(d); - commented out, poor performance
+
+  // if on title page, change title
+  var o = d3.select('div#intro').style('opacity');
+  console.log(o);
+  if (o==1) {
+    // this should actually just trigger a function
+    replaceTitle(d);
+  }
 
   // clear old path back, if any
   clearLastClick();

@@ -1,5 +1,5 @@
 # Mapping Dada
-### A visualization charting the influence exerted by and on a moment in history
+### Charting Influence and Interconnectedness in History
 
 ![preview](preview.png)
 
@@ -13,4 +13,3 @@ How do we measure influence? If you allow that a link from one page to another a
 3. Quantified strength of network nodes to gauge the most power points of influence.
 4. Visually clustered offshoots based on common influences.
 5. Search available article titles for specific uses.
-6. Zoom and pan to navigate the network in-depth.

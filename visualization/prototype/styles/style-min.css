@@ -446,13 +446,18 @@ div#zOut {
 
 /* INTRO */
 div#intro {
-  width: 25%;
-  position: relative;
-  /*left: 15%;*/
-  margin: 10%; }
+  width: 30%;
+  position: absolute;
+  top: 45%;
+  left: 10%; }
 
-div#intro h1 {
-  font-size: 4.5em;
+h1#dynamic {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  display: block;
+  width: 30%;
+  font-size: 4em;
   line-height: 106%;
   letter-spacing: -.04em; }
 
@@ -461,7 +466,7 @@ div#intro p {
   line-height: 135%;
   margin: 2em 0 2em 0; }
 
-div#intro span#nodeTitle {
+h1#dynamic span#nodeTitle {
   text-transform: capitalize; }
 
 div.button {

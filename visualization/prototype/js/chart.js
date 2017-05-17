@@ -113,7 +113,7 @@ function circleSize(hover) {
     if (d.id=='Dada') {
       return 5+hover;
     } else {
-      return Math.ceil(+d.value.rank*100)*1.5+hover;
+      return Math.ceil(+d.value.rank*100)*2+hover;
     }
   }
 }
@@ -150,7 +150,7 @@ function toggler() {
   }
 }
 
-d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
+d3.json("data/forceChart-d2fullSet.json", function(error, graph) { //suffix: -d2fullSet
   if (error) throw error;
 
   //filters
@@ -353,7 +353,14 @@ d3.json("data/forceChart-sm.json", function(error, graph) { //suffix: -d2fullSet
         event.initEvent("click",true,false);
         document.getElementById(urlList[id]).dispatchEvent(event);
 
-      });
+    });
+
+    // call the animation loop
+    // starterAnimation();
+
+    // fade in the intro
+    d3.select('#intro').transition().style('opacity',1);
+
   }
 
 });
