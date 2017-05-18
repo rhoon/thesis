@@ -290,6 +290,15 @@
 		"sC": 1,
 		"tS": 0
 		},
+	"\/js\/titleAnimation-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/titleAnimation-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/js\/titleAnimation.js": {
 		"ft": 64,
 		"mi": 1,
@@ -339,17 +348,6 @@
 		"oT": 1,
 		"q": 100
 		},
-	"\/presentation-pngs\/thesis-3.png": {
-		"ft": 32768,
-		"iS": 2804794,
-		"oA": 0,
-		"oAP": "\/presentation-pngs\/thesis-3.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
 	"\/presentation-pngs\/thesis-4.png": {
 		"ft": 32768,
 		"iS": 164747,
@@ -385,7 +383,7 @@
 		},
 	"\/presentation-pngs\/thesis-7.png": {
 		"ft": 32768,
-		"iS": 75954,
+		"iS": 67802,
 		"oA": 0,
 		"oAP": "\/presentation-pngs\/thesis-7.png",
 		"oF": 0,
@@ -396,31 +394,9 @@
 		},
 	"\/presentation-pngs\/thesis-8.png": {
 		"ft": 32768,
-		"iS": 4353543,
+		"iS": 3573127,
 		"oA": 0,
 		"oAP": "\/presentation-pngs\/thesis-8.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"\/presentation-pngs\/thesis-?.png": {
-		"ft": 32768,
-		"iS": 677358,
-		"oA": 0,
-		"oAP": "\/presentation-pngs\/thesis-?.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"\/presentation-pngs\/thesis-blank.png": {
-		"ft": 32768,
-		"iS": 16064,
-		"oA": 0,
-		"oAP": "\/presentation-pngs\/thesis-blank.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,

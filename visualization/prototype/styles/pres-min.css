@@ -33,5 +33,18 @@
 #pres8 {
   background-image: url("../presentation-pngs/thesis-8.png"); }
 
+#plast {
+  display: none;
+  background-image: url("../presentation-pngs/thesis-Last.png"); }
+
 .pres-hide {
   display: none; }
+
+.presFin {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: .8em;
+  opacity: .2;
+  z-index: 1000;
+  cursor: pointer; }
