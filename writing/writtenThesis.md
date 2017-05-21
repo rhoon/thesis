@@ -274,17 +274,21 @@ Listed here are all possible properties for the wikiData object, described in se
 
 Date properties (always cleaned to contain only year, for consistency)
 ```
-'Inception', 'publication date', 'date of birth', 'date of death', 'first performance'
+'Inception', 'publication date', 'date of birth',
+'date of death', 'first performance'
 ```
 
 Location properties:
 ```
-'location', 'sovereign state', 'coordinate location', 'country', 'located in the administrative territorial entity', 'country of origin', 'country of citizenship', 'place of birth', 'place of death', 'place of burial'
+'location', 'sovereign state', 'coordinate location', 'country',
+'located in the administrative territorial entity', 'country of origin',
+'country of citizenship', 'place of birth', 'place of death', 'place of burial'
 ```
 
 Miscellaneous (not used in the current analysis but gathered for future reference):
 ```
-'occupation', 'sex or gender', 'languages spoken, written or signed', 'image', 'pseudonym', 'educated at', 'given name', 'part of', 'influenced by'
+'occupation', 'sex or gender', 'languages spoken, written or signed',
+'image', 'pseudonym', 'educated at', 'given name', 'part of', 'influenced by'
 ```
 
 Categorical property:
@@ -296,46 +300,80 @@ URLs listed shown would normally include the wikipedia prefix: https://en.wikipe
 
 **Urls including the following strings were excluded:**
 ```
-'Special:' 				// Wikipedia structural page
-'Category:' 				// Denotes broad categorical pages
-'Ex.php?' 				// Generates errors in data collection
-'Help:'					// Denotes ‘help’ pages for Wikipedia users
-'Wikipedia:LIBRARY'			// Not relevant to analysis
-'Public_domain'				// Information page re: Public_Domain
-'Wikipedia:Citation_needed' 		// Information page for Wikipedia Users on Citations
+'Special:' 				             // Wikipedia structural page
+'Category:' 				          // Denotes broad categorical pages
+'Ex.php?' 				            // Generates errors in data collection
+'Help:'					              // Denotes ‘help’ pages for Wikipedia users
+'Wikipedia:LIBRARY'			      // Not relevant to analysis
+'Public_domain'				        // Information page re: Public_Domain
+'Wikipedia:Citation_needed' 	// Information page for Wikipedia Users on Citations
 'File:Wikiquote-logo.svg'			// Logo image
 'File:Commons-logo.svg' 			// Logo image
 "_modern_and_contemporary_"		// Pages containing this phrase overly categorical or broad
-'_talk'					// Wikipedia structural page (User chat logs)
-'Talk:' 					// Wikipedia structural page (User chat logs)
-"Book_talk:",				// Wikipedia structural page (User chat logs)
-'Template:',				// Wikipedia structural page
-'Wikipedia:',				// Wikipedia structural page
-'Wikipedia_talk:',				// Wikipedia structural page (User chat logs)
-'User:',					// Wikipedia structural page
-'Portal:',				// Wikipedia structural page
-"Wikipedia:Verifiability",			// Wikipedia structural page
-'w/index.php?',				// Generates error
-"Index_of_",				// List of links; overly broad; appears to be machine-generated
-"List_of_",				// List of links; overly broad; appears to be machine-generated
-"_century",				// List of links; overly broad; appears to be machine-generated
-"Glossary_of_",				// List of links; overly broad; appears to be machine-generated
-"Culture_of_",				// Overly broad (usually nation or population specific)
-"History_of_",				// Overly broad (usually nation or population specific)
-"Timeline_of_",				// Overly broad (usually nation or population specific)
-"Es.wikipedia.org",			// Foreign Language
-"De.wikipedia.org",			// Foreign Language
-"Ja.wikipedia.org",			// Foreign Language
-"Fr.wikipedia.org",			// Foreign Language
-"nl.wikipedia.org", 			// Foreign Language
-"Wikisource.org",			// Foreign Language
+'_talk'					              // Wikipedia structural page (User chat logs)
+'Talk:' 					            // Wikipedia structural page (User chat logs)
+"Book_talk:",				          // Wikipedia structural page (User chat logs)
+'Template:',				          // Wikipedia structural page
+'Wikipedia:',				          // Wikipedia structural page
+'Wikipedia_talk:',				    // Wikipedia structural page (User chat logs)
+'User:',					            // Wikipedia structural page
+'Portal:',				            // Wikipedia structural page
+"Wikipedia:Verifiability",		// Wikipedia structural page
+'w/index.php?',				        // Generates error
+"Index_of_",				          // List of links; overly broad; appears to be machine-generated
+"List_of_",				            // List of links; overly broad; appears to be machine-generated
+"_century",				            // List of links; overly broad; appears to be machine-generated
+"Glossary_of_",				        // List of links; overly broad; appears to be machine-generated
+"Culture_of_",				        // Overly broad (usually nation or population specific)
+"History_of_",			          // Overly broad (usually nation or population specific)
+"Timeline_of_",				        // Overly broad (usually nation or population specific)
+"Es.wikipedia.org",			      // Foreign Language
+"De.wikipedia.org",			      // Foreign Language
+"Ja.wikipedia.org",			      // Foreign Language
+"Fr.wikipedia.org",			      // Foreign Language
+"nl.wikipedia.org", 			    // Foreign Language
+"Wikisource.org",			        // Foreign Language
 "International_Standard_Book_Number",	// ISBN Data
-"Wiktionary.org",				// Non-wikipedia link
-"_(disambiguation)",			// Wikipedia structural page generated for articles with similar names
-"Draft:",					// Pages in working draft mode
-"21st-century_",				// Overly broad (usually nation or population specific)
-"20th-century_",				// Overly broad (usually nation or population specific)
-"19th-century_",				// Overly broad (usually nation or population specific)
-"18th-century_",				// Overly broad (usually nation or population specific)
-"World_War_",				// Overly broad (too expansive)
+"Wiktionary.org",				      // Non-wikipedia link
+"_(disambiguation)",			    // Wikipedia structural page generated for articles with similar names
+"Draft:",					            // Pages in working draft mode
+"21st-century_",				      // Overly broad (usually nation or population specific)
+"20th-century_",				      // Overly broad (usually nation or population specific)
+"19th-century_",				      // Overly broad (usually nation or population specific)
+"18th-century_",				      // Overly broad (usually nation or population specific)
+"World_War_",				          // Overly broad (too expansive)
+```
+
+**These articles are excluded explicitly, due to their expansive breadth:**
+```
+"Art",
+"Visual_arts",
+"Art_movement",
+"Poetry",
+"Performance_art",
+"Abstract_art",
+"Painting",
+"Poet",
+"Theatre",
+"Sculpture",
+"Satire",
+"Artist",
+"Literature",
+"French_literature",
+"Art_history",
+"Art_of_Europe",
+"Art_of_Asia",
+"Art_of_America",
+"Western_painting",
+"Cultural_movement",
+"Colonialism",
+"Irrationality",
+"Fascism_and_ideology",
+"Comedy_(drama)",
+"Retrospective",
+```
+
+**Additionally, a complete list of country level articles retrieved from Wikipedia’s list of sovereign states (https://en.wikipedia.org/wiki/List_of_sovereign_states) is excluded to avoid drawing spurious connections:**
+```
+"United_Nations_System","Member_states_of_the_United_Nations","List_of_sovereign_states#Abkhazia","Afghanistan","Albania","Algeria","Andorra","Angola","Antigua_and_Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","The_Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia_and_Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina_Faso","List_of_sovereign_states#Myanmar","Burundi","Cambodia","Cameroon","Canada","Cape_Verde","Central_African_Republic","Chad","Chile","China","List_of_sovereign_states#Taiwan","Colombia","Comoros","Democratic_Republic_of_the_Congo","Republic_of_the_Congo","List_of_sovereign_states#Cook_Islands","Costa_Rica","List_of_sovereign_states#Ivory_Coast","Croatia","Cuba","Cyprus","Czech_Republic","List_of_sovereign_states#Korea_North","List_of_sovereign_states#Congo.2C_Democratic_Republic_of_the","Denmark","Djibouti","Dominica","Dominican_Republic","East_Timor","Ecuador","Egypt","El_Salvador","Equatorial_Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","The_Gambia","Georgia_(country)","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","List_of_sovereign_states#Vatican_City","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Republic_of_Ireland","Israel","Italy","Ivory_Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","North_Korea","South_Korea","List_of_sovereign_states#Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Republic_of_Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall_Islands","Mauritania","Mauritius","Mexico","Federated_States_of_Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","List_of_sovereign_states#Nagorno-Karabakh","Namibia","Nauru","Nepal","Kingdom_of_the_Netherlands","New_Zealand","Nicaragua","Niger","Nigeria","List_of_sovereign_states#Niue","List_of_sovereign_states#Northern_Cyprus","List_of_sovereign_states#Korea_North","Norway","Oman","Pakistan","Palau","State_of_Palestine","Panama","Papua_New_Guinea","Paraguay","Peru","Philippines","Poland","Portugal","List_of_sovereign_states#Transnistria","Qatar","List_of_sovereign_states#Korea_South","List_of_sovereign_states#Congo.2C_Republic_of_the","Romania","Russia","Rwanda","List_of_sovereign_states#SADR","Saint_Kitts_and_Nevis","Saint_Lucia","Saint_Vincent_and_the_Grenadines","Samoa","San_Marino","S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe","Saudi_Arabia","Senegal","Serbia","Seychelles","Sierra_Leone","Singapore","Slovakia","Slovenia","Solomon_Islands","Somalia","List_of_sovereign_states#Somaliland","South_Africa","List_of_sovereign_states#Korea_South","List_of_sovereign_states#South_Ossetia","South_Sudan","Spain","Sri_Lanka","Sudan","List_of_sovereign_states#South_Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","List_of_sovereign_states#Taiwan","Tajikistan","Tanzania","Thailand","List_of_sovereign_states#East_Timor","Togo","Tonga","List_of_sovereign_states#Transnistria","Trinidad_and_Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United_Arab_Emirates","United_Kingdom","United_States","Uruguay","Uzbekistan","Vanuatu","Vatican_City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe","Member_states_of_the_United_Nations","Abkhazia","Cook_Islands","Kosovo","Nagorno-Karabakh_Republic","Niue","Northern_Cyprus","Sahrawi_Arab_Democratic_Republic","Somaliland","South_Ossetia","Taiwan","Transnistria"
 ```
