@@ -42,7 +42,7 @@ Wikipedia does present some issues beyond the scope of our data collection. Spec
 
 In breadth, Wikipedia reports that it is 60 times larger than any other english-language encyclopedia, with well over five million articles as of this writing (Wikipedia, 2017). Although the size of an encyclopedia alone is not normally cause célèbre amongst researchers, because each article increases our sample size, it increases the power of any statistical analyses applied to said data. Wikipedia's coverage is uneven, but it’s propensity for non-traditional, up-to-date crowdsourced encyclopedic information is still helpful, (Mesgari et al 2014) in that it more readily allows us to draw connections between Dada and contemporary cultural items.
 
-Researchers have noted an unevenness in coverage on Wikipedia. In 2008, Halavais and Lackoff compared the topical distribution of books in print (from Bowkers Books in Print) vs. topical distribution of Wikipedia articles, and found differences in representation they attribute to the Wikipedia’s ‘geek culture’^1^: for articles on science and general history, Wikipedia is more voluminous, whereas for medicine, less so. In the center, with similar distributions between books in print and Wikipedia articles, was ‘Fine Art’, a category presumably including Dada, implying that Dada falls within a relatively ‘safe zone’ of neither under- nor over-representation.^2^
+Researchers have noted an unevenness in coverage on Wikipedia. In 2008, Halavais and Lackoff compared the topical distribution of books in print (from Bowkers Books in Print) vs. topical distribution of Wikipedia articles, and found differences in representation they attribute to the Wikipedia’s ‘geek culture’<sup>1</sup>: for articles on science and general history, Wikipedia is more voluminous, whereas for medicine, less so. In the center, with similar distributions between books in print and Wikipedia articles, was ‘Fine Art’, a category presumably including Dada, implying that Dada falls within a relatively ‘safe zone’ of neither under- nor over-representation.<sup>2</sup>
 
 Further review on gender inclusion by Reagle and Rue (2011) finds that women are underrepresented in biographies, although article length does not vary significantly by gender, thereby increasing the likelihood that while women who are present will enjoy relatively comprehensive coverage, it’s likely that some of the important female contributors to Dada are left out.
 
@@ -78,7 +78,7 @@ Ultimately, the schema is flexible to accommodate the variety of different types
   rank: '0.010049' }
 ```
 
-######This example is greatly reduced and purely for sake of illustrating the data structure. While Picabia is included in the data set, the mapsTo and mapsFrom arrays are too large to be a practical illustration.
+###### This example is greatly reduced and purely for sake of illustrating the data structure. While Picabia is included in the data set, the mapsTo and mapsFrom arrays are too large to be a practical illustration.
 
 Line by line, we see a distance property, indicating how many links from Dada a particular item is (in this case, a distance of ‘1’ means a page is linked to directly). Second, a roots property, which allows us to programatically follow the various link paths back to their origin (Dada) to better examine their relationships. Unlike the others, this property is computed after the data is collected, from the *mapsFrom* and *mapsTo* arrays, rather than gathered from the scraper directly.
 
@@ -141,7 +141,16 @@ In fact, the cutoff value for the lowest quartile is only 0.0006516, and with a 
 Looking at a more distinct breakdown, of the only 33 URLs with more than 300 in-network links, we find a fairly intuitive output, validating the use of the WikiRank in establishing a cutoff for inclusion and exclusion in the model, passing a first test in validation.
 
 ```
-[ 'Dada', 'Cubism', 'Surrealism', 'Avant-garde', 'Impressionism', 'Section_d%27Or', 'Marcel_Duchamp', 'Modern_art', 'Tristan_Tzara', 'Modernism', 'Minimalism', 'Pablo_Picasso', 'Fluxus', 'Symbolism_(arts)', 'Expressionism', 'Pop_art', 'Abstract_expressionism', 'Art_movement', 'Futurism', 'Color_Field', 'Salon_d%27Automne', 'Soci%C3%A9t%C3%A9_des_Artistes_Ind%C3%A9pendants', 'Constructivism_(art)', 'Incoherents', 'Rafael_Trelles', 'Fauvism', 'Relationship_between_avant-garde_art_and_American_pop_culture', 'Scuola_Romana', 'Guglielmo_Janni', 'Minimalism_(visual_arts)', 'Soci%C3%A9t%C3%A9_Normande_de_Peinture_Moderne', 'Bauhaus', 'Conceptual_art' ]
+[ 'Dada', 'Cubism', 'Surrealism', 'Avant-garde', 'Impressionism',
+'Section_d%27Or', 'Marcel_Duchamp', 'Modern_art', 'Tristan_Tzara',
+'Modernism', 'Minimalism', 'Pablo_Picasso', 'Fluxus', 'Symbolism_(arts)',
+'Expressionism', 'Pop_art', 'Abstract_expressionism', 'Art_movement',
+'Futurism', 'Color_Field', 'Salon_d%27Automne',
+'Soci%C3%A9t%C3%A9_des_Artistes_Ind%C3%A9pendants', 'Constructivism_(art)',
+'Incoherents', 'Rafael_Trelles', 'Fauvism',
+'Relationship_between_avant-garde_art_and_American_pop_culture', 'Scuola_Romana',
+'Guglielmo_Janni', 'Minimalism_(visual_arts)',
+'Soci%C3%A9t%C3%A9_Normande_de_Peinture_Moderne', 'Bauhaus', 'Conceptual_art' ]
 ```
 
 ###### Output. 2.a - The output of URLs sharing 300 links with the in-network set, thereby scoring the highest WikiRank value.
@@ -196,7 +205,7 @@ Further, Wikipedia, to it’s credit, is not static. A final iteration of the da
 
 As Jacques Bertin expounded above, network analysis has the unique feature of being a visual-first approach, and is the intuitive method of visualizing the dataset at hand. Others have answered similar questions with similar approach; perhaps most notably, the now-defunct New York Times Research Labs’ Cascade project, (NYT Labs, 2011) which traced the ‘life’ of a story as it moved through social media, posits a similar question (regarding how information moves through influencers) and answers it eloquently.
 
-Semaspace, created by Dietmar Offenhuber and Gerhard Dirmoser, for Ars Electronica, also addresses a similar challenge. He describes it as a “compact graph editor and browser for the construction and analysis of knowledge networks.” Semaspace deals with the magnitude of the dataset effectively by allowing enhanced details of network nodes to appear and vanish on click.3 In a similar vein, Chris Harris’ clusterball uses dendrograms to effectively illustrate first-degree links of knowledge graphs within Wikipedia. (Offenhuber, 2006; Harris)
+Semaspace, created by Dietmar Offenhuber and Gerhard Dirmoser, for Ars Electronica, also addresses a similar challenge. He describes it as a “compact graph editor and browser for the construction and analysis of knowledge networks.” Semaspace deals with the magnitude of the dataset effectively by allowing enhanced details of network nodes to appear and vanish on click.<sup>3</sup> In a similar vein, Chris Harris’ clusterball uses dendrograms to effectively illustrate first-degree links of knowledge graphs within Wikipedia. (Offenhuber, 2006; Harris)
 
 These two solutions to similar problems above illustration many of the challenges of network graphs; labels especially become an issue. As nodes in force-directed layouts inevitably overlap, leading to difficult decisions in interface design: what should be shown and hidden via click and hover states; how will users navigate; etc.
 
@@ -216,7 +225,9 @@ On the one hand, this is a difficult complication to contend with: network graph
 
 ![](img-assets/dataFish.png)
 
-In the early phases of exploration of the Dada network visualization, this nearly impenetrable wall is inherent to the form. Although some relationships begin to emerge, as shown in *Figure 3.a,* the chart is overwhelmly signaling one thing: fish. Humor aside, the visual noise and double-entendre is not ideal for any audience; the chart disqualifies itself by accidentally mimicking Tufte’s most despised duck.^4^
+In the early phases of exploration of the Dada network visualization, this nearly impenetrable wall is inherent to the form. Although some relationships begin to emerge, as shown in *Figure 3.a,* the chart is overwhelmly signaling one thing: fish. Humor aside, the visual noise and double-entendre is not ideal for any audience; the chart disqualifies itself by accidentally mimicking Tufte’s most despised duck.<sup>4</sup>
+
+In introducing the improper signal of the fish, and addressing the issue of complexity, visual reduction is sought. It is from this iteration and critique thereof that the solution of showing only limited amounts of the network at once is introduced; hiding the lines also allows the interactions to run much smoother, as it appears the anti-aliasing of the lines put a heavy computational load on the processor.
 
 ##### 3.1 Analysis from the visualization
 
@@ -233,8 +244,6 @@ The Fugitives and Southern Agrarians are the roots of another cluster towards th
 ![](img-assets/schiller.jpg)
 
 ![](img-assets/gunter.jpg)
-
-Nobel-prize winning novelist Günter Grass exhibits a strong, if secondary, relationship to Dada, through Kafka, Robert Musil, Rainer Maria Rilke, and Thomas Mann, among others, all of whom predate him by a full generation. Günter is joined in this bottom-most cluster by other German, Post-War literary figures, like Heinrich Böll and Paul Celan. Nearby resides the Romanticist Poet Friedrich Hölderlin, linking directly to nearly every dot in the cluster despite having practiced nearly 100 years prior to any of the post-war figures, illustrating conceptual proximity despite his chronologic distance.
 
 Nobel-prize winning novelist Günter Grass exhibits a strong, if secondary, relationship to Dada, through Kafka, Robert Musil, Rainer Maria Rilke, and Thomas Mann, among others, all of whom predate him by a full generation. Günter is joined in this bottom-most cluster by other German, Post-War literary figures, like Heinrich Böll and Paul Celan. Nearby resides the Romanticist Poet Friedrich Hölderlin, linking directly to nearly every dot in the cluster despite having practiced nearly 100 years prior to any of the post-war figures, illustrating conceptual proximity despite his chronologic distance.
 
