@@ -4,7 +4,7 @@
 ###### Riley Hoonan, Parsons School of Design
 ###### MS Data Visualization Candidate 2017
 –
-###### Submitted in partial fulfillment of the requirements for the degree of Master Science in Data Visualization at Parsons School of Design.
+###### Submitted in partial fulfillment of the <br /> requirements for the degree of Master Science in Data Visualization <br /> at Parsons School of Design.
 
 <br />
 <br />
