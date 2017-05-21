@@ -309,48 +309,48 @@ URLs listed shown would normally include the wikipedia prefix: https://en.wikipe
 
 **Urls including the following strings were excluded:**
 ```
-'Special:' 				             // Wikipedia structural page
-'Category:' 				          // Denotes broad categorical pages
-'Ex.php?' 				            // Generates errors in data collection
-'Help:'					              // Denotes ‘help’ pages for Wikipedia users
-'Wikipedia:LIBRARY'			      // Not relevant to analysis
-'Public_domain'				        // Information page re: Public_Domain
-'Wikipedia:Citation_needed' 	// Information page for Wikipedia Users on Citations
-'File:Wikiquote-logo.svg'			// Logo image
-'File:Commons-logo.svg' 			// Logo image
-"_modern_and_contemporary_"		// Pages containing this phrase overly categorical or broad
-'_talk'					              // Wikipedia structural page (User chat logs)
-'Talk:' 					            // Wikipedia structural page (User chat logs)
-"Book_talk:",				          // Wikipedia structural page (User chat logs)
-'Template:',				          // Wikipedia structural page
-'Wikipedia:',				          // Wikipedia structural page
-'Wikipedia_talk:',				    // Wikipedia structural page (User chat logs)
-'User:',					            // Wikipedia structural page
-'Portal:',				            // Wikipedia structural page
-"Wikipedia:Verifiability",		// Wikipedia structural page
-'w/index.php?',				        // Generates error
-"Index_of_",				          // List of links; overly broad; appears to be machine-generated
-"List_of_",				            // List of links; overly broad; appears to be machine-generated
-"_century",				            // List of links; overly broad; appears to be machine-generated
-"Glossary_of_",				        // List of links; overly broad; appears to be machine-generated
-"Culture_of_",				        // Overly broad (usually nation or population specific)
-"History_of_",			          // Overly broad (usually nation or population specific)
-"Timeline_of_",				        // Overly broad (usually nation or population specific)
-"Es.wikipedia.org",			      // Foreign Language
-"De.wikipedia.org",			      // Foreign Language
-"Ja.wikipedia.org",			      // Foreign Language
-"Fr.wikipedia.org",			      // Foreign Language
-"nl.wikipedia.org", 			    // Foreign Language
-"Wikisource.org",			        // Foreign Language
-"International_Standard_Book_Number",	// ISBN Data
-"Wiktionary.org",				      // Non-wikipedia link
-"_(disambiguation)",			    // Wikipedia structural page generated for articles with similar names
-"Draft:",					            // Pages in working draft mode
-"21st-century_",				      // Overly broad (usually nation or population specific)
-"20th-century_",				      // Overly broad (usually nation or population specific)
-"19th-century_",				      // Overly broad (usually nation or population specific)
-"18th-century_",				      // Overly broad (usually nation or population specific)
-"World_War_",				          // Overly broad (too expansive)
+'Special:' 				             
+'Category:' 				         
+'Ex.php?' 				            
+'Help:'					            
+'Wikipedia:LIBRARY'			     
+'Public_domain'				        
+'Wikipedia:Citation_needed' 	
+'File:Wikiquote-logo.svg'			
+'File:Commons-logo.svg' 			
+"_modern_and_contemporary_"		
+'_talk'					              
+'Talk:' 					            
+"Book_talk:",				          
+'Template:',				          
+'Wikipedia:',				          
+'Wikipedia_talk:',				    
+'User:',					            
+'Portal:',				           
+"Wikipedia:Verifiability",		
+'w/index.php?',				        
+"Index_of_",				          
+"List_of_",				            
+"_century",				            
+"Glossary_of_",				       
+"Culture_of_",				        
+"History_of_",			          
+"Timeline_of_",				        
+"Es.wikipedia.org",			      
+"De.wikipedia.org",			      
+"Ja.wikipedia.org",			      
+"Fr.wikipedia.org",			      
+"nl.wikipedia.org", 			    
+"Wikisource.org",			        
+"International_Standard_Book_Number",
+"Wiktionary.org",				      
+"_(disambiguation)",			    
+"Draft:",					            
+"21st-century_",				      
+"20th-century_",				     
+"19th-century_",				      
+"18th-century_",				      
+"World_War_",				         
 ```
 
 **These articles are excluded explicitly, due to their expansive breadth:**
