@@ -164,7 +164,7 @@ function toggler() {
 
 // suffix for testing: replace 'd2fullSet' with 'sm'
 // 'sm' does not have all connections
-d3.json("data/forceChart-d2fullSet.json", function(error, graph) {
+d3.json("data/forceChart-sm.json", function(error, graph) {
   if (error) throw error;
 
   //filters

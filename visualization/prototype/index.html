@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css?family=Chivo|Playfair+Display" rel="stylesheet">
     <link href="styles/style.css" rel="stylesheet">
     <link href="styles/toggler.css" rel="stylesheet">
-    <link href="styles/pres.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/awesomplete.css" />
 
     <!--[if lt IE 9]>
@@ -29,11 +28,9 @@
     <div class="loader"></div>
     <div class="loadMessage">loading dataset...</div>
 
-    <div class="presFin" onClick=" document.getElementById('plast').style.display='block'; ">FIN</div>
-
     <div id="intro" style="opacity: 0">
-      <h1>How Dada connects to History</h1>
-      <p>A visual exploration of the influence of the 19th century art movement, using Wikipedia’s link structure.</p>
+      <h1>How Dada Connects to History</h1>
+      <p>A visual exploration of the influence of the 20th century art movement, using Wikipedia’s link structure.</p>
       <div class="button" id="explore" onclick="explore()">Explore</div>
       <a href="https://github.com/rhoon/thesis/blob/master/writing/MappingDada_MSDV_Thesis_SPR2017.pdf" class="button" id="method" target="new">Methodology</a>
     </div>
@@ -72,16 +69,6 @@
     <div id="chart">
       <svg id="chartSVG" width="1300" height="1300"></svg>
     </div>
-
-    <div id="plast" class="presImage"></div>
-    <div id="pres8" class="presImage" onClick="this.style.display = 'none';"></div>
-    <div id="pres7" class="presImage" onClick="this.style.display = 'none';"></div>
-    <div id="pres6" class="presImage" onclick="this.style.display = 'none';"></div>
-    <div id="pres5" class="presImage" onclick="this.style.display = 'none';"></div>
-    <div id="pres4" class="presImage" onClick="this.style.display = 'none';"></div>
-    <div id="pres3" class="presImage" onClick="this.style.display = 'none';"></div>
-    <div id="pres2" class="presImage" onclick="this.style.display = 'none';"></div>
-    <div id="pres1" class="presImage" onclick="this.style.display = 'none';"></div>
 
     <!-- D3 -->
     <script src="js/chart.js"></script>
