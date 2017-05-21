@@ -4,9 +4,7 @@
 ###### Riley Hoonan, Parsons School of Design
 ###### MS Data Visualization Candidate 2017
 –
-###### Submitted in partial fulfillment of the requirements for the
-###### degree of Master Science in Data Visualization at Parsons
-###### School of Design.
+###### Submitted in partial fulfillment of the requirements for the degree of Master Science in Data Visualization at Parsons School of Design.
 
 <br />
 <br />
@@ -127,9 +125,6 @@ While PageRank is generally designed to be used in an iterative context, due to 
 
 For the initial analysis, all of the URLs gathered so far were used to get a better sense of the scope and data included, but in future iterations, the WikiRank algorithm was only run on an *‘in-network’* set, or rather, the intersection of URLs contained in each *mapsTo* and *mapsFrom* array with the set of URLs scraped so far.
 
-!()[/img-assets/RankEquation.png]
+![](/img-assets/RankEquation.png)
 ###### Fig. 2.a - ‘WikiRank’ Equation, generating a rank per page proportionate to the importance of the article and distance from Dada.
-###### m is the total number of urls contained in the mapsTo current article being ranked;
-###### L is the total number of in-network URLs;
-###### mapsTo is the total number of in-network URLs for article i;
-###### And distance is the number of links away from Dada article i is (at this point in the analysis, always 1)
+###### m is the total number of urls contained in the mapsTo current article being ranked; L is the total number of in-network URLs; mapsTo is the total number of in-network URLs for article i; And distance is the number of links away from Dada article i is (at this point in the analysis, always 1)
