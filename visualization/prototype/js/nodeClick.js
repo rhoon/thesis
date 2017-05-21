@@ -19,6 +19,8 @@ function clearLastClick() {
   d3.selectAll('div.article.leftSide').classed('leftSide', false);
 }
 
+// error occurs when last card is slid in - it remains 'current'
+
 // card on the right side is clicked
 function rClick() {
   var rightSide1 = d3.select('div.article.rightSide');
