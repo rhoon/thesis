@@ -312,7 +312,8 @@ img.articleImg {
   float: left;
   padding: 0 1em 0 0;
   display: inline-block;
-  position: relative; }
+  position: relative;
+  height: 100%; }
 
 div.article.pathBack {
   display: block;

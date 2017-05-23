@@ -2,6 +2,8 @@ var lastClicked = null;
 
 function clearLastClick() {
 
+  console.log('clear last click');
+
   // Reset network graph
   if (lastClicked!=null) { lastClicked.classed('gold opac_9', false); }
   d3.selectAll('circle.off').classed('off', false);
@@ -20,15 +22,21 @@ function clearLastClick() {
 }
 
 // error occurs when last card is slid in - it remains 'current'
+// card behaivor is unpredictable - right click should slide in the last
+// card that slide out
 
 // card on the right side is clicked
 function rClick() {
+
   var rightSide1 = d3.select('div.article.rightSide');
   var current = d3.select('div.article.current');
 
   if (rightSide1._groups[0][0]!=null) {
-    current.classed('current', false)
-      .transition()
+
+    // selectAll to catch any lingering 'current' articles
+    d3.selectAll('.current').classed('current', false);
+
+    current.transition()
       .ease(d3.easeCubic)
       .style('left', '-76%');
 
@@ -50,8 +58,11 @@ function lClick() {
     var current = d3.select('div.article.current');
 
     if (leftSide1._groups[0][0]!=null) {
-      current.classed('current', false)
-        .transition()
+
+      // selectAll to catch any lingering 'current' articles
+      d3.selectAll('.current').classed('current', false);
+
+      current.transition()
         .ease(d3.easeCubic)
         .style('left', '96%');
 
@@ -63,7 +74,7 @@ function lClick() {
         .style('left', '10%');
 
       leftSide1.classed('current', true);
-    }
+    } 
 }
 
 // small labels appear after click, 'showDada' is boolean to show / not show Dada label
