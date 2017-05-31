@@ -118,6 +118,27 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
+	"\/images\/close.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/images\/close.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/images\/distance.png": {
+		"ft": 32768,
+		"iS": 9394,
+		"oA": 0,
+		"oAP": "\/images\/distance.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"\/images\/dowArrow.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -146,6 +167,17 @@
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/images\/pagerank.png": {
+		"ft": 32768,
+		"iS": 23020,
+		"oA": 0,
+		"oAP": "\/images\/pagerank.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
 		"oT": 1,
 		"q": 100
 		},
@@ -424,6 +456,12 @@
 		"opt": 0,
 		"oT": 1,
 		"q": 100
+		},
+	"\/README.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/README.html",
+		"oF": 0
 		},
 	"\/README.md": {
 		"cS": 0,

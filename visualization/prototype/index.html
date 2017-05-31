@@ -28,11 +28,43 @@
     <div class="loader"></div>
     <div class="loadMessage">loading dataset...</div>
 
+    <div id="about">
+      <div class="bg"></div>
+      <img id="close" src="./images/close.svg" onclick="document.getElementById('about').style.display='none'"/>
+      <div class="aboutText">
+        <p>Mapping Dada is an experiment in charting the cognitive proximity of Wikipedia articles as a means to better understand historic influence.</p>
+
+        <p>Two assumptions lie at the heart of the analysis: the first, that we can say two articles are related based on how many links are between them. For example, in the diagram below, we would say that because Parsons and NYC are directly linked, they are very related, and that Parsons and the Mayor are indirectly linked, so they are less related. The number of links gives us the metric for <span class="hilite">distance.</span></p>
+
+        <img src="./images/distance.png" />
+
+        <p>The second assumption is that we can measure the relative importance of an article based on how many links it shares with other articles in a network. This is not a new concept; Larry Page used it in his PageRank algorithm for the early days of Google. </p>
+
+        <img style="width: 60%" src="./images/pagerank.png" />
+
+        <p class="sub">A closed network of Articles (A-L) where ‘Article A’ is the most important since most articles link directly to it, and it links to no articles.</p>
+
+        <p>Combining these two metrics gives us an equation for measuring relevance between articles and get a better sense of how ideas move through space and time (at least as Wikipedia sees them). To put this model to test, it was run with the art movement <i>Dada</i> as the central node.</p>
+
+        <p>Using Wikipedia as the source data, all of the articles directly linked to Dada were gathered* and ranked. Since this was only the directly connected links, some preparation was made to collect the next level of links (<span class="hilite">distance = 2</span>) but due to the sheer volume, only a 5% random sample of the second set has been collected for this initial release. However, this set of nearly 6000 articles still contains a few interesting insights and provides a good illustration of the capabilities of this sort of analysis. </p>
+
+        <p>An updated version will be launched in the near future with a more complete dataset. </p>
+
+        <p style="margin-bottom: 2em">You can read a detailed documentation and analysis of the model, assumptions and data collection <a href="https://github.com/rhoon/thesis/blob/master/writing/writtenThesis.md">here.</a></p>
+
+        <p class="sub">*Links that might break the analysis were excluded; in a nutshell, these were articles that list links or were so broad as to be more noise than signal. A full list of excluded articles can be seen in the appendix of the written analysis.</p>
+
+        <p class="sub">Created by <a href="http://www.RileyHoonan.com/">Riley Hoonan</a> for Parson's MS Data Visualization Program, 2017.</p>
+
+        <p class="sub">Code available under the MIT license <a href="https://github.com/rhoon/thesis">on Github.</a></p>
+      </div>
+    </div>
+
     <div id="intro" style="opacity: 0">
       <h1>How Dada Connects to History</h1>
       <p>A visual exploration of the influence of the 20th century art movement, using Wikipedia’s link structure.</p>
       <div class="button" id="explore" onclick="explore()">Explore</div>
-      <a href="https://github.com/rhoon/thesis/blob/master/writing/MappingDada_MSDV_Thesis_SPR2017.pdf" class="button" id="method" target="new">Methodology</a>
+      <div class="button" id="method" onclick="document.getElementById('about').style.display='block'">About</div>
     </div>
 
     <div id="sidebar" class="bgdark">
