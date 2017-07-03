@@ -1,3 +1,9 @@
+// TO DO:
+// Add 'dates' array
+// Add 'places' array
+
+// ------------------------------------------
+
 // Scrapes and compiles data from wikipedia pages collected by 'collect.js'
 // Takes two parameters: 1) content - the body of the scraped page,
 // and 2) url - the url of the scraped page;
@@ -87,6 +93,27 @@ module.exports = {
     }
 
   })
+
+  // find date information
+  var text = $('div#bodyContent').text();
+  var datesRough = text.split(' ');
+  // repo for date objects
+  var dates = new Object;
+
+  for (var i in datesRough) {
+    var isnum = /^\d+$/.test(datesRough[i]);
+    if (datesRough[i].length==4 && isnum) {
+      if (dates.hasOwnProperty(datesRough[i])) {
+        dates[datesRough[i]]+=1;
+      } else {
+        dates[datesRough[i]]=1;
+      }
+    }
+  }
+  
+  console.log('DATES-----------------------------------------');
+  console.log(dates);
+  console.log('----------------------------------------------');
 
   //remove duplicates, append to object
   data.mapsTo = _.uniq(data.mapsTo);
